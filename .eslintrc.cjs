@@ -1,36 +1,45 @@
-/** @type {import("eslint").Linter.Config} */
+/** @type {import('eslint').Linter.Config} */
 const config = {
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: true,
+    project: true
   },
-  plugins: ["@typescript-eslint"],
+  plugins: ['@typescript-eslint'],
   extends: [
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked",
+    'next/core-web-vitals',
+    'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked'
   ],
   rules: {
+    curly: 'warn',
+    eqeqeq: 'error',
+    'jsx-quotes': 'warn',
+    quotes: [
+      'warn',
+      'single',
+      { avoidEscape: true, allowTemplateLiterals: true }
+    ],
+
     // These opinionated rules are enabled in stylistic-type-checked above.
     // Feel free to reconfigure them to your own preference.
-    "@typescript-eslint/array-type": "off",
-    "@typescript-eslint/consistent-type-definitions": "off",
+    '@typescript-eslint/array-type': ['error', { default: 'array' }],
+    '@typescript-eslint/consistent-type-definitions': 'warn',
 
-    "@typescript-eslint/consistent-type-imports": [
-      "warn",
+    '@typescript-eslint/consistent-type-imports': [
+      'warn',
       {
-        prefer: "type-imports",
-        fixStyle: "inline-type-imports",
-      },
+        prefer: 'type-imports',
+        fixStyle: 'inline-type-imports'
+      }
     ],
-    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-    "@typescript-eslint/no-misused-promises": [
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-misused-promises': [
       2,
       {
-        checksVoidReturn: { attributes: false },
-      },
-    ],
-  },
+        checksVoidReturn: { attributes: false }
+      }
+    ]
+  }
 };
 
 module.exports = config;
