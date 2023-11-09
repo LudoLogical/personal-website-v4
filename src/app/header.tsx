@@ -109,7 +109,7 @@ export default function Header() {
         showNavbar ? 'translate-y-0' : '-translate-y-[100%]'
       )}
     >
-      {/* TODO: The translate above is messy, we should close the expanded things instead! */}
+      {/* TODO: The translate above doesn't account for open dialogs, forward multiple refs to fix. 300% is required as a backup. */}
       <header className="navbar rounded-box m-5 max-w-6xl bg-neutral shadow-xl">
         <div className="mx-1 my-0.5 flex-1">
           <button className="btn btn-ghost px-2">
