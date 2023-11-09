@@ -7,8 +7,15 @@ export default {
   content: ['./src/**/*.tsx', './mdx-components.tsx'],
   theme: {
     extend: {
+      boxShadow: {
+        'halo-primary-sm': '0 0 10px 0 rgba(255, 239, 20, 1)',
+        'halo-secondary': '0 0 25px 0 rgba(5, 105, 243, 1)'
+      },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans]
+      },
+      screens: {
+        xs: '475px'
       }
     }
   },
