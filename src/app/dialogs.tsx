@@ -53,7 +53,7 @@ export function Copyright() {
         <p className="my-4">
           This{' '}
           <StyledLink
-            reference={firstLink}
+            ref={firstLink}
             href="https://github.com/LudoLogical/personal-website-v4"
           >
             open-source
@@ -93,7 +93,7 @@ export function Pronouns() {
           <>
             Oh, hi there! These are my{' '}
             <StyledLink
-              reference={link}
+              ref={link}
               href="https://www.glsen.org/activity/pronouns-guide-glsen"
             >
               pronouns
@@ -145,7 +145,7 @@ export function ThreadsButton() {
           can read a brief summary of what &quot;X&quot; has been up to since
           the acquisition{' '}
           <StyledLink
-            reference={link}
+            ref={link}
             href="https://en.wikipedia.org/wiki/Twitter_under_Elon_Musk#Limitations_on_viewing_tweets"
           >
             here
