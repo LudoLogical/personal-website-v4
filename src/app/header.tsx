@@ -154,13 +154,13 @@ export default function Header() {
       {/* TODO: The translate above doesn't account for open dialogs, forward multiple refs to fix. 300% is required as a backup. */}
       <header className="navbar rounded-box m-5 max-w-6xl bg-neutral shadow-xl">
         <div className="mx-1 my-0.5 flex-1">
-          <button className="btn btn-ghost px-2">
+          <Link href="/" className="btn btn-ghost px-2">
             <Image
               src={emblem}
               alt="Ludo's personal emblem. It consists of several horizontal lines, a backwards letter 'L', and a letter 'D'. Together, these form an iconographic representation of a bullet in flight."
               className="w-10"
             />
-          </button>
+          </Link>
         </div>
         <div className="hidden flex-none sm:flex">
           <NavMenu ref={navMenuLarge} />

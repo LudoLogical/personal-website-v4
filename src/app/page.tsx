@@ -17,22 +17,23 @@ function AvatarComponent({ className }: { className?: string }) {
 function SocialButtons() {
   return (
     <div className="flex gap-1">
-      <button className="btn btn-ghost">
+      <button className="btn btn-circle btn-ghost">
         <FiGithub className="h-4 w-4" />
       </button>
-      <button className="btn btn-ghost">
+      <button className="btn btn-circle btn-ghost">
         <FiLinkedin className="h-4 w-4" />
       </button>
     </div>
   );
 }
 
-export default function Home() {
+export default function Index() {
   return (
     <div className="hero">
       <div className="hero-content max-w-5xl flex-row gap-16">
         <AvatarComponent className="hidden h-64 w-64 rounded-3xl shadow-halo-secondary lg:avatar" />
         <header>
+          <AvatarComponent className="shadow-halo-secondary-sm avatar mb-6 h-16 w-16 rounded-full xs:hidden" />
           <p>Hello, my name is</p>
           <h1 className="mb-4 mt-2 text-2xl font-bold leading-tight xs:text-3xl lg:text-4xl">
             <span className="text-primary">
@@ -56,12 +57,9 @@ export default function Home() {
             </StyledLink>{' '}
             and pursuing a new place in the software-as-a-service space.
           </p>
-          <button className="btn btn-primary mt-6 shadow-halo-primary-sm xs:hidden">
-            Check out my blog!
-          </button>
-          <div className="mt-6 flex flex-row items-center justify-start gap-1 xs:gap-4">
-            <AvatarComponent className="shadow-halo-secondary-sm avatar mr-4 h-16 w-16 rounded-full sm:h-20 sm:w-20 lg:hidden" />
-            <button className="btn btn-primary hidden shadow-halo-primary-sm xs:inline-flex">
+          <div className="mt-6 flex flex-row items-center justify-start gap-4">
+            <AvatarComponent className="shadow-halo-secondary-sm mr-4 hidden h-16 w-16 rounded-full xs:avatar sm:h-20 sm:w-20 lg:hidden" />
+            <button className="btn btn-primary shadow-halo-primary-sm">
               Check out my blog!
             </button>
             <div className="flex-row gap-2">
