@@ -15,6 +15,31 @@ import { HiArrowTopRightOnSquare, HiBars3, HiXMark } from 'react-icons/hi2';
 import emblem from 'public/emblem_yellow.png';
 import { Copyright } from './dialogs';
 
+const menuLinks = [
+  [
+    'Blog',
+    [
+      ['Recent', '/blog/recent'],
+      ['Categories', '/blog/categories']
+    ]
+  ],
+  [
+    'Software',
+    [
+      ['Skills', '/skills'],
+      ['Experience', '/experience']
+    ]
+  ],
+  [
+    'Extras',
+    [
+      ['Music', '/music'],
+      ['Crossword', '/crossword']
+    ]
+  ],
+  ['Contact', '/contact']
+];
+
 interface NavMenuHandle {
   closeAll: () => void;
 }
@@ -22,20 +47,14 @@ interface NavMenuHandle {
 const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
   function NavMenu({ isSmall }, ref) {
     const [menuVisible, setMenuVisible] = useState<boolean>(false);
+    const [openSubmenu, setOpenSubmenu] = useState<number>(-1);
     const checkbox = useRef<HTMLInputElement | null>(null);
-    const blog = useRef<HTMLDetailsElement | null>(null);
-    const extras = useRef<HTMLDetailsElement | null>(null);
     useImperativeHandle(ref, () => ({
       closeAll: () => {
         if (checkbox.current) {
           checkbox.current.checked = false;
         }
-        if (blog.current) {
-          blog.current.removeAttribute('open');
-        }
-        if (extras.current) {
-          extras.current.removeAttribute('open');
-        }
+        setOpenSubmenu(-1);
         setMenuVisible(false);
       }
     }));
@@ -60,46 +79,39 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
             hidden: isSmall && !menuVisible
           })}
         >
-          <li>
-            <details ref={blog}>
-              <summary className="pr-5">Blog</summary>
-              <ul
-                className={clsx({
-                  '!mt-6 -translate-x-2 bg-neutral': !isSmall
-                })}
-              >
-                <li>
-                  <Link href="/blog/recent">Recent</Link>
-                </li>
-                <li>
-                  <Link href="/blog/categories">Categories</Link>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <Link href="/work">Work</Link>
-          </li>
-          <li>
-            <details ref={extras}>
-              <summary className="pr-5">Extras</summary>
-              <ul
-                className={clsx({
-                  '!mt-6 -translate-x-2 bg-neutral': !isSmall
-                })}
-              >
-                <li>
-                  <Link href="/music">Music</Link>
-                </li>
-                <li>
-                  <Link href="/crossword">Crossword</Link>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <Link href="/contact">Contact</Link>
-          </li>
+          {menuLinks.map((item, index) => (
+            <li key={item[0] as string}>
+              {typeof item[1] === 'string' ? (
+                <Link href={item[1]}>{item[0]}</Link>
+              ) : (
+                <details
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (openSubmenu === index) {
+                      setOpenSubmenu(-1);
+                    } else {
+                      setOpenSubmenu(index);
+                    }
+                  }}
+                  open={openSubmenu === index}
+                >
+                  <summary className="pr-5">{item[0]}</summary>
+                  <ul
+                    className={clsx({
+                      '!mt-6 -translate-x-2 bg-neutral': !isSmall
+                    })}
+                  >
+                    {item[1]!.map((link) => (
+                      <li key={link[0]}>
+                        <Link href={link[1]!}>{link[0]}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+            </li>
+          ))}
+
           {isSmall && (
             <li>
               <Link

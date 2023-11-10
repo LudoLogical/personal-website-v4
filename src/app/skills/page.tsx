@@ -28,10 +28,12 @@ const tools = [
   ['PyCharm', false],
   ['CLion', false],
   ['DataGrip', false],
+  ['Figma', true],
   ['Visual Studio Code', true],
   ['Eclipse', false],
   ['Nano', false],
   ['Vim', false],
+  ['SSH', false],
   ['AWS', false],
   ['Postman', false],
   ['Insomnia', false],
@@ -70,7 +72,7 @@ const softSkills = [
   ['Mentorship', true],
   ['Communication', false],
   [
-    'Spanish (California Seal of Biliteracy)',
+    'Spanish (CA Seal of Biliteracy)',
     'https://www.cde.ca.gov/sp/el/er/sealofbiliteracy.asp'
   ]
 ];
@@ -144,8 +146,8 @@ export default function Work() {
           especially high proficiency
         </p>
         <p>
-          <span className="badge badge-success mr-1 p-4">Green</span>{' '}
-          (clickable) indicates certification
+          <span className="badge badge-success mr-1 p-4">Green</span> (link)
+          indicates certification
         </p>
       </div>
     </div>
