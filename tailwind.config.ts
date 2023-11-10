@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        'halo-primary-sm': '0 0 5px 0 rgba(255, 239, 20, 1)',
+        'halo-primary-sm': '0 0 15px -5px rgba(255, 239, 20, 1)',
         'halo-secondary-sm': '0 0 20px 0 rgba(5, 105, 243, 1)',
         'halo-secondary': '0 0 25px 0 rgba(5, 105, 243, 1)'
       },

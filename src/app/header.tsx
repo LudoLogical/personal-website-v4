@@ -77,9 +77,6 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
             </details>
           </li>
           <li>
-            <Link href="/skills">Skills</Link>
-          </li>
-          <li>
             <Link href="/work">Work</Link>
           </li>
           <li>
@@ -98,6 +95,9 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
                 </li>
               </ul>
             </details>
+          </li>
+          <li>
+            <Link href="/contact">Contact</Link>
           </li>
           {isSmall && (
             <li>

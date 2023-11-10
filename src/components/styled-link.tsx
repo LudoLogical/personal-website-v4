@@ -14,7 +14,7 @@ export default function StyledLink({
     <Link
       ref={reference ? reference : null}
       href={href}
-      className="relative font-bold text-secondary no-underline after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full"
+      className="relative whitespace-nowrap font-bold text-secondary no-underline after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full"
     >
       {children}
     </Link>
