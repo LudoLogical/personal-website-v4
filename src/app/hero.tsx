@@ -32,10 +32,10 @@ export default function Hero() {
     <section className="flex min-h-screen flex-col justify-center">
       <div className="hero mt-12 h-full">
         <div className="hero-content max-w-5xl flex-row gap-16">
-          <AvatarComponent className="shadow-halo-secondary hidden h-64 w-64 rounded-3xl lg:avatar" />
+          <AvatarComponent className="hidden h-64 w-64 rounded-3xl shadow-halo-secondary lg:avatar" />
           <header>
             <p>Hello, my name is</p>
-            <h1 className="xs:text-3xl mb-4 mt-2 text-2xl font-bold leading-tight sm:text-4xl md:text-5xl">
+            <h1 className="mb-4 mt-2 text-2xl font-bold leading-tight xs:text-3xl sm:text-4xl md:text-5xl">
               <span className="text-primary">
                 Daniel &quot;Ludo&quot;{' '}
                 <span className="whitespace-nowrap">
@@ -54,15 +54,15 @@ export default function Hero() {
               software-as-a-service space.
             </p>
             <div className="mt-6 flex flex-col items-start justify-start gap-4 sm:flex-row sm:items-center">
-              <AvatarComponent className="hidden h-20 w-20 rounded-full sm:avatar lg:hidden" />
+              <AvatarComponent className="shadow-halo-secondary-sm hidden h-20 w-20 rounded-full sm:avatar lg:hidden" />
               <div className="flex flex-row items-center gap-4 sm:hidden">
-                <AvatarComponent className="avatar h-16 w-16 rounded-full" />
+                <AvatarComponent className="shadow-halo-secondary-sm avatar h-16 w-16 rounded-full" />
                 <div className="flex flex-row gap-2">
                   <SocialButtons />
                 </div>
               </div>
               <div className="flex flex-row gap-4">
-                <button className="shadow-halo-primary-sm btn btn-primary">
+                <button className="btn btn-primary shadow-halo-primary-sm">
                   Let&apos;s interact!
                   <HiChevronDoubleDown className="h-4 w-4" />
                 </button>
