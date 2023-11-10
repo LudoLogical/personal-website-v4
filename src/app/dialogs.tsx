@@ -3,7 +3,57 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { FiAtSign } from 'react-icons/fi';
+import { HiOutlineInformationCircle } from 'react-icons/hi2';
 import StyledLink from '~/components/styled-link';
+
+export function Copyright() {
+  const modal = useRef<HTMLDialogElement | null>(null);
+  const firstLink = useRef<HTMLAnchorElement | null>(null);
+  return (
+    <>
+      <HiOutlineInformationCircle
+        onClick={() => {
+          modal.current?.showModal();
+          firstLink.current?.blur();
+        }}
+        className="btn btn-circle btn-ghost btn-xs"
+      />
+      <dialog ref={modal} className="modal hidden whitespace-normal open:grid">
+        <div className="modal-box p-6 text-base font-light text-base-content">
+          <h3 className="text-xl font-normal">
+            Attribution and Copyright Information
+          </h3>
+          <p className="my-4">
+            This{' '}
+            <StyledLink
+              reference={firstLink}
+              href="https://github.com/LudoLogical/personal-website-v4"
+            >
+              open-source
+            </StyledLink>{' '}
+            website was built using Next.js, React, TypeScript, TailwindCSS,
+            DaisyUI, MDX, and a handful of other open-source{' '}
+            <StyledLink href="https://github.com/LudoLogical/personal-website-v4/blob/main/package.json">
+              packages
+            </StyledLink>
+            . It is being hosted free of charge on Vercel. Ludo&apos;s avatar
+            was created by Karina Varughese.
+          </p>
+          <p className="my-4">
+            All other content: &copy; 2023, Daniel &quot;Ludo&quot; DeAnda.
+          </p>
+          <p className="text-base-content/50">
+            When you&apos;re done with this dialog box, you can press escape or
+            click/tap anywhere outside of it to close it.
+          </p>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+    </>
+  );
+}
 
 export function Pronouns() {
   const modal = useRef<HTMLDialogElement | null>(null);

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import Avatar from 'public/avatar.png';
-import { Pronouns } from './client-helpers';
+import { Pronouns } from './dialogs';
 import StyledLink from '~/components/styled-link';
 
 function AvatarComponent({ className }: { className?: string }) {
@@ -29,7 +29,7 @@ function SocialButtons() {
 
 export default function Index() {
   return (
-    <div className="hero">
+    <div className="hero -mt-6">
       <div className="hero-content max-w-5xl flex-row gap-16">
         <AvatarComponent className="hidden h-64 w-64 rounded-3xl shadow-halo-secondary lg:avatar" />
         <header>

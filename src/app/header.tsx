@@ -13,6 +13,7 @@ import clsx from 'clsx';
 import { useScrollDirection } from 'react-use-scroll-direction';
 import { HiArrowTopRightOnSquare, HiBars3, HiXMark } from 'react-icons/hi2';
 import emblem from 'public/emblem_yellow.png';
+import { Copyright } from './dialogs';
 
 interface NavMenuHandle {
   closeAll: () => void;
@@ -151,9 +152,8 @@ export default function Header() {
         showNavbar ? 'translate-y-0' : '-translate-y-[100%]'
       )}
     >
-      {/* TODO: The translate above doesn't account for open dialogs, forward multiple refs to fix. 300% is required as a backup. */}
       <header className="navbar rounded-box m-5 max-w-6xl bg-neutral shadow-xl">
-        <div className="mx-1 my-0.5 flex-1">
+        <div className="mx-1 my-0.5 flex flex-1 flex-row items-center gap-2">
           <Link href="/" className="btn btn-ghost px-2">
             <Image
               src={emblem}
@@ -161,6 +161,7 @@ export default function Header() {
               className="w-10"
             />
           </Link>
+          <Copyright />
         </div>
         <div className="hidden flex-none sm:flex">
           <NavMenu ref={navMenuLarge} />

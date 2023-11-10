@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { HiEnvelope } from 'react-icons/hi2';
-import { FiAtSign, FiLinkedin } from 'react-icons/fi';
+import { FiLinkedin } from 'react-icons/fi';
 import { BiLogoDiscordAlt } from 'react-icons/bi';
-import { ThreadsButton } from '../client-helpers';
+import { ThreadsButton } from '../dialogs';
 
 export default function Contact() {
   return (
-    <div className="mx-auto flex max-w-xl flex-col gap-4 p-4">
+    <div className="mx-auto -mt-6 flex max-w-xl flex-col gap-4 p-4">
       <h1 className="text-center text-4xl font-bold text-primary">Contact</h1>
       <p className="text-center">
         Whether you want to discuss an opportunity, ask a question, or just say
