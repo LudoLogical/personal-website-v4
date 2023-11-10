@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={`font-sans ${mulish.variable}`}>
         <div className="m-auto min-w-[350px] max-w-6xl">
           <Header />
-          <main className="flex min-h-screen flex-col justify-center pt-12">
+          <main className="flex min-h-screen flex-col justify-center pt-20 xs:pt-12">
             {children}
           </main>
         </div>

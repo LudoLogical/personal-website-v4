@@ -56,9 +56,12 @@ export default function Home() {
             </StyledLink>{' '}
             and pursuing a new place in the software-as-a-service space.
           </p>
-          <div className="mt-6 flex flex-row items-center justify-start gap-4">
+          <button className="btn btn-primary mt-6 shadow-halo-primary-sm xs:hidden">
+            Check out my blog!
+          </button>
+          <div className="mt-6 flex flex-row items-center justify-start gap-1 xs:gap-4">
             <AvatarComponent className="shadow-halo-secondary-sm avatar mr-4 h-16 w-16 rounded-full sm:h-20 sm:w-20 lg:hidden" />
-            <button className="btn btn-primary shadow-halo-primary-sm">
+            <button className="btn btn-primary hidden shadow-halo-primary-sm xs:inline-flex">
               Check out my blog!
             </button>
             <div className="flex-row gap-2">
