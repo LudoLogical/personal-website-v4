@@ -16,6 +16,7 @@ import { useScrollDirection } from 'react-use-scroll-direction';
 import { HiArrowTopRightOnSquare, HiBars3, HiXMark } from 'react-icons/hi2';
 import emblem from 'public/emblem_yellow.png';
 import { Copyright } from './dialogs';
+import { useOutsideClick } from './utils/hooks';
 
 const menuLinks = [
   [
@@ -166,6 +167,14 @@ export default function Header() {
   const [showNavbar, setShowNavbar] = useState<boolean>(true);
   const navMenuLarge = useRef<NavMenuHandle | null>(null);
   const navMenuSmall = useRef<NavMenuHandle | null>(null);
+  function handleCloseAndHide() {
+    if (navMenuLarge.current) {
+      navMenuLarge.current.closeAndHide();
+    }
+    if (navMenuSmall.current) {
+      navMenuSmall.current.closeAndHide();
+    }
+  }
   useEffect(() => {
     if (!showNavbar) {
       if (isScrollingUp) {
@@ -174,17 +183,15 @@ export default function Header() {
     } else {
       if (isScrollingDown) {
         setShowNavbar(false);
-        if (navMenuLarge.current) {
-          navMenuLarge.current.closeAndHide();
-        }
-        if (navMenuSmall.current) {
-          navMenuSmall.current.closeAndHide();
-        }
+        handleCloseAndHide();
       }
     }
   }, [isScrollingUp, isScrollingDown, showNavbar]);
+  const container = useRef<HTMLDivElement | null>(null);
+  useOutsideClick(container, handleCloseAndHide);
   return (
     <div
+      ref={container}
       className={clsx(
         'fixed left-0 top-0 z-10 flex w-full justify-center transition-transform duration-300',
         showNavbar ? 'translate-y-0' : '-translate-y-[100%]'
