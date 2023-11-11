@@ -21,7 +21,7 @@ const menuLinks = [
   [
     'Blog',
     [
-      ['Recent', '/blog/recent'],
+      ['Recent', '/blog'],
       ['Categories', '/blog/categories']
     ]
   ],
