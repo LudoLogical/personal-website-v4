@@ -18,6 +18,8 @@ export default function Contact() {
           <span className="badge indicator-item badge-primary">Fastest</span>
           <Link
             href="https://discordapp.com/users/355536854176497668"
+            rel="noopener noreferrer"
+            target="_blank"
             className="btn w-fit"
           >
             <BiLogoDiscordAlt className="h-4 w-4" />
@@ -26,13 +28,20 @@ export default function Contact() {
         </div>
         <div className="indicator">
           <span className="badge indicator-item badge-primary">Fast</span>
-          <Link href="mailto:hello@danieldeanda.com" className="btn w-fit">
+          <Link
+            href="mailto:hello@danieldeanda.com"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="btn w-fit"
+          >
             <HiEnvelope className="h-4 w-4" />
             hello@danieldeanda.com
           </Link>
         </div>
         <Link
           href="https://www.linkedin.com/in/danielchristiandeanda/"
+          rel="noopener noreferrer"
+          target="_blank"
           className="btn w-fit"
         >
           <FiLinkedin className="h-4 w-4" />

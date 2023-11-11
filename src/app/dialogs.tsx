@@ -14,7 +14,7 @@ const Modal = forwardRef<
   return (
     <dialog
       ref={ref}
-      className={clsx('modal whitespace-normal', {
+      className={clsx('modal whitespace-normal text-left', {
         'hidden open:grid': cancelAnimation
       })}
     >
@@ -130,6 +130,8 @@ export function ThreadsButton() {
         </span>
         <Link
           href="https://www.threads.net/@ludo.logical"
+          rel="noopener noreferrer"
+          target="_blank"
           className="btn w-fit"
         >
           <FiAtSign className="h-4 w-4" />

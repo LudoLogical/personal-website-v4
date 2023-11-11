@@ -20,12 +20,16 @@ function SocialButtons() {
     <div className="flex gap-1">
       <Link
         href="https://github.com/LudoLogical"
+        rel="noopener noreferrer"
+        target="_blank"
         className="btn btn-circle btn-ghost"
       >
         <FiGithub className="h-4 w-4" />
       </Link>
       <Link
         href="https://www.linkedin.com/in/danielchristiandeanda/"
+        rel="noopener noreferrer"
+        target="_blank"
         className="btn btn-circle btn-ghost"
       >
         <FiLinkedin className="h-4 w-4" />
@@ -39,7 +43,7 @@ export default function Index() {
     <div className="hero -mt-6">
       <div className="hero-content max-w-5xl flex-row gap-16">
         <AvatarComponent className="hidden h-64 w-64 rounded-3xl shadow-halo-secondary lg:avatar" />
-        <header>
+        <div>
           <AvatarComponent className="avatar mb-6 h-16 w-16 rounded-full shadow-halo-secondary-sm xs:hidden" />
           <p>Hello, my name is</p>
           <h1 className="mb-4 mt-2 text-2xl font-bold leading-tight xs:text-3xl lg:text-4xl">
@@ -56,9 +60,9 @@ export default function Index() {
             I&apos;m a problem solver on a neverending quest to connect users
             with software, students with concepts, humans with emotions, and
             people with play. I recently graduated from{' '}
-            <StyledLink href="utdallas.edu">UT Dallas</StyledLink> with major,
-            university, and highest Latin honors. Currently, I&apos;m working as
-            an Integrated Development Advisor at{' '}
+            <StyledLink href="https://www.utdallas.edu/">UT Dallas</StyledLink>{' '}
+            with major, university, and highest Latin honors. Currently,
+            I&apos;m working as an Integrated Development Advisor at{' '}
             <StyledLink href="https://labs.codeday.org/">
               CodeDay Labs
             </StyledLink>{' '}
@@ -76,7 +80,7 @@ export default function Index() {
               <SocialButtons />
             </div>
           </div>
-        </header>
+        </div>
       </div>
     </div>
   );

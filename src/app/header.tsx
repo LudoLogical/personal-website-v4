@@ -17,31 +17,7 @@ import { HiArrowTopRightOnSquare, HiBars3, HiXMark } from 'react-icons/hi2';
 import emblem from 'public/emblem_yellow.png';
 import { Copyright } from './dialogs';
 import { useOutsideClick } from './utils/hooks';
-
-const menuLinks = [
-  [
-    'Blog',
-    [
-      ['Recent', '/blog'],
-      ['Categories', '/blog/categories']
-    ]
-  ],
-  [
-    'Software',
-    [
-      ['Skills', '/skills'],
-      ['Experience', '/experience']
-    ]
-  ],
-  [
-    'Extras',
-    [
-      ['Music', '/music'],
-      ['Crossword', '/crossword']
-    ]
-  ],
-  ['Contact', '/contact']
-];
+import menuData from 'data/menu';
 
 interface NavMenuHandle {
   closeAndHide: () => void;
@@ -93,7 +69,7 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
             hidden: isSmall && !menuVisible
           })}
         >
-          {menuLinks.map((item, index) => (
+          {menuData.map((item, index) => (
             <li key={item[0] as string}>
               {typeof item[1] === 'string' ? (
                 <Link
@@ -143,6 +119,8 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
             <li>
               <Link
                 href="/Resume.pdf"
+                rel="noopener noreferrer"
+                target="_blank"
                 className="flex items-center justify-between text-primary hover:bg-primary hover:text-primary-content focus:!text-primary active:!text-primary"
               >
                 Resume
@@ -152,7 +130,12 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
           )}
         </ul>
         {!isSmall && (
-          <Link href="/Resume.pdf" className="btn btn-primary btn-outline mx-1">
+          <Link
+            href="/Resume.pdf"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="btn btn-primary btn-outline mx-1"
+          >
             Resume
             <HiArrowTopRightOnSquare className="mb-px h-4 w-4" />
           </Link>
