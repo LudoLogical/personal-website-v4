@@ -5,10 +5,12 @@ import {
   useEffect,
   useRef,
   forwardRef,
-  useImperativeHandle
+  useImperativeHandle,
+  type MouseEvent
 } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { useScrollDirection } from 'react-use-scroll-direction';
 import { HiArrowTopRightOnSquare, HiBars3, HiXMark } from 'react-icons/hi2';
@@ -41,7 +43,7 @@ const menuLinks = [
 ];
 
 interface NavMenuHandle {
-  closeAll: () => void;
+  closeAndHide: () => void;
 }
 
 const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
@@ -49,15 +51,26 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
     const [menuVisible, setMenuVisible] = useState<boolean>(false);
     const [openSubmenu, setOpenSubmenu] = useState<number>(-1);
     const checkbox = useRef<HTMLInputElement | null>(null);
-    useImperativeHandle(ref, () => ({
-      closeAll: () => {
-        if (checkbox.current) {
-          checkbox.current.checked = false;
-        }
-        setOpenSubmenu(-1);
-        setMenuVisible(false);
+    const pathname = usePathname();
+    function closeAndHide() {
+      if (checkbox.current) {
+        checkbox.current.checked = false;
       }
+      setOpenSubmenu(-1);
+      setMenuVisible(false);
+    }
+    useImperativeHandle(ref, () => ({
+      closeAndHide: closeAndHide
     }));
+    function handleNavigation(
+      e: MouseEvent<HTMLAnchorElement>,
+      destination: string
+    ) {
+      if (destination !== pathname) {
+        closeAndHide();
+      }
+      (e.target as HTMLAnchorElement).blur();
+    }
     return (
       <>
         {isSmall && (
@@ -82,7 +95,14 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
           {menuLinks.map((item, index) => (
             <li key={item[0] as string}>
               {typeof item[1] === 'string' ? (
-                <Link href={item[1]}>{item[0]}</Link>
+                <Link
+                  href={item[1]}
+                  onClick={(event) =>
+                    handleNavigation(event, item[1] as string)
+                  }
+                >
+                  {item[0]}
+                </Link>
               ) : (
                 <details
                   onClick={(e) => {
@@ -103,7 +123,14 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
                   >
                     {item[1]!.map((link) => (
                       <li key={link[0]}>
-                        <Link href={link[1]!}>{link[0]}</Link>
+                        <Link
+                          href={link[1]!}
+                          onClick={(event) =>
+                            handleNavigation(event, item[1] as string)
+                          }
+                        >
+                          {link[0]}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -111,7 +138,6 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
               )}
             </li>
           ))}
-
           {isSmall && (
             <li>
               <Link
@@ -149,10 +175,10 @@ export default function Header() {
       if (isScrollingDown) {
         setShowNavbar(false);
         if (navMenuLarge.current) {
-          navMenuLarge.current.closeAll();
+          navMenuLarge.current.closeAndHide();
         }
         if (navMenuSmall.current) {
-          navMenuSmall.current.closeAll();
+          navMenuSmall.current.closeAndHide();
         }
       }
     }

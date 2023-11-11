@@ -6,9 +6,9 @@ import { ThreadsButton } from '../dialogs';
 
 export default function Contact() {
   return (
-    <div className="mx-auto -mt-6 flex max-w-xl flex-col gap-4 p-4">
-      <h1 className="text-center text-4xl font-bold text-primary">Contact</h1>
-      <p className="text-center">
+    <div className="mx-auto mb-12 mt-6 flex max-w-xl flex-col gap-4 p-4 text-center">
+      <h1 className="text-4xl font-bold text-primary">Contact</h1>
+      <p>
         Whether you want to discuss an opportunity, ask a question, or just say
         hi, now is the perfect time to reach out! I&apos;ll do my best to get
         back to you as soon as possible.

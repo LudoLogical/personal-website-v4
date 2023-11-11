@@ -40,6 +40,7 @@ const skillsData: (string | (string | boolean)[][])[][] = [
       ['Vim', false],
       ['SSH', false],
       ['AWS', false],
+      ['Vercel', false],
       ['Postman', false],
       ['Insomnia', false],
       ['MySQL', false],
@@ -86,16 +87,16 @@ const skillsData: (string | (string | boolean)[][])[][] = [
   ]
 ];
 
-export default function Work() {
+export default function Skills() {
   return (
-    <div className="mx-auto my-16 flex max-w-2xl flex-col gap-16 p-4 text-center">
+    <div className="mx-auto mb-16 mt-12 flex max-w-2xl flex-col gap-16 p-4 text-center">
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl font-bold text-primary">Skills</h1>
         <p>
           It feels weird to say, but I&apos;ve been making things with computers
-          for almost a decade now! In that time, I&apos;ve tried out a lot of
-          languages, tools, tasks, and techniques. I&apos;d consider myself at
-          least conversant in all of the following:
+          for almost a decade now! In that time, I&apos;ve tried out quite a lot
+          of languages, tools, tasks, and techniques. I&apos;d consider myself
+          at least conversant in all of the following:
         </p>
       </div>
       {skillsData.map((category) => (
