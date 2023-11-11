@@ -43,7 +43,7 @@ export function Copyright() {
           modal.current?.showModal();
           firstLink.current?.blur();
         }}
-        className="btn btn-circle btn-ghost btn-xs"
+        className="btn btn-circle btn-ghost btn-xs h-6 w-6"
       />
       <Modal
         title="Attribution and Copyright Information"

@@ -115,7 +115,7 @@ export default function Music() {
               target="_blank"
               className="btn"
             >
-              Listen <HiSpeakerWave />
+              Listen <HiSpeakerWave className="h-4 w-4" />
             </Link>
             <p className="text-sm text-base-content/80">
               Audio previews are hosted on Google Drive.
@@ -129,7 +129,7 @@ export default function Music() {
                 target="_blank"
                 className="btn"
               >
-                Files <HiFolder />
+                Files <HiFolder className="h-4 w-4" />
               </Link>
               <p className="text-sm text-base-content/80">
                 MP3, PDF, and MSCZ formats are available.
@@ -137,35 +137,20 @@ export default function Music() {
             </div>
           )}
           <div className="flex flex-col gap-2">
-            {openWorkEntry ? (
-              <>
-                <Link
-                  href={openWorkEntry.musescore}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="btn"
-                >
-                  MuseScore <HiMusicalNote />
-                </Link>
-                <p className="text-sm text-base-content/80">
-                  View the score in an interactive web player.
-                </p>
-              </>
-            ) : (
-              <>
-                <Link
-                  href={openBeepboxEntry.link}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="btn"
-                >
-                  Beepbox <HiMusicalNote />
-                </Link>
-                <p className="text-sm text-base-content/80">
-                  View the piece in an interactive web player.
-                </p>
-              </>
-            )}
+            <Link
+              href={
+                openWorkEntry ? openWorkEntry.musescore : openBeepboxEntry.link
+              }
+              rel="noopener noreferrer"
+              target="_blank"
+              className="btn"
+            >
+              {openWorkEntry ? 'MuseScore' : 'BeepBox'}{' '}
+              <HiMusicalNote className="h-4 w-4" />
+            </Link>
+            <p className="text-sm text-base-content/80">
+              View the score in an interactive web player.
+            </p>
           </div>
         </div>
       </div>
