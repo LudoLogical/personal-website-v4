@@ -67,7 +67,8 @@ export function Copyright() {
           created by Karina Varughese.
         </p>
         <p className="my-4">
-          All other content: &copy; 2023, Daniel &quot;Ludo&quot; DeAnda.
+          All other content was made with &#10084; by Daniel &quot;Ludo&quot;
+          DeAnda. &copy; 2023, all rights reserved.
         </p>
       </Modal>
     </>
