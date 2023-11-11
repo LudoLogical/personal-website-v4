@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { HiEnvelope } from 'react-icons/hi2';
 import { FiLinkedin } from 'react-icons/fi';
 import { BiLogoDiscordAlt } from 'react-icons/bi';
-import { ThreadsButton } from '../dialogs';
+import { ThreadsButton } from '~/components/dialogs';
 
 export default function Contact() {
   return (

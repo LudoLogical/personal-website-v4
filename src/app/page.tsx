@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import Avatar from 'public/avatar.png';
-import { Pronouns } from './dialogs';
+import { Pronouns } from '~/components/dialogs';
 import StyledLink from '~/components/styled-link';
 
 function AvatarComponent({ className }: { className?: string }) {

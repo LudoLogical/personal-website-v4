@@ -15,8 +15,8 @@ import clsx from 'clsx';
 import { useScrollDirection } from 'react-use-scroll-direction';
 import { HiArrowTopRightOnSquare, HiBars3, HiXMark } from 'react-icons/hi2';
 import emblem from 'public/emblem_yellow.png';
-import { Copyright } from './dialogs';
-import { useOutsideClick } from './utils/hooks';
+import { Copyright } from '~/components/dialogs';
+import { useOutsideClick } from '~/utils/hooks';
 import menuData from 'data/menu';
 
 interface NavMenuHandle {

@@ -1,6 +1,6 @@
 import '~/styles/globals.css';
 import { Mulish } from 'next/font/google';
-import Header from './header';
+import Header from '~/components/header';
 
 const mulish = Mulish({
   subsets: ['latin'],
