@@ -4,6 +4,10 @@ import { FiLinkedin } from 'react-icons/fi';
 import { BiLogoDiscordAlt } from 'react-icons/bi';
 import { ThreadsButton } from '~/components/dialogs';
 
+export const metadata = {
+  title: 'Contact'
+};
+
 export default function Contact() {
   return (
     <div className="mx-auto mb-12 mt-6 flex max-w-xl flex-col gap-4 p-4 text-center">

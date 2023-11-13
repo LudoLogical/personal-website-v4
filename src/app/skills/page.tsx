@@ -2,6 +2,10 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import skillsData from 'data/skills';
 
+export const metadata = {
+  title: 'Skills'
+};
+
 export default function Skills() {
   return (
     <div className="mx-auto mb-16 mt-12 flex max-w-2xl flex-col gap-16 p-4 text-center">

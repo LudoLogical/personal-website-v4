@@ -3,6 +3,10 @@ import { HiLightBulb, HiPuzzlePiece } from 'react-icons/hi2';
 import crosswordData from 'data/crossword';
 import clsx from 'clsx';
 
+export const metadata = {
+  title: 'Crossword'
+};
+
 export default function Crossword() {
   return (
     <div className="mx-auto mb-16 mt-12 flex max-w-2xl flex-col gap-16 p-4 text-center">
