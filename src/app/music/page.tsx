@@ -22,7 +22,7 @@ function Submenu({
   startIndex?: number;
 }) {
   return entries.map((entry, index) => (
-    <li key={entry === null ? 'MegaPower!' : entry.title}>
+    <li key={entry?.title ?? 'MegaPower!'}>
       <a
         className={
           openWork === index + (startIndex ?? 0)
@@ -31,7 +31,7 @@ function Submenu({
         }
         onClick={() => setOpenWork(index + (startIndex ?? 0))}
       >
-        {entry === null ? 'MegaPower!' : entry.title}
+        {entry?.title ?? 'MegaPower!'}
       </a>
     </li>
   ));
@@ -46,7 +46,7 @@ export default function Music() {
       : arrangementsData[openWork - originalsData.length];
   const openBeepboxEntry = beepboxData[openBeepbox]!;
   return (
-    <div className="mx-auto mb-16 mt-12 flex max-w-2xl flex-col gap-16 p-4 text-center">
+    <div className="mx-auto mb-16 mt-12 flex max-w-2xl flex-col items-center gap-16 p-4 text-center">
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl font-bold text-primary">Music</h1>
         <p>
@@ -57,8 +57,32 @@ export default function Music() {
           here.
         </p>
       </div>
-      <div className="mx-4 flex flex-col-reverse items-center gap-16 md:flex-row md:gap-8">
-        <ul className="menu rounded-box w-56 bg-neutral text-left">
+      <div className="flex flex-col gap-5 md:hidden">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-3xl font-bold">Compositions</h2>
+          <p className="text-sm text-base-content/80">
+            Select an original work or arrangement.
+          </p>
+        </div>
+        <select
+          value={openWork}
+          className="select select-bordered w-72"
+          onChange={(e) => setOpenWork(parseInt(e.target.value))}
+        >
+          {originalsData.map((entry, index) => (
+            <option key={entry?.title ?? 'MegaPower!'} value={index}>
+              {entry?.title ?? 'MegaPower!'}
+            </option>
+          ))}
+          {arrangementsData.map((entry, index) => (
+            <option key={entry?.title} value={index + originalsData.length}>
+              {entry?.title}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="mx-4 flex flex-row items-center gap-8">
+        <ul className="menu rounded-box hidden w-56 bg-neutral text-left md:flex">
           <li>
             <h2 className="menu-title">Original Works</h2>
             <ul>

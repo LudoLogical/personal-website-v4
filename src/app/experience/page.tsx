@@ -37,10 +37,10 @@ export default function Experience() {
               <th>Project</th>
               <th className="hidden sm:table-cell">Sponsor</th>
               <th className="hidden sm:table-cell">Skills Honed</th>
-              <th>
+              <th className="px-1">
                 <HiLink className="mx-auto h-3 w-3" />
               </th>
-              <th>
+              <th className="px-1">
                 <HiCodeBracket className="mx-auto h-3 w-3" />
               </th>
             </tr>
@@ -71,27 +71,29 @@ export default function Experience() {
                     ))}
                   </div>
                 </td>
-                <td>
+                <td className="p-1 text-center">
                   {experience.link ? (
                     <Link
                       href={experience.link}
                       rel="noopener noreferrer"
                       target="_blank"
+                      className="btn btn-circle btn-ghost btn-sm"
                     >
-                      <HiArrowTopRightOnSquare className="mx-auto h-4 w-4" />
+                      <HiArrowTopRightOnSquare className="h-4 w-4" />
                     </Link>
                   ) : (
                     <HiXMark className="mx-auto h-4 w-4 text-base-content/20" />
                   )}
                 </td>
-                <td>
+                <td className="p-1 text-center">
                   {experience.github ? (
                     <Link
                       href={experience.github}
                       rel="noopener noreferrer"
                       target="_blank"
+                      className="btn btn-circle btn-ghost btn-sm"
                     >
-                      <FiGithub className="mx-auto h-4 w-4" />
+                      <FiGithub className="h-4 w-4" />
                     </Link>
                   ) : (
                     <HiXMark className="mx-auto h-4 w-4 text-base-content/20" />

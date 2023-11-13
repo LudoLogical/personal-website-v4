@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { HiCheck, HiDocument, HiDocumentCheck, HiLink } from 'react-icons/hi2';
+import { HiLightBulb, HiPuzzlePiece } from 'react-icons/hi2';
 import crosswordData from 'data/crossword';
+import clsx from 'clsx';
 
 export default function Crossword() {
   return (
@@ -20,14 +21,10 @@ export default function Crossword() {
           <thead>
             <tr>
               <th className="hidden xs:table-cell">Date</th>
-              <th>Puzzle</th>
-              <th>Difficulty</th>
-              <th>
-                <HiLink className="mx-auto h-3 w-3" />
-              </th>
-              <th>
-                <HiCheck className="mx-auto h-3 w-3" />
-              </th>
+              <th>Title</th>
+              <th className="pl-2 text-center">Difficulty</th>
+              <th className="px-1 text-center">Puzzle</th>
+              <th className="px-1 text-center">Solution</th>
             </tr>
           </thead>
           <tbody>
@@ -35,15 +32,31 @@ export default function Crossword() {
               <tr key={entry.title}>
                 <td className="hidden xs:table-cell">{entry.date}</td>
                 <td>{entry.title}</td>
-                <td>{entry.difficulty}</td>
-                <td>
-                  <Link href={'/crossword/' + entry.file + '.pdf'}>
-                    <HiDocument className="mx-auto h-4 w-4" />
+                <td className="pl-2 text-center">
+                  <span
+                    className={clsx('badge', {
+                      'badge-success': entry.difficulty === 'Easy',
+                      'badge-primary': entry.difficulty === 'Medium',
+                      'badge-error': entry.difficulty === 'Hard'
+                    })}
+                  >
+                    {entry.difficulty}
+                  </span>
+                </td>
+                <td className="p-1 text-center">
+                  <Link
+                    href={'/crossword/' + entry.file + '.pdf'}
+                    className="btn btn-circle btn-ghost btn-sm"
+                  >
+                    <HiPuzzlePiece className="h-4 w-4" />
                   </Link>
                 </td>
-                <td>
-                  <Link href={'/crossword/' + entry.file + '-sol.pdf'}>
-                    <HiDocumentCheck className="mx-auto h-4 w-4" />
+                <td className="p-1 text-center">
+                  <Link
+                    href={'/crossword/' + entry.file + '-sol.pdf'}
+                    className="btn btn-circle btn-ghost btn-sm"
+                  >
+                    <HiLightBulb className="h-4 w-4" />
                   </Link>
                 </td>
               </tr>
