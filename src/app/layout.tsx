@@ -43,11 +43,11 @@ export const metadata = {
     title: 'Daniel "Ludo" DeAnda',
     description:
       "Ludo's home on the internet. A place for software, education, music, games, and other lovely things.",
-    url: 'https://www.danieldeanda.com',
+    url: 'https://www.beta.danieldeanda.com',
     siteName: 'Daniel "Ludo" DeAnda',
     images: [
       {
-        url: '/opengraph-image.png',
+        url: 'https://www.beta.danieldeanda.com/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Hello, my name is Daniel "Ludo" DeAnda (Any/All). I enable interaction.'
