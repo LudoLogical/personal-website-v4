@@ -39,12 +39,12 @@ export const metadata = {
     'Advisor',
     'Instructor'
   ],
-  metadataBase: new URL('https://www.beta.danieldeanda.com'),
+  metadataBase: new URL('https://www.danieldeanda.com'),
   openGraph: {
     title: 'Daniel "Ludo" DeAnda',
     description:
       "Ludo's home on the internet. A place for software, education, music, games, and other lovely things.",
-    url: 'https://www.beta.danieldeanda.com',
+    url: 'https://www.danieldeanda.com',
     siteName: 'Daniel "Ludo" DeAnda',
     images: [
       {

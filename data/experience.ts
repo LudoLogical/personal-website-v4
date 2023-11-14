@@ -49,7 +49,7 @@ const experienceData = [
     'Personal Website v3',
     null,
     ['Next.js', 'React', 'TypeScript', 'Design'],
-    null,
+    'https://www.v3.danieldeanda.com/',
     'https://github.com/LudoLogical/personal-website-v3'
   ),
   new ExperienceEntry(
@@ -67,7 +67,7 @@ const experienceData = [
       'GitHub',
       'Vercel'
     ],
-    null,
+    'https://platform-liart-mu.vercel.app/',
     'https://github.com/UTDNebula/platform',
     true
   ),
@@ -76,7 +76,7 @@ const experienceData = [
     'Personal Website v2',
     null,
     ['Next.js', 'React', 'TypeScript', 'Design'],
-    null,
+    'https://www.v2.danieldeanda.com/',
     'https://github.com/LudoLogical/personal-website-v2'
   ),
   new ExperienceEntry(
@@ -200,7 +200,7 @@ const experienceData = [
     'Super Hyper Buff',
     'CodeDay',
     ['HTML', 'CSS', 'JavaScript'],
-    null,
+    'https://www.superhyperbuff.danieldeanda.com/',
     'https://github.com/LudoLogical/superhyperbuff'
   ),
   new ExperienceEntry(
@@ -208,7 +208,7 @@ const experienceData = [
     'With These Eyes',
     'CodeDay',
     ['HTML', 'CSS', 'JavaScript'],
-    null,
+    'https://www.withtheseeyes.danieldeanda.com/',
     'https://github.com/LudoLogical/with-these-eyes'
   ),
   new ExperienceEntry(
