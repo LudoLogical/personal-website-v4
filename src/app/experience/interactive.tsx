@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { FiGithub } from 'react-icons/fi';
 import {
   HiArrowTopRightOnSquare,
@@ -12,6 +11,7 @@ import {
   HiXMark
 } from 'react-icons/hi2';
 import clsx from 'clsx';
+import SuperLink from '~/components/super-link';
 import experienceData from 'data/experience';
 
 export default function ExperienceInteractive() {
@@ -61,28 +61,28 @@ export default function ExperienceInteractive() {
               </td>
               <td className="p-1 text-center">
                 {experience.link ? (
-                  <Link
+                  <SuperLink
                     href={experience.link}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="btn btn-circle btn-ghost btn-sm"
+                    external
+                    styledIcon
+                    className="btn-sm"
                   >
                     <HiArrowTopRightOnSquare className="h-4 w-4" />
-                  </Link>
+                  </SuperLink>
                 ) : (
                   <HiXMark className="mx-auto h-4 w-4 text-base-content/20" />
                 )}
               </td>
               <td className="p-1 text-center">
                 {experience.github ? (
-                  <Link
+                  <SuperLink
                     href={experience.github}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="btn btn-circle btn-ghost btn-sm"
+                    external
+                    styledIcon
+                    className="btn-sm"
                   >
                     <FiGithub className="h-4 w-4" />
-                  </Link>
+                  </SuperLink>
                 ) : (
                   <HiXMark className="mx-auto h-4 w-4 text-base-content/20" />
                 )}

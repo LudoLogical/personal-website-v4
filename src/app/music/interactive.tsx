@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { originalsData, arrangementsData, beepboxData } from 'data/music';
 import { HiFolder, HiMusicalNote, HiSpeakerWave } from 'react-icons/hi2';
+import SuperLink from '~/components/super-link';
 import Submenu from './helpers';
 
 export default function MusicInteractive() {
@@ -90,47 +90,40 @@ export default function MusicInteractive() {
             </div>
           )}
           <div className="flex flex-col gap-2">
-            <Link
+            <SuperLink
               href={
                 openWorkEntry ? openWorkEntry.audio : openBeepboxEntry.audio
               }
-              rel="noopener noreferrer"
-              target="_blank"
+              external
               className="btn"
             >
               Listen <HiSpeakerWave className="h-4 w-4" />
-            </Link>
+            </SuperLink>
             <p className="text-sm text-base-content/80">
               Audio previews are hosted on Google Drive.
             </p>
           </div>
           {openWorkEntry && (
             <div className="flex flex-col gap-2">
-              <Link
-                href={openWorkEntry.files}
-                rel="noopener noreferrer"
-                target="_blank"
-                className="btn"
-              >
+              <SuperLink href={openWorkEntry.files} external className="btn">
                 Files <HiFolder className="h-4 w-4" />
-              </Link>
+              </SuperLink>
               <p className="text-sm text-base-content/80">
                 MP3, PDF, and MSCZ formats are available.
               </p>
             </div>
           )}
           <div className="flex flex-col gap-2">
-            <Link
+            <SuperLink
               href={
                 openWorkEntry ? openWorkEntry.musescore : openBeepboxEntry.link
               }
-              rel="noopener noreferrer"
-              target="_blank"
+              external
               className="btn"
             >
               {openWorkEntry ? 'MuseScore' : 'BeepBox'}{' '}
               <HiMusicalNote className="h-4 w-4" />
-            </Link>
+            </SuperLink>
             <p className="text-sm text-base-content/80">
               View the score in an interactive web player.
             </p>

@@ -1,11 +1,13 @@
 import { type ReactNode } from 'react';
 import type { MDXComponents } from 'mdx/types';
-import StyledLink from '~/components/styled-link';
+import SuperLink from '~/components/super-link';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     a: ({ href, children }: { href?: string; children?: ReactNode }) => (
-      <StyledLink href={href!}>{children}</StyledLink>
+      <SuperLink href={href!} external styledText>
+        {children}
+      </SuperLink>
     ),
     strong: ({ children }: { children?: ReactNode }) => (
       <strong className="font-extrabold text-primary">{children}</strong>

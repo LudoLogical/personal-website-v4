@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import Avatar from 'public/avatar.png';
-import { Pronouns } from '~/components/dialogs';
-import StyledLink from '~/components/styled-link';
+import { Pronouns } from '~/components/modals';
+import SuperLink from '~/components/super-link';
 
 function AvatarComponent({ className }: { className?: string }) {
   return (
@@ -18,22 +17,16 @@ function AvatarComponent({ className }: { className?: string }) {
 function SocialButtons() {
   return (
     <div className="flex gap-1">
-      <Link
-        href="https://github.com/LudoLogical"
-        rel="noopener noreferrer"
-        target="_blank"
-        className="btn btn-circle btn-ghost"
-      >
+      <SuperLink href="https://github.com/LudoLogical" external styledIcon>
         <FiGithub className="h-4 w-4" />
-      </Link>
-      <Link
+      </SuperLink>
+      <SuperLink
         href="https://www.linkedin.com/in/danielchristiandeanda/"
-        rel="noopener noreferrer"
-        target="_blank"
-        className="btn btn-circle btn-ghost"
+        external
+        styledIcon
       >
         <FiLinkedin className="h-4 w-4" />
-      </Link>
+      </SuperLink>
     </div>
   );
 }
@@ -60,22 +53,24 @@ export default function Index() {
             I&apos;m a problem solver on a neverending quest to connect users
             with software, students with concepts, humans with emotions, and
             people with play. I recently graduated from{' '}
-            <StyledLink href="https://www.utdallas.edu/">UT Dallas</StyledLink>{' '}
+            <SuperLink href="https://www.utdallas.edu/" external styledText>
+              UT Dallas
+            </SuperLink>{' '}
             with major, university, and highest Latin honors. Currently,
             I&apos;m working as an Integrated Development Advisor at{' '}
-            <StyledLink href="https://labs.codeday.org/">
+            <SuperLink href="https://labs.codeday.org/" external styledText>
               CodeDay Labs
-            </StyledLink>{' '}
+            </SuperLink>{' '}
             and pursuing a new place in the software-as-a-service space.
           </p>
           <div className="mt-6 flex flex-row items-center justify-start gap-4">
             <AvatarComponent className="mr-4 hidden h-16 w-16 rounded-full shadow-halo-secondary-sm xs:avatar sm:h-20 sm:w-20 lg:hidden" />
-            <Link
+            <SuperLink
               href="/blog"
               className="btn btn-primary shadow-halo-primary-sm"
             >
               Check out my blog!
-            </Link>
+            </SuperLink>
             <div className="flex-row gap-2">
               <SocialButtons />
             </div>

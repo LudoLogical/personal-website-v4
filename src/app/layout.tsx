@@ -39,6 +39,7 @@ export const metadata = {
     'Advisor',
     'Instructor'
   ],
+  metadataBase: new URL('https://www.beta.danieldeanda.com'),
   openGraph: {
     title: 'Daniel "Ludo" DeAnda',
     description:
@@ -47,7 +48,7 @@ export const metadata = {
     siteName: 'Daniel "Ludo" DeAnda',
     images: [
       {
-        url: 'https://www.beta.danieldeanda.com/opengraph-image.png',
+        url: '/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Hello, my name is Daniel "Ludo" DeAnda (Any/All). I enable interaction.'

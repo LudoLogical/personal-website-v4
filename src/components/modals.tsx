@@ -1,10 +1,9 @@
 'use client';
 
 import { useRef, forwardRef, type ReactNode } from 'react';
-import Link from 'next/link';
 import { FiAtSign } from 'react-icons/fi';
 import { HiOutlineInformationCircle } from 'react-icons/hi2';
-import StyledLink from '~/components/styled-link';
+import SuperLink from '~/components/super-link';
 import clsx from 'clsx';
 
 const Modal = forwardRef<
@@ -52,17 +51,23 @@ export function Copyright() {
       >
         <p className="my-4">
           This{' '}
-          <StyledLink
+          <SuperLink
             ref={firstLink}
             href="https://github.com/LudoLogical/personal-website-v4"
+            external
+            styledText
           >
             open-source
-          </StyledLink>{' '}
+          </SuperLink>{' '}
           website was built using Next.js, React, TypeScript, TailwindCSS,
           DaisyUI, MDX, and a handful of other open-source{' '}
-          <StyledLink href="https://github.com/LudoLogical/personal-website-v4/blob/main/package.json">
+          <SuperLink
+            href="https://github.com/LudoLogical/personal-website-v4/blob/main/package.json"
+            external
+            styledText
+          >
             packages
-          </StyledLink>
+          </SuperLink>
           . It is being hosted free of charge on Vercel. Ludo&apos;s avatar was
           created by Karina Varughese.
         </p>
@@ -93,12 +98,14 @@ export function Pronouns() {
         title={
           <>
             Oh, hi there! These are my{' '}
-            <StyledLink
+            <SuperLink
               ref={link}
               href="https://www.glsen.org/activity/pronouns-guide-glsen"
+              external
+              styledText
             >
               pronouns
-            </StyledLink>
+            </SuperLink>
             .
           </>
         }
@@ -108,6 +115,52 @@ export function Pronouns() {
           &quot;Any/All&quot; means that I&apos;m comfortable with you using
           whatever pronouns you&apos;d like when referring to me. Personally,
           I&apos;d recommend picking either he/him, they/them, or she/her.
+        </p>
+      </Modal>
+    </>
+  );
+}
+
+export function Explain404() {
+  const modal = useRef<HTMLDialogElement | null>(null);
+  const link = useRef<HTMLAnchorElement | null>(null);
+  return (
+    <>
+      <span
+        onClick={() => {
+          modal.current?.showModal();
+          link.current?.blur();
+        }}
+        className="badge badge-secondary badge-sm cursor-pointer align-top xs:badge-md"
+      >
+        What&apos;s that?
+      </span>
+      <Modal
+        title={
+          <>
+            404 is an HTTP/HTTPS response{' '}
+            <SuperLink
+              ref={link}
+              href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status"
+              external
+              styledText
+            >
+              status code
+            </SuperLink>
+            .
+          </>
+        }
+        ref={modal}
+      >
+        <p className="my-4">
+          Every time you visit a webpage, your browser requests the data for
+          that webpage from some server using a protocol called HTTP (the
+          optional &quot;S&quot; stands for &quot;Secure&quot;).
+        </p>
+        <p className="my-4">
+          When the server responds, it includes a status code that explains the
+          outcome of your request. If the server can&apos;t find the page you
+          requested, that status code will be 404.
         </p>
       </Modal>
     </>
@@ -129,15 +182,14 @@ export function ThreadsButton() {
         >
           Not Twitter!
         </span>
-        <Link
+        <SuperLink
           href="https://www.threads.net/@ludo.logical"
-          rel="noopener noreferrer"
-          target="_blank"
+          external
           className="btn w-fit"
         >
           <FiAtSign className="h-4 w-4" />
           ludo.logical@threads.net
-        </Link>
+        </SuperLink>
       </div>
       <Modal title="Why I'm no longer active on Twitter" ref={modal}>
         <p className="my-4">
@@ -147,12 +199,14 @@ export function ThreadsButton() {
           and factually-accurate presence that I want to cultivate online. You
           can read a brief summary of what &quot;X&quot; has been up to since
           the acquisition{' '}
-          <StyledLink
+          <SuperLink
             ref={link}
             href="https://en.wikipedia.org/wiki/Twitter_under_Elon_Musk#Limitations_on_viewing_tweets"
+            external
+            styledText
           >
             here
-          </StyledLink>
+          </SuperLink>
           .
         </p>
       </Modal>

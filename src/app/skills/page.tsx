@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import clsx from 'clsx';
 import skillsData from 'data/skills';
+import SuperLink from '~/components/super-link';
 
 export const metadata = {
   title: 'Skills'
@@ -24,15 +24,14 @@ export default function Skills() {
           <div className="flex flex-row flex-wrap justify-center gap-4">
             {category.entries.map((skill) =>
               skill.certification ? (
-                <Link
+                <SuperLink
                   key={skill.skill}
                   href={skill.certification}
-                  rel="noopener noreferrer"
-                  target="_blank"
+                  external
                   className={clsx('badge badge-success p-4')}
                 >
                   {skill.skill}
-                </Link>
+                </SuperLink>
               ) : (
                 <span
                   key={skill.skill}

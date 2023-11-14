@@ -9,15 +9,15 @@ import {
   type MouseEvent
 } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { useScrollDirection } from 'react-use-scroll-direction';
 import { HiArrowTopRightOnSquare, HiBars3, HiXMark } from 'react-icons/hi2';
-import { Copyright } from '~/components/dialogs';
+import { Copyright } from '~/components/modals';
+import SuperLink from './super-link';
 import { useOutsideClick } from '~/utils/hooks';
 import menuData from 'data/menu';
-import emblem from 'public/emblem_yellow.png';
+import emblem from 'public/emblem-yellow.png';
 
 interface NavMenuHandle {
   closeAndHide: () => void;
@@ -72,14 +72,14 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
           {menuData.map((item, index) => (
             <li key={item[0] as string}>
               {typeof item[1] === 'string' ? (
-                <Link
+                <SuperLink
                   href={item[1]}
-                  onClick={(event) =>
+                  onClick={(event: MouseEvent<HTMLAnchorElement>) =>
                     handleNavigation(event, item[1] as string)
                   }
                 >
                   {item[0]}
-                </Link>
+                </SuperLink>
               ) : (
                 <details
                   onClick={(e) => {
@@ -100,14 +100,14 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
                   >
                     {item[1]!.map((link) => (
                       <li key={link[0]}>
-                        <Link
+                        <SuperLink
                           href={link[1]!}
                           onClick={(event) =>
                             handleNavigation(event, item[1] as string)
                           }
                         >
                           {link[0]}
-                        </Link>
+                        </SuperLink>
                       </li>
                     ))}
                   </ul>
@@ -117,28 +117,26 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
           ))}
           {isSmall && (
             <li>
-              <Link
+              <SuperLink
                 href="/Resume.pdf"
-                rel="noopener noreferrer"
-                target="_blank"
+                external
                 className="flex items-center justify-between text-primary hover:bg-primary hover:text-primary-content focus:!text-primary active:!text-primary"
               >
                 Resume
                 <HiArrowTopRightOnSquare className="-mr-0.5 mb-px h-4 w-4" />
-              </Link>
+              </SuperLink>
             </li>
           )}
         </ul>
         {!isSmall && (
-          <Link
+          <SuperLink
             href="/Resume.pdf"
-            rel="noopener noreferrer"
-            target="_blank"
+            external
             className="btn btn-primary btn-outline mx-1"
           >
             Resume
             <HiArrowTopRightOnSquare className="mb-px h-4 w-4" />
-          </Link>
+          </SuperLink>
         )}
       </>
     );
@@ -182,13 +180,13 @@ export default function Header() {
     >
       <header className="navbar rounded-box m-5 max-w-6xl bg-neutral shadow-xl">
         <div className="mx-1 my-0.5 flex flex-1 flex-row items-center gap-2">
-          <Link href="/" className="btn btn-ghost px-2">
+          <SuperLink href="/" className="btn btn-ghost px-2">
             <Image
               src={emblem}
               alt="Ludo's personal emblem. It consists of several horizontal lines, a backwards letter 'L', and a letter 'D'. Together, these form an iconographic representation of a bullet in flight."
               className="w-10"
             />
-          </Link>
+          </SuperLink>
           <Copyright />
         </div>
         <div className="hidden flex-none sm:flex">

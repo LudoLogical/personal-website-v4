@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import { HiLightBulb, HiPuzzlePiece } from 'react-icons/hi2';
 import crosswordData from 'data/crossword';
 import clsx from 'clsx';
+import SuperLink from '~/components/super-link';
 
 export const metadata = {
   title: 'Crossword'
@@ -48,20 +48,24 @@ export default function Crossword() {
                   </span>
                 </td>
                 <td className="p-1 text-center">
-                  <Link
+                  <SuperLink
                     href={'/crossword/' + entry.file + '.pdf'}
-                    className="btn btn-circle btn-ghost btn-sm"
+                    external
+                    styledIcon
+                    className="btn-sm"
                   >
                     <HiPuzzlePiece className="h-4 w-4" />
-                  </Link>
+                  </SuperLink>
                 </td>
                 <td className="p-1 text-center">
-                  <Link
+                  <SuperLink
                     href={'/crossword/' + entry.file + '-sol.pdf'}
-                    className="btn btn-circle btn-ghost btn-sm"
+                    external
+                    styledIcon
+                    className="btn-sm"
                   >
                     <HiLightBulb className="h-4 w-4" />
-                  </Link>
+                  </SuperLink>
                 </td>
               </tr>
             ))}

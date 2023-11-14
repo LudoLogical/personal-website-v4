@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import { HiEnvelope } from 'react-icons/hi2';
 import { FiLinkedin } from 'react-icons/fi';
 import { BiLogoDiscordAlt } from 'react-icons/bi';
-import { ThreadsButton } from '~/components/dialogs';
+import { ThreadsButton } from '~/components/modals';
+import SuperLink from '~/components/super-link';
 
 export const metadata = {
   title: 'Contact'
@@ -20,37 +20,30 @@ export default function Contact() {
       <div className="mt-4 flex flex-col items-center gap-8">
         <div className="indicator">
           <span className="badge indicator-item badge-primary">Fastest</span>
-          <Link
+          <SuperLink
             href="https://discordapp.com/users/355536854176497668"
-            rel="noopener noreferrer"
-            target="_blank"
+            external
             className="btn w-fit"
           >
             <BiLogoDiscordAlt className="h-4 w-4" />
             @ludological
-          </Link>
+          </SuperLink>
         </div>
         <div className="indicator">
           <span className="badge indicator-item badge-primary">Fast</span>
-          <Link
-            href="mailto:hello@danieldeanda.com"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="btn w-fit"
-          >
+          <SuperLink href="mailto:hello@danieldeanda.com" className="btn w-fit">
             <HiEnvelope className="h-4 w-4" />
             hello@danieldeanda.com
-          </Link>
+          </SuperLink>
         </div>
-        <Link
+        <SuperLink
           href="https://www.linkedin.com/in/danielchristiandeanda/"
-          rel="noopener noreferrer"
-          target="_blank"
+          external
           className="btn w-fit"
         >
           <FiLinkedin className="h-4 w-4" />
           /in/danielchristiandeanda/
-        </Link>
+        </SuperLink>
         <ThreadsButton />
       </div>
     </div>
