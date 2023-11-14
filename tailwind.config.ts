@@ -33,14 +33,13 @@ export default {
         ludo: {
           primary: '#FFEF14',
           secondary: '#0569F3',
-          // accent: '#37CDBE',
+          accent: '#37CDBE', // unused
           neutral: '#2A323C',
           'base-100': '#1D232A',
           info: '#0569F3',
           success: '#0C9C59',
           warning: '#FFEF14',
           error: '#FF4714',
-          '--btn-text-case': 'none'
         }
       }
     ],
