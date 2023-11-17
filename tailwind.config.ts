@@ -40,6 +40,9 @@ export default {
           success: '#0C9C59',
           warning: '#FFEF14',
           error: '#FF4714',
+          '.tooltip': {
+            '--tooltip-tail': '0.25rem'
+          }
         }
       }
     ],

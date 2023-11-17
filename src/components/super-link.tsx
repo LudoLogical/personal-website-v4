@@ -25,7 +25,7 @@ const SuperLink = forwardRef<
       target={external ? '_blank' : undefined}
       className={clsx(
         {
-          'relative whitespace-nowrap font-bold text-secondary no-underline after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full':
+          'relative whitespace-nowrap font-extrabold text-secondary no-underline after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full':
             styledText,
           'btn btn-circle btn-ghost': styledIcon
         },

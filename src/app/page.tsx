@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { FiGithub, FiLinkedin } from 'react-icons/fi';
+import { FiCodepen, FiGithub, FiLinkedin } from 'react-icons/fi';
 import Avatar from 'public/avatar.png';
 import { Pronouns } from '~/components/modals';
 import SuperLink from '~/components/super-link';
@@ -11,23 +11,6 @@ function AvatarComponent({ className }: { className?: string }) {
       alt="Ludo's avatar. A minimalist portrait of a faceless Ludo wearing a black shirt with a yellow sparkle pin. The background is light blue and decorated with a regular pattern of wavy lines."
       className={className}
     />
-  );
-}
-
-function SocialButtons() {
-  return (
-    <div className="flex gap-1">
-      <SuperLink href="https://github.com/LudoLogical" external styledIcon>
-        <FiGithub className="h-4 w-4" />
-      </SuperLink>
-      <SuperLink
-        href="https://www.linkedin.com/in/danielchristiandeanda/"
-        external
-        styledIcon
-      >
-        <FiLinkedin className="h-4 w-4" />
-      </SuperLink>
-    </div>
   );
 }
 
@@ -50,7 +33,7 @@ export default function Index() {
             <br />I enable interaction.
           </h1>
           <p className="max-w-xl text-sm leading-relaxed xs:text-base">
-            I&apos;m a problem solver on a neverending quest to connect users
+            I&apos;m a problem solver on a never-ending quest to connect users
             with software, students with concepts, humans with emotions, and
             people with play. I recently graduated from{' '}
             <SuperLink href="https://www.utdallas.edu/" external styledText>
@@ -72,7 +55,29 @@ export default function Index() {
               Check out my blog!
             </SuperLink>
             <div className="flex-row gap-2">
-              <SocialButtons />
+              <div className="flex gap-1">
+                <SuperLink
+                  href="https://github.com/LudoLogical"
+                  external
+                  styledIcon
+                >
+                  <FiGithub className="h-4 w-4" />
+                </SuperLink>
+                <SuperLink
+                  href="https://codepen.io/LudoLogical"
+                  external
+                  styledIcon
+                >
+                  <FiCodepen className="h-4 w-4" />
+                </SuperLink>
+                <SuperLink
+                  href="https://www.linkedin.com/in/danielchristiandeanda/"
+                  external
+                  styledIcon
+                >
+                  <FiLinkedin className="h-4 w-4" />
+                </SuperLink>
+              </div>
             </div>
           </div>
         </div>

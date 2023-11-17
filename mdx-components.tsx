@@ -1,6 +1,10 @@
 import { type ReactNode } from 'react';
 import type { MDXComponents } from 'mdx/types';
 import SuperLink from '~/components/super-link';
+import Hint from '~/components/hint';
+import CorruptedText from '~/components/text/corrupted';
+import WaveText from '~/components/text/wave';
+import GlitchText from '~/components/text/glitch';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -9,17 +13,16 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </SuperLink>
     ),
+    em: ({ children }: { children?: ReactNode }) => (
+      <em className="font-bold">{children}</em>
+    ),
     strong: ({ children }: { children?: ReactNode }) => (
-      <strong className="font-extrabold text-primary">{children}</strong>
+      <strong className="font-bold text-primary">{children}</strong>
     ),
-    Hint: ({ children }: { children: ReactNode }) => (
-      <span
-        className="badge badge-primary badge-lg tooltip"
-        data-tip={children}
-      >
-        <span className="text-primary-content">?</span>
-      </span>
-    ),
+    Corrupted: CorruptedText,
+    Glitch: GlitchText,
+    Hint: Hint,
+    Wave: WaveText,
     ...components
   };
 }
