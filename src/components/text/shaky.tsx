@@ -23,11 +23,12 @@ export default function ShakyText({ content }: { content: string }) {
   }, [content.length]);
   return (
     <span aria-label={content} className="relative whitespace-nowrap">
+      <span className="font-bold italic motion-safe:hidden">{content}</span>
       {content.split('').map((letter, index) => (
         <span
           key={index}
           aria-hidden
-          className="relative"
+          className="relative motion-reduce:hidden"
           style={{ left: offsets?.[index]?.[0], bottom: offsets?.[index]?.[1] }}
         >
           {letter}
