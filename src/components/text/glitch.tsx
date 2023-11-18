@@ -6,7 +6,7 @@ export default function GlitchText({ children }: { children: ReactNode }) {
   return (
     <span className="relative whitespace-nowrap tracking-wide">
       <span
-        aria-hidden="true"
+        aria-hidden
         className={clsx(
           'absolute left-px w-full motion-reduce:hidden',
           styles.glitchRed
@@ -18,7 +18,7 @@ export default function GlitchText({ children }: { children: ReactNode }) {
         {children}
       </span>
       <span
-        aria-hidden="true"
+        aria-hidden
         className={clsx(
           'absolute left-px w-full motion-reduce:hidden',
           styles.glitchBlue

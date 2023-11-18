@@ -8,7 +8,7 @@ export default function WaveText({ content }: { content: string }) {
       {content.split('').map((letter, index) => (
         <span
           key={index}
-          aria-hidden="true"
+          aria-hidden
           className={clsx('relative motion-reduce:hidden', styles.wave)}
           style={{ animationDelay: index * 0.04 + 's' }}
         >

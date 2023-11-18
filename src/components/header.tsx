@@ -64,7 +64,7 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
         <ul
           className={clsx('menu', {
             'menu-horizontal': !isSmall,
-            'rounded-box absolute right-0 top-0 w-52 translate-x-2 translate-y-20 bg-neutral shadow-xl':
+            'absolute right-0 top-0 w-52 translate-x-2 translate-y-20 rounded-box bg-neutral shadow-xl':
               isSmall,
             hidden: isSmall && !menuVisible
           })}
@@ -95,7 +95,7 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
                   <summary className="pr-5">{item[0]}</summary>
                   <ul
                     className={clsx({
-                      '!mt-6 -translate-x-2 bg-neutral': !isSmall
+                      '!mt-6 bg-neutral': !isSmall
                     })}
                   >
                     {item[1]!.map((link) => (
@@ -132,7 +132,7 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
           <SuperLink
             href="/Resume.pdf"
             external
-            className="btn btn-primary btn-outline mx-1"
+            className="btn btn-outline btn-primary mx-1"
           >
             Resume
             <HiArrowTopRightOnSquare className="mb-px h-4 w-4" />
@@ -178,7 +178,7 @@ export default function Header() {
         showNavbar ? 'translate-y-0' : '-translate-y-[100%]'
       )}
     >
-      <header className="navbar rounded-box m-5 max-w-6xl bg-neutral shadow-xl">
+      <header className="navbar m-5 max-w-6xl rounded-box bg-neutral shadow-xl">
         <div className="mx-1 my-0.5 flex flex-1 flex-row items-center gap-2">
           <SuperLink href="/" className="btn btn-ghost px-2">
             <Image

@@ -10,7 +10,7 @@ function BadvatarComponent({ className }: { className?: string }) {
       src={TransparentAvatar}
       alt="An upside-down version of Ludo's avatar. A minimalist portrait of a faceless Ludo wearing a black shirt with a yellow sparkle pin. The background is red and criss-crossed with a regular pattern of darker, horizontal lines."
       className={clsx(
-        'bg-error-pattern -scale-y-100 bg-error bg-center',
+        '-scale-y-100 bg-error bg-error-pattern bg-center',
         className
       )}
     />
@@ -21,9 +21,9 @@ export default function NotFound() {
   return (
     <div className="hero -mt-6">
       <div className="hero-content max-w-5xl flex-row gap-16">
-        <BadvatarComponent className="shadow-halo-error hidden h-64 w-64 rounded-3xl lg:avatar" />
+        <BadvatarComponent className="hidden h-64 w-64 rounded-3xl shadow-halo-error lg:avatar" />
         <div>
-          <BadvatarComponent className="shadow-halo-error-sm avatar mb-6 h-16 w-16 rounded-full xs:hidden" />
+          <BadvatarComponent className="avatar mb-6 h-16 w-16 rounded-full shadow-halo-error-sm xs:hidden" />
           <p>The server response was</p>
           <h1 className="mb-4 mt-2 text-2xl font-bold leading-tight xs:text-3xl lg:text-4xl">
             <span className="text-error">
@@ -39,8 +39,11 @@ export default function NotFound() {
             the whole URL correctly?
           </p>
           <div className="mt-6 flex flex-row items-center justify-start gap-4">
-            <BadvatarComponent className="shadow-halo-error-sm mr-4 hidden h-16 w-16 rounded-full xs:avatar sm:h-20 sm:w-20 lg:hidden" />
-            <SuperLink href="/" className="shadow-halo-error btn btn-primary">
+            <BadvatarComponent className="mr-4 hidden h-16 w-16 rounded-full shadow-halo-error-sm xs:avatar sm:h-20 sm:w-20 lg:hidden" />
+            <SuperLink
+              href="/"
+              className="btn btn-primary shadow-halo-primary-sm"
+            >
               Flip me right-side up
             </SuperLink>
           </div>

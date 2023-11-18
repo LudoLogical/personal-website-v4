@@ -25,9 +25,13 @@ export default function CorruptedText({
     return () => clearInterval(interval);
   }, [length]);
   return (
-    <span aria-hidden="true" className="whitespace-nowrap font-mono">
-      <span className="motion-reduce:hidden">{content}</span>
-      <span className="motion-safe:hidden">[REDACTED]</span>
+    <span aria-label={'[REDACTED]'} className="whitespace-nowrap font-mono">
+      <span aria-hidden className="motion-reduce:hidden">
+        {content}
+      </span>
+      <span aria-hidden className="motion-safe:hidden">
+        [REDACTED]
+      </span>
     </span>
   );
 }

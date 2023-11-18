@@ -5,6 +5,7 @@ import Hint from '~/components/hint';
 import CorruptedText from '~/components/text/corrupted';
 import WaveText from '~/components/text/wave';
 import GlitchText from '~/components/text/glitch';
+import ShakyText from '~/components/text/shaky';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -22,6 +23,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Corrupted: CorruptedText,
     Glitch: GlitchText,
     Hint: Hint,
+    Shaky: ShakyText,
     Wave: WaveText,
     ...components
   };
