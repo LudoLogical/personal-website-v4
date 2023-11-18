@@ -41,7 +41,7 @@ export default {
           warning: '#FFEF14',
           error: '#FF4714',
           '.tooltip': {
-            '--tooltip-tail': '0.25rem'
+            '--tooltip-tail': '0.35rem'
           }
         }
       }

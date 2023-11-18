@@ -14,9 +14,9 @@ export default function Hint({ children }: { children: ReactNode }) {
     if (rect) {
       const center = (rect?.left + rect?.right) / 2;
       if (center < width / 2) {
-        setSide(rect.left < 130 ? 'right' : 'top');
+        setSide(rect.left < 125 ? 'right' : 'top');
       } else if (rect.left) {
-        setSide(rect.right > width - 130 ? 'left' : 'top');
+        setSide(rect.right > width - 125 ? 'left' : 'top');
       }
     }
   }, [width]);
@@ -24,7 +24,7 @@ export default function Hint({ children }: { children: ReactNode }) {
     <span
       ref={hint}
       className={clsx(
-        'tooltip tooltip-info align-top before:max-w-[12rem] md:before:max-w-[16rem] lg:before:max-w-xs',
+        'tooltip tooltip-info align-top before:max-w-[12rem] before:rounded-lg before:px-3 before:py-2 before:leading-normal before:transition-opacity after:transition-opacity md:before:max-w-[16rem] lg:before:max-w-xs',
         {
           'tooltip-right': side === 'right',
           'tooltip-left': side === 'left',

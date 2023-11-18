@@ -16,7 +16,7 @@ function AvatarComponent({ className }: { className?: string }) {
 
 export default function Index() {
   return (
-    <div className="hero -mt-6">
+    <div className="hero">
       <div className="hero-content max-w-5xl flex-row gap-16">
         <AvatarComponent className="hidden h-64 w-64 rounded-3xl shadow-halo-secondary lg:avatar" />
         <div>
