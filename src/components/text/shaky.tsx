@@ -13,9 +13,7 @@ const generateOffsets = (numOffsets: number): string[][] => {
 };
 
 export default function ShakyText({ content }: { content: string }) {
-  const [offsets, setOffsets] = useState<string[][]>(
-    generateOffsets(content.length)
-  );
+  const [offsets, setOffsets] = useState<string[][] | null>(null);
   useEffect(() => {
     const interval = setInterval(
       () => setOffsets(generateOffsets(content.length)),

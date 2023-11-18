@@ -8,13 +8,14 @@ import {
   HiOutlineXCircle
 } from 'react-icons/hi2';
 import SuperLink from '~/components/super-link';
+import Collapse from '~/components/collapse';
 import createCallout from '~/components/callout';
 import CorruptedText from '~/components/text/corrupted';
+import Quote from '~/components/quote';
 import GlitchText from '~/components/text/glitch';
 import Hint from '~/components/hint';
 import ShakyText from '~/components/text/shaky';
 import WaveText from '~/components/text/wave';
-import Quote from '~/components/quote';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -41,6 +42,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     strong: ({ children }: { children?: ReactNode }) => (
       <strong className="font-bold text-primary">{children}</strong>
     ),
+    Collapse: Collapse,
     Notice: createCallout(HiLightBulb),
     Victory: createCallout(HiOutlineCheckCircle, 'alert-success'),
     Warning: createCallout(HiOutlineExclamationTriangle, 'alert-warning'),
