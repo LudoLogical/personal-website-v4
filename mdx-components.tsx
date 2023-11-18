@@ -1,12 +1,19 @@
 import { type ReactNode } from 'react';
 import type { MDXComponents } from 'mdx/types';
+import {
+  HiArrowRight,
+  HiLightBulb,
+  HiOutlineCheckCircle,
+  HiOutlineExclamationTriangle,
+  HiOutlineXCircle
+} from 'react-icons/hi2';
 import SuperLink from '~/components/super-link';
-import Hint from '~/components/hint';
+import createCallout from '~/components/callout';
 import CorruptedText from '~/components/text/corrupted';
-import WaveText from '~/components/text/wave';
 import GlitchText from '~/components/text/glitch';
+import Hint from '~/components/hint';
 import ShakyText from '~/components/text/shaky';
-import { HiArrowRight } from 'react-icons/hi2';
+import WaveText from '~/components/text/wave';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -20,7 +27,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     li: ({ children }: { children?: ReactNode }) => (
       <li>
-        <HiArrowRight className="m-0 mr-4 mt-px self-center text-[var(--tw-prose-counters)]" />
+        <HiArrowRight className="m-0 mr-4 mt-px h-4 w-4 self-center text-[var(--tw-prose-counters)]" />
         {children}
       </li>
     ),
@@ -33,6 +40,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     strong: ({ children }: { children?: ReactNode }) => (
       <strong className="font-bold text-primary">{children}</strong>
     ),
+    Notice: createCallout(HiLightBulb),
+    Victory: createCallout(HiOutlineCheckCircle, 'alert-success'),
+    Warning: createCallout(HiOutlineExclamationTriangle, 'alert-warning'),
+    Problem: createCallout(HiOutlineXCircle, 'alert-error'),
     Corrupted: CorruptedText,
     Glitch: GlitchText,
     Hint: Hint,
