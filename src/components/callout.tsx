@@ -16,10 +16,14 @@ export default function createCallout(
     return (
       <aside
         role="alert"
-        className={clsx('not-prose alert my-5 items-start', alertClass)}
+        className={clsx(
+          'not-prose alert my-5 items-start gap-y-2 p-6',
+          alertClass,
+          { 'justify-items-start text-start': title }
+        )}
       >
         <Icon
-          className={clsx('mt-0.5 h-6 w-6', {
+          className={clsx('h-6 w-6 sm:mt-0.5', {
             'text-primary': alertClass === undefined
           })}
         />

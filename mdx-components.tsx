@@ -14,6 +14,7 @@ import GlitchText from '~/components/text/glitch';
 import Hint from '~/components/hint';
 import ShakyText from '~/components/text/shaky';
 import WaveText from '~/components/text/wave';
+import Quote from '~/components/quote';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -44,6 +45,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Victory: createCallout(HiOutlineCheckCircle, 'alert-success'),
     Warning: createCallout(HiOutlineExclamationTriangle, 'alert-warning'),
     Problem: createCallout(HiOutlineXCircle, 'alert-error'),
+    Quote: Quote,
     Corrupted: CorruptedText,
     Glitch: GlitchText,
     Hint: Hint,
