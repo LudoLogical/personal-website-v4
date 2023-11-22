@@ -16,7 +16,7 @@ export default function Hint({ children }: { children: ReactNode }) {
       if (center < width / 2) {
         setSide(rect.left < 125 ? 'right' : 'top');
       } else if (rect.left) {
-        setSide(rect.right > width - 125 ? 'left' : 'top');
+        setSide(rect.right > width - 145 ? 'left' : 'top');
       }
     }
   }, [width]);

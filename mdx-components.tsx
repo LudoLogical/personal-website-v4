@@ -1,5 +1,6 @@
-import { type ReactNode } from 'react';
+import { type PropsWithChildren, type ReactNode } from 'react';
 import type { MDXComponents } from 'mdx/types';
+import { Code } from 'bright';
 import {
   HiArrowRight,
   HiLightBulb,
@@ -8,14 +9,18 @@ import {
   HiOutlineXCircle
 } from 'react-icons/hi2';
 import SuperLink from '~/components/super-link';
-import Collapse from '~/components/collapse';
-import createCallout from '~/components/callout';
-import CorruptedText from '~/components/text/corrupted';
-import Quote from '~/components/quote';
-import GlitchText from '~/components/text/glitch';
 import Hint from '~/components/hint';
+import CorruptedText from '~/components/text/corrupted';
+import GlitchText from '~/components/text/glitch';
 import ShakyText from '~/components/text/shaky';
 import WaveText from '~/components/text/wave';
+import Quote from '~/components/quote';
+import createCallout from '~/components/callout';
+import Collapse from '~/components/collapse';
+import Sandbox from '~/components/sandbox';
+
+Code.lineNumbers = true;
+Code.theme = 'dracula';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -39,20 +44,27 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ul: ({ children }: { children?: ReactNode }) => (
       <ul className="ml-0 list-none pl-0 [&>li]:flex">{children}</ul>
     ),
+    pre: (props: PropsWithChildren) => (
+      <Code
+        className="my-4 flex !rounded-2xl [&>pre]:w-0 [&>pre]:flex-auto"
+        {...props}
+      />
+    ),
     strong: ({ children }: { children?: ReactNode }) => (
       <strong className="font-bold text-primary">{children}</strong>
     ),
-    Collapse: Collapse,
+    Hint: Hint,
+    Corrupted: CorruptedText,
+    Glitch: GlitchText,
+    Shaky: ShakyText,
+    Wave: WaveText,
+    Quote: Quote,
     Notice: createCallout(HiLightBulb),
     Victory: createCallout(HiOutlineCheckCircle, 'alert-success'),
     Warning: createCallout(HiOutlineExclamationTriangle, 'alert-warning'),
     Problem: createCallout(HiOutlineXCircle, 'alert-error'),
-    Quote: Quote,
-    Corrupted: CorruptedText,
-    Glitch: GlitchText,
-    Hint: Hint,
-    Shaky: ShakyText,
-    Wave: WaveText,
+    Collapse: Collapse,
+    Sandbox: Sandbox,
     ...components
   };
 }
