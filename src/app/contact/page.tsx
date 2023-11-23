@@ -1,8 +1,8 @@
 import { HiEnvelope } from 'react-icons/hi2';
 import { FiLinkedin } from 'react-icons/fi';
 import { BiLogoDiscordAlt } from 'react-icons/bi';
-import { ThreadsButton } from '~/components/modals';
-import SuperLink from '~/components/super-link';
+import { ThreadsButton } from '~/components/helpers/modals';
+import SuperLink from '~/components/helpers/super-link';
 
 export const metadata = {
   title: 'Contact'

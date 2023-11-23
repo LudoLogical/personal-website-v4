@@ -11,7 +11,7 @@ import {
   HiXMark
 } from 'react-icons/hi2';
 import clsx from 'clsx';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/helpers/super-link';
 import experienceData from 'data/experience';
 
 export default function ExperienceInteractive() {

@@ -13,7 +13,7 @@ import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { useScrollDirection } from 'react-use-scroll-direction';
 import { HiArrowTopRightOnSquare, HiBars3, HiXMark } from 'react-icons/hi2';
-import { Copyright } from '~/components/modals';
+import { Copyright } from '~/components/helpers/modals';
 import SuperLink from './super-link';
 import { useOutsideClick } from '~/utils/hooks';
 import menuData from 'data/menu';

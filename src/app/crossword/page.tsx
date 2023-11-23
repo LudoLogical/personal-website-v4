@@ -1,7 +1,7 @@
 import { HiLightBulb, HiPuzzlePiece } from 'react-icons/hi2';
 import crosswordData from 'data/crossword';
 import clsx from 'clsx';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/helpers/super-link';
 
 export const metadata = {
   title: 'Crossword'

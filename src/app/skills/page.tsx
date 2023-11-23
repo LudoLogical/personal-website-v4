@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import skillsData from 'data/skills';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/helpers/super-link';
 
 export const metadata = {
   title: 'Skills'

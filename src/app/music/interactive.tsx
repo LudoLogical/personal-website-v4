@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { originalsData, arrangementsData, beepboxData } from 'data/music';
 import { HiFolder, HiMusicalNote, HiSpeakerWave } from 'react-icons/hi2';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/helpers/super-link';
 import Submenu from './helpers';
 
 export default function MusicInteractive() {
@@ -41,7 +41,7 @@ export default function MusicInteractive() {
         </select>
       </div>
       <div className="mx-4 flex flex-row items-center gap-8">
-        <ul className="menu rounded-box hidden w-56 bg-neutral text-left md:flex">
+        <ul className="menu hidden w-56 rounded-box bg-neutral text-left md:flex">
           <li>
             <h2 className="menu-title">Original Works</h2>
             <ul>

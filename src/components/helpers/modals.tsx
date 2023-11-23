@@ -3,7 +3,7 @@
 import { useRef, forwardRef, type ReactNode } from 'react';
 import { FiAtSign } from 'react-icons/fi';
 import { HiOutlineInformationCircle } from 'react-icons/hi2';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/helpers/super-link';
 import clsx from 'clsx';
 
 const Modal = forwardRef<
