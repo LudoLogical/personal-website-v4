@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import clsx from 'clsx';
 import { FiGithub } from 'react-icons/fi';
 import {
   HiArrowTopRightOnSquare,
@@ -10,8 +11,7 @@ import {
   HiLink,
   HiXMark
 } from 'react-icons/hi2';
-import clsx from 'clsx';
-import SuperLink from '~/components/helpers/super-link';
+import SuperLink from '~/components/super-link';
 import experienceData from 'data/experience';
 
 export default function ExperienceInteractive() {

@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useState } from 'react';
 import {
   useActiveCode,
@@ -82,6 +84,7 @@ export const FormatButton = () => {
       <label className="swap">
         <input
           type="checkbox"
+          name="prettier-format-status"
           readOnly
           checked={showFormatSuccess || showFormatError}
         />
@@ -106,6 +109,8 @@ export const FormatButton = () => {
   );
 };
 
+/* Currently unused; waiting on the ability to remove the default "clear console"
+ * button so that there is visual consistency across the preview and console tabs */
 export const RefreshButton = () => {
   const { refresh } = useSandpackNavigation();
   return (

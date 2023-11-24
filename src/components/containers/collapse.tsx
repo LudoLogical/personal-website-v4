@@ -1,7 +1,7 @@
 'use client';
 
-import clsx from 'clsx';
 import { useState, type ReactNode } from 'react';
+import clsx from 'clsx';
 import { HiEye, HiEyeSlash } from 'react-icons/hi2';
 
 export default function Collapse({
@@ -20,6 +20,7 @@ export default function Collapse({
     >
       <input
         type="checkbox"
+        name={title}
         checked={isOpen}
         onChange={(event) => setIsOpen(event.target.checked)}
       />

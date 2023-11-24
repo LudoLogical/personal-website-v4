@@ -1,7 +1,7 @@
 'use client';
 
-import Badvatar from '~/components/helpers/badvatar';
-import SuperLink from '~/components/helpers/super-link';
+import SuperLink from '~/components/super-link';
+import Badvatar from './badvatar';
 
 export default function Error({ reset }: { reset: () => void }) {
   return (

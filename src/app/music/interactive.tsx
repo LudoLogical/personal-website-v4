@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { originalsData, arrangementsData, beepboxData } from 'data/music';
 import { HiFolder, HiMusicalNote, HiSpeakerWave } from 'react-icons/hi2';
-import SuperLink from '~/components/helpers/super-link';
+import SuperLink from '~/components/super-link';
+import { originalsData, arrangementsData, beepboxData } from 'data/music';
 import Submenu from './helpers';
 
 export default function MusicInteractive() {

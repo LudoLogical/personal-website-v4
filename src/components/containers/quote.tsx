@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import clsx from 'clsx';
 import { HiOutlineChatBubbleLeft } from 'react-icons/hi2';
-import SuperLink from '../helpers/super-link';
+import SuperLink from '~/components/super-link';
 
 export default function Quote({
   children,

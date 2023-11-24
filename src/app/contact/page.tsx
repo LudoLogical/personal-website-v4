@@ -1,8 +1,8 @@
-import { HiEnvelope } from 'react-icons/hi2';
-import { FiLinkedin } from 'react-icons/fi';
 import { BiLogoDiscordAlt } from 'react-icons/bi';
-import { ThreadsButton } from '~/components/helpers/modals';
-import SuperLink from '~/components/helpers/super-link';
+import { FiAtSign, FiLinkedin } from 'react-icons/fi';
+import { HiEnvelope } from 'react-icons/hi2';
+import SuperLink from '~/components/super-link';
+import { NotTwitter } from './interactive';
 
 export const metadata = {
   title: 'Contact'
@@ -44,7 +44,17 @@ export default function Contact() {
           <FiLinkedin className="h-4 w-4" />
           /in/danielchristiandeanda/
         </SuperLink>
-        <ThreadsButton />
+        <div className="indicator">
+          <NotTwitter />
+          <SuperLink
+            href="https://www.threads.net/@ludo.logical"
+            external
+            className="btn w-fit"
+          >
+            <FiAtSign className="h-4 w-4" />
+            ludo.logical@threads.net
+          </SuperLink>
+        </div>
       </div>
     </div>
   );

@@ -12,9 +12,14 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { useScrollDirection } from 'react-use-scroll-direction';
-import { HiArrowTopRightOnSquare, HiBars3, HiXMark } from 'react-icons/hi2';
-import { Copyright } from '~/components/helpers/modals';
-import SuperLink from './super-link';
+import {
+  HiArrowTopRightOnSquare,
+  HiBars3,
+  HiOutlineInformationCircle,
+  HiXMark
+} from 'react-icons/hi2';
+import ActionlessModal from '~/components/actionless-modal';
+import SuperLink from '~/components/super-link';
 import { useOutsideClick } from '~/utils/hooks';
 import menuData from 'data/menu';
 import emblem from 'public/emblem-yellow.png';
@@ -55,6 +60,7 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
             <input
               ref={checkbox}
               type="checkbox"
+              name="nav-menu-toggle"
               onChange={(event) => setMenuVisible(event.target.checked)}
             />
             <HiBars3 className="swap-off h-6 w-6 fill-current" />
@@ -169,6 +175,7 @@ export default function Header() {
     }
   }, [isScrollingUp, isScrollingDown, showNavbar]);
   const container = useRef<HTMLDivElement | null>(null);
+  const firstModalLink = useRef<HTMLAnchorElement | null>(null);
   useOutsideClick(container, handleCloseAndHide);
   return (
     <div
@@ -187,7 +194,41 @@ export default function Header() {
               className="w-10"
             />
           </SuperLink>
-          <Copyright />
+          <ActionlessModal
+            clickable={
+              <HiOutlineInformationCircle className="btn btn-circle btn-ghost btn-xs h-6 w-6" />
+            }
+            title="Attribution and Copyright Information"
+            firstLink={firstModalLink}
+            cancelAnimation
+          >
+            <p>
+              This{' '}
+              <SuperLink
+                ref={firstModalLink}
+                href="https://github.com/LudoLogical/personal-website-v4"
+                external
+                styledText
+              >
+                open-source
+              </SuperLink>{' '}
+              website was built using Next.js, React, TypeScript, TailwindCSS,
+              DaisyUI, MDX, and a handful of other open-source{' '}
+              <SuperLink
+                href="https://github.com/LudoLogical/personal-website-v4/blob/main/package.json"
+                external
+                styledText
+              >
+                packages
+              </SuperLink>
+              . It is being hosted free of charge on Vercel. Ludo&apos;s avatar
+              was created by Karina Varughese.
+            </p>
+            <p>
+              All other content was made with &#10084; by Daniel
+              &quot;Ludo&quot; DeAnda. &copy; 2023, all rights reserved.
+            </p>
+          </ActionlessModal>
         </div>
         <div className="hidden flex-none sm:flex">
           <NavMenu ref={navMenuLarge} />

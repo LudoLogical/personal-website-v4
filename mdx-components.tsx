@@ -8,16 +8,16 @@ import {
   HiOutlineExclamationTriangle,
   HiOutlineXCircle
 } from 'react-icons/hi2';
-import SuperLink from '~/components/helpers/super-link';
+import SuperLink from '~/components/super-link';
+import Sandbox from '~/components/code/sandbox';
+import createCallout from '~/components/containers/callout';
+import Collapse from '~/components/containers/collapse';
 import Hint from '~/components/containers/hint';
+import Quote from '~/components/containers/quote';
 import CorruptedText from '~/components/text/corrupted';
 import GlitchText from '~/components/text/glitch';
 import ShakyText from '~/components/text/shaky';
 import WaveText from '~/components/text/wave';
-import Quote from '~/components/containers/quote';
-import createCallout from '~/components/containers/callout';
-import Collapse from '~/components/containers/collapse';
-import Sandbox from '~/components/code/sandbox';
 
 Code.lineNumbers = true;
 Code.theme = 'dracula';
