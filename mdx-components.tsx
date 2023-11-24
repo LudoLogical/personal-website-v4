@@ -2,12 +2,12 @@ import { type PropsWithChildren, type ReactNode } from 'react';
 import type { MDXComponents } from 'mdx/types';
 import { Code } from 'bright';
 import {
-  HiArrowRight,
   HiLightBulb,
   HiOutlineCheckCircle,
   HiOutlineExclamationTriangle,
   HiOutlineXCircle
 } from 'react-icons/hi2';
+import ArrowList from '~/components/arrow-list';
 import SuperLink from '~/components/super-link';
 import Sandbox from '~/components/code/sandbox';
 import createCallout from '~/components/containers/callout';
@@ -18,6 +18,7 @@ import CorruptedText from '~/components/text/corrupted';
 import GlitchText from '~/components/text/glitch';
 import ShakyText from '~/components/text/shaky';
 import WaveText from '~/components/text/wave';
+import { Terminal, TerminalLine } from '~/components/code/terminal';
 
 Code.lineNumbers = true;
 Code.theme = 'dracula';
@@ -32,18 +33,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     em: ({ children }: { children?: ReactNode }) => (
       <em className="font-bold">{children}</em>
     ),
-    li: ({ children }: { children?: ReactNode }) => (
-      <li>
-        <HiArrowRight className="m-0 mr-4 mt-px h-4 w-4 self-center text-[var(--tw-prose-counters)]" />
-        {children}
-      </li>
-    ),
     ol: ({ children }: { children?: ReactNode }) => (
-      <ol className="ml-0 pl-8 first:[&>li>svg]:hidden">{children}</ol>
+      <ol className="ml-0 pl-8">{children}</ol>
     ),
-    ul: ({ children }: { children?: ReactNode }) => (
-      <ul className="ml-0 list-none pl-0 [&>li]:flex">{children}</ul>
-    ),
+    ul: ArrowList,
     pre: (props: PropsWithChildren) => (
       <Code
         className="my-4 flex !rounded-2xl [&>pre]:w-0 [&>pre]:flex-auto"
@@ -65,6 +58,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Problem: createCallout(HiOutlineXCircle, 'alert-error'),
     Collapse: Collapse,
     Sandbox: Sandbox,
+    Terminal: Terminal,
+    Line: TerminalLine,
     ...components
   };
 }

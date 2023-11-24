@@ -53,13 +53,22 @@ function consectetur(...adipiscing) {
 }
 ```
 
-<Sandbox title="Editable Code is Cool Too" files={{
+<Sandbox title="Editable Code is Cool Too" showLineNumbers files={{
   '/App.js': `export default function App() {
   return (
     <div className="flex h-screen items-center justify-center bg-[#282a36]">
-      <h1 className="text-xl font-semibold text-slate-300">I can haz edeetz?</h1>
+      <h1 className="text-xl font-semibold text-slate-300">I can haz editz?</h1>
     </div>
   );
 }
-`
-}} showLineNumbers />
+`}} />
+
+<Terminal>
+<Line prefix="$">pnpm run dev</Line>
+<Line color="success">Started!</Line>
+<Line>Let's see if it errors...</Line>
+<Line color="warning">Something's up...</Line>
+<Line highlight="error">Yeah, that's not good.</Line>
+<Line>Time to start over.</Line>
+<Line prefix="$">_</Line>
+</Terminal>
