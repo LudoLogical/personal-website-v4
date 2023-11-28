@@ -4,18 +4,21 @@ import {
   type ReactNode,
   isValidElement
 } from 'react';
-import { HiArrowRight } from 'react-icons/hi2';
+import { HiMiniArrowRight } from 'react-icons/hi2';
+
+let incrementor = 0;
 
 export default function ArrowList({ children }: { children?: ReactNode }) {
+  incrementor++;
   return (
-    <ul className="ml-0 list-none pl-0">
+    <ul className="list-none">
       {(
         Children.toArray(children).filter((child) =>
           isValidElement(child)
         ) as ReactElement<{ children?: ReactNode }>[]
       ).map((child, index) => (
-        <li key={index} className="flex">
-          <HiArrowRight className="m-0 mr-4 mt-px h-4 w-4 self-center text-[var(--tw-prose-counters)]" />
+        <li key={`arrowlist.${incrementor}.${index}`}>
+          <HiMiniArrowRight className="-ml-7 mb-0.5 mr-2 mt-0 inline-block h-5 w-5 text-[var(--tw-prose-counters)]" />
           {child.props.children}
         </li>
       ))}

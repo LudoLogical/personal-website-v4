@@ -11,7 +11,6 @@ import {
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import { useScrollDirection } from 'react-use-scroll-direction';
 import {
   HiArrowTopRightOnSquare,
   HiBars3,
@@ -20,7 +19,7 @@ import {
 } from 'react-icons/hi2';
 import ActionlessModal from '~/components/actionless-modal';
 import SuperLink from '~/components/super-link';
-import { useOutsideClick } from '~/utils/hooks';
+import { useOutsideClick, useToggleOnScroll } from '~/utils/hooks';
 import menuData from 'data/menu';
 import emblem from 'public/emblem-yellow.png';
 
@@ -107,7 +106,7 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
                     {item[1]!.map((link) => (
                       <li key={link[0]}>
                         <SuperLink
-                          href={link[1]!}
+                          href={link[1]}
                           onClick={(event) =>
                             handleNavigation(event, item[1] as string)
                           }
@@ -150,8 +149,6 @@ const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
 );
 
 export default function Header() {
-  const { isScrollingUp, isScrollingDown } = useScrollDirection();
-  const [showNavbar, setShowNavbar] = useState<boolean>(true);
   const navMenuLarge = useRef<NavMenuHandle | null>(null);
   const navMenuSmall = useRef<NavMenuHandle | null>(null);
   function handleCloseAndHide() {
@@ -162,21 +159,15 @@ export default function Header() {
       navMenuSmall.current.closeAndHide();
     }
   }
+  const container = useRef<HTMLDivElement | null>(null);
+  useOutsideClick(container, handleCloseAndHide);
+  const showNavbar = useToggleOnScroll(true);
   useEffect(() => {
     if (!showNavbar) {
-      if (isScrollingUp) {
-        setShowNavbar(true);
-      }
-    } else {
-      if (isScrollingDown) {
-        setShowNavbar(false);
-        handleCloseAndHide();
-      }
+      handleCloseAndHide();
     }
-  }, [isScrollingUp, isScrollingDown, showNavbar]);
-  const container = useRef<HTMLDivElement | null>(null);
+  }, [showNavbar]);
   const firstModalLink = useRef<HTMLAnchorElement | null>(null);
-  useOutsideClick(container, handleCloseAndHide);
   return (
     <div
       ref={container}

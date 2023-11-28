@@ -1,0 +1,20 @@
+/* Pads the top of the screen on scroll */
+
+.article > h2,
+.article > h3,
+.article > h4,
+.article > h5,
+.article > h6 {
+  scroll-margin-top: 2.5rem;
+}
+
+/* Direct from Tailwind: custom overrides for p code */
+/* rounded, bg-neutral, px-1.5 */
+
+.article > p > code {
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-n, oklch(var(--n) / var(--tw-bg-opacity)));
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+}

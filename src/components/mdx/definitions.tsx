@@ -1,4 +1,6 @@
-import { type PropsWithChildren, type ReactNode } from 'react';
+import 'server-only';
+
+import { type PropsWithChildren } from 'react';
 import type { MDXComponents } from 'mdx/types';
 import { Code } from 'bright';
 import {
@@ -10,6 +12,7 @@ import {
 import ArrowList from '~/components/arrow-list';
 import SuperLink from '~/components/super-link';
 import Sandbox from '~/components/code/sandbox';
+import { Terminal, TerminalLine } from '~/components/code/terminal';
 import createCallout from '~/components/containers/callout';
 import Collapse from '~/components/containers/collapse';
 import Hint from '~/components/containers/hint';
@@ -18,24 +21,17 @@ import CorruptedText from '~/components/text/corrupted';
 import GlitchText from '~/components/text/glitch';
 import ShakyText from '~/components/text/shaky';
 import WaveText from '~/components/text/wave';
-import { Terminal, TerminalLine } from '~/components/code/terminal';
+import BlogWrapper from './blog/wrapper';
 
 Code.lineNumbers = true;
 Code.theme = 'dracula';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    a: ({ href, children }: { href?: string; children?: ReactNode }) => (
-      <SuperLink href={href!} external styledText>
-        {children}
-      </SuperLink>
+    a: (props: PropsWithChildren) => (
+      <SuperLink external styledText {...props} />
     ),
-    em: ({ children }: { children?: ReactNode }) => (
-      <em className="font-bold">{children}</em>
-    ),
-    ol: ({ children }: { children?: ReactNode }) => (
-      <ol className="ml-0 pl-8">{children}</ol>
-    ),
+    em: (props: PropsWithChildren) => <em className="font-bold" {...props} />,
     ul: ArrowList,
     pre: (props: PropsWithChildren) => (
       <Code
@@ -43,8 +39,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       />
     ),
-    strong: ({ children }: { children?: ReactNode }) => (
-      <strong className="font-bold text-primary">{children}</strong>
+    strong: (props: PropsWithChildren) => (
+      <strong className="font-bold text-primary" {...props} />
     ),
     Hint: Hint,
     Corrupted: CorruptedText,
@@ -60,6 +56,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Sandbox: Sandbox,
     Terminal: Terminal,
     Line: TerminalLine,
+    Content: (props: PropsWithChildren) => (
+      <article
+        className="prose [&>h2]:scroll-mt-12 [&>p>code]:rounded [&>p>code]:bg-neutral [&>p>code]:px-1.5"
+        {...props}
+      />
+    ),
+    BlogWrapper: BlogWrapper,
     ...components
   };
 }

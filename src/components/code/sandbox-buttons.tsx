@@ -6,9 +6,8 @@ import {
   useSandpack,
   useSandpackNavigation
 } from '@codesandbox/sandpack-react';
-import prettier from 'prettier';
-import babelPlugin from 'prettier/plugins/babel';
-import estreePlugin from 'prettier/plugins/estree';
+import useSWRMutation from 'swr/mutation';
+import axios from 'axios';
 import {
   HiMiniArrowPath,
   HiMiniArrowUturnLeft,
@@ -16,6 +15,7 @@ import {
   HiMiniSparkles,
   HiMiniXMark
 } from 'react-icons/hi2';
+import { prettierResponsee } from '~/app/api/prettier/types';
 
 export const ResetButton = ({ sandboxName }: { sandboxName: string }) => {
   const modal = useRef<HTMLDialogElement | null>(null);
@@ -58,27 +58,26 @@ export const FormatButton = () => {
   const [showFormatSuccess, setShowFormatSuccess] = useState<boolean>(false);
   const [showFormatError, setShowFormatError] = useState<boolean>(false);
   const { code, updateCode } = useActiveCode();
-
-  const format = async () => {
-    if (code) {
-      try {
-        const formatted = await prettier.format(code, {
-          parser: 'babel',
-          plugins: [babelPlugin, estreePlugin]
+  const { trigger } = useSWRMutation(
+    '/api/prettier',
+    (url, { arg }: { arg: string }) => {
+      axios
+        .post(url, { code: arg })
+        .then((response) => {
+          updateCode(prettierResponsee.parse(response.data).formattedCode);
+          setShowFormatSuccess(true);
+          setTimeout(() => setShowFormatSuccess(false), 1000);
+        })
+        .catch(() => {
+          setShowFormatError(true);
+          setTimeout(() => setShowFormatError(false), 1000);
         });
-        updateCode(formatted);
-        setShowFormatSuccess(true);
-        setTimeout(() => setShowFormatSuccess(false), 1000);
-      } catch {
-        setShowFormatError(true);
-        setTimeout(() => setShowFormatError(false), 1000);
-      }
     }
-  };
+  );
 
   return (
     <button
-      onClick={format}
+      onClick={() => void trigger(code)}
       className="btn btn-circle btn-ghost h-8 min-h-0 w-8"
     >
       <label className="swap">

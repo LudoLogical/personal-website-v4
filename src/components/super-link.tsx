@@ -5,7 +5,7 @@ import clsx from 'clsx';
 const SuperLink = forwardRef<
   HTMLAnchorElement,
   {
-    href: string;
+    href?: string;
     external?: boolean;
     styledText?: boolean;
     styledIcon?: boolean;
@@ -20,12 +20,12 @@ const SuperLink = forwardRef<
   return (
     <Link
       ref={ref}
-      href={href}
+      href={href ?? ''}
       rel={external ? 'noopener noreferrer' : undefined}
       target={external ? '_blank' : undefined}
       className={clsx(
         {
-          'relative whitespace-nowrap font-extrabold text-secondary no-underline after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full':
+          'not-prose relative whitespace-nowrap font-extrabold text-secondary no-underline after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full':
             styledText,
           'btn btn-circle btn-ghost': styledIcon
         },
