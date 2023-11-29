@@ -15,9 +15,20 @@ export function useOutsideClick(ref: RefObject<Element>, callback: () => void) {
   }, [ref, callback]);
 }
 
-export function useToggleOnScroll(initialState?: boolean) {
+export function useToggleOnScroll(initialValue = true) {
   const { isScrollingUp, isScrollingDown } = useScrollDirection();
-  const [show, setShow] = useState<boolean>(initialState ?? true);
+  const [show, setShow] = useState<boolean>(initialValue);
+  useEffect(() => {
+    setShow(
+      !['reload', 'back_forward'].includes(
+        (
+          window.performance
+            .getEntriesByType('navigation')
+            .at(0) as PerformanceNavigationTiming
+        ).type
+      ) || window.scrollY === 0
+    );
+  }, []);
   useEffect(() => {
     if (!show) {
       if (isScrollingUp) {

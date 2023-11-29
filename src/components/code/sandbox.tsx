@@ -12,6 +12,7 @@ import { FiCodesandbox } from 'react-icons/fi';
 import { HiMiniCodeBracket } from 'react-icons/hi2';
 import { FormatButton, ResetButton } from './sandbox-buttons';
 import { SandpackPreviewConsoleStacked } from './sandbox-hacks';
+import { useEffect, useState } from 'react';
 
 const defaultCSS = {
   '/styles.css': {
@@ -40,7 +41,12 @@ export default function Sandbox({
   files,
   showLineNumbers
 }: SandpackProviderProps & { title?: string; showLineNumbers: boolean }) {
-  return (
+  const [show, setShow] = useState<boolean>(false);
+  useEffect(() => {
+    setShow(true);
+    //setTimeout(() => setShow(true), 100);
+  }, []);
+  return show ? (
     <SandpackProvider
       theme={dracula}
       template={template ?? 'react'}
@@ -71,11 +77,13 @@ export default function Sandbox({
           </div>
           <SandpackCodeEditor
             showLineNumbers={showLineNumbers}
-            className="min-h-[12rem]"
+            className="h-[14rem]"
           />
           <SandpackPreviewConsoleStacked />
         </div>
       </SandpackLayout>
     </SandpackProvider>
+  ) : (
+    <div className="skeleton h-[calc(2px+1rem+2rem+28rem+38px)] w-full" />
   );
 }

@@ -7,7 +7,7 @@ import {
   isValidElement
 } from 'react';
 import { slug } from 'github-slugger';
-import SuperLink from '~/components/super-link';
+import AnchorLink from '~/components/anchor-link';
 
 const subheadingType = new RegExp(/^h[23456]$/);
 const isSubheading = (element: ReactElement) =>
@@ -38,9 +38,9 @@ export default function TableOfContents({ source }: { source: ReactNode }) {
           j,
           groupSize,
           <li key={groupSubheadingSlug}>
-            <SuperLink href={'#' + slug(groupSubheadingSlug)}>
+            <AnchorLink to={slug(groupSubheadingSlug)}>
               {groupSubheading}
-            </SuperLink>
+            </AnchorLink>
             {groupSize > 1 && (
               <ul>
                 {toc.slice(j + 1, end).map((subheading) => {
@@ -51,9 +51,9 @@ export default function TableOfContents({ source }: { source: ReactNode }) {
                   const subheadingSlug = slug(subheadingText);
                   return (
                     <li key={subheadingSlug}>
-                      <SuperLink href={'#' + subheadingSlug}>
+                      <AnchorLink to={subheadingSlug}>
                         {subheadingText}
-                      </SuperLink>
+                      </AnchorLink>
                     </li>
                   );
                 })}
@@ -65,7 +65,7 @@ export default function TableOfContents({ source }: { source: ReactNode }) {
     }
   }
   return (
-    <ul className="menu w-56 rounded-box bg-base-200">
+    <ul className="menu w-full rounded-box bg-base-200">
       <li className="menu-title">On This Page</li>
       {toc}
     </ul>

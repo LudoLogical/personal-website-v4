@@ -161,7 +161,7 @@ export default function Header() {
   }
   const container = useRef<HTMLDivElement | null>(null);
   useOutsideClick(container, handleCloseAndHide);
-  const showNavbar = useToggleOnScroll(true);
+  const showNavbar = useToggleOnScroll();
   useEffect(() => {
     if (!showNavbar) {
       handleCloseAndHide();

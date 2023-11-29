@@ -86,14 +86,11 @@ export function SandpackPreviewConsoleStacked({}) {
     <>
       <SandboxTabs onChange={handleConsoleTransition} />
       <div className="relative">
-        <SandpackPreview
-          showOpenInCodeSandbox={false}
-          className="min-h-[12rem]"
-        />
+        <SandpackPreview showOpenInCodeSandbox={false} className="h-[14rem]" />
         <div ref={consoleRef} className={styles.console}>
           <SandpackConsole
             resetOnPreviewRestart
-            className="!absolute left-0 top-0 z-10 min-h-[12rem]"
+            className="!absolute left-0 top-0 z-10 h-[14rem]"
           />
         </div>
       </div>
