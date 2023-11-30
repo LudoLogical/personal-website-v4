@@ -1,176 +1,100 @@
 'use client';
 
 import {
+  forwardRef,
   useState,
   useEffect,
   useRef,
-  forwardRef,
   useImperativeHandle,
   type MouseEvent
 } from 'react';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import {
   HiArrowTopRightOnSquare,
   HiBars3,
-  HiOutlineInformationCircle,
-  HiXMark
+  HiOutlineInformationCircle
 } from 'react-icons/hi2';
 import ActionlessModal from '~/components/actionless-modal';
 import SuperLink from '~/components/super-link';
-import { useOutsideClick, useToggleOnScroll } from '~/utils/hooks';
+import VisibilityToggler, {
+  type VisibilityTogglerHandle
+} from '~/components/visibility-toggler';
+import { useToggleOnScroll } from '~/utils/hooks';
 import menuData from 'data/menu';
 import emblem from 'public/emblem-yellow.png';
 
-interface NavMenuHandle {
-  closeAndHide: () => void;
+interface ItemsHandler {
+  resetSubmenus: () => void;
 }
 
-const NavMenu = forwardRef<NavMenuHandle, { isSmall?: boolean }>(
-  function NavMenu({ isSmall }, ref) {
-    const [menuVisible, setMenuVisible] = useState<boolean>(false);
+const NavMenuItems = forwardRef<ItemsHandler, { onNavigation: () => void }>(
+  function NavMenuItems({ onNavigation }, ref) {
     const [openSubmenu, setOpenSubmenu] = useState<number>(-1);
-    const checkbox = useRef<HTMLInputElement | null>(null);
-    const pathname = usePathname();
-    function closeAndHide() {
-      if (checkbox.current) {
-        checkbox.current.checked = false;
-      }
-      setOpenSubmenu(-1);
-      setMenuVisible(false);
-    }
-    useImperativeHandle(ref, () => ({
-      closeAndHide: closeAndHide
-    }));
-    function handleNavigation(
-      e: MouseEvent<HTMLAnchorElement>,
-      destination: string
-    ) {
-      if (destination !== pathname) {
-        closeAndHide();
-      }
+    const handleNavigation = (e: MouseEvent<HTMLAnchorElement>) => {
+      onNavigation();
       (e.target as HTMLAnchorElement).blur();
-    }
+    };
+    useImperativeHandle(ref, () => ({
+      resetSubmenus: () => setOpenSubmenu(-1)
+    }));
     return (
       <>
-        {isSmall && (
-          <label className="btn btn-circle btn-ghost swap swap-rotate">
-            <input
-              ref={checkbox}
-              type="checkbox"
-              name="nav-menu-toggle"
-              onChange={(event) => setMenuVisible(event.target.checked)}
-            />
-            <HiBars3 className="swap-off h-6 w-6 fill-current" />
-            <HiXMark className="swap-on h-6 w-6 fill-current" />
-          </label>
-        )}
-        <ul
-          className={clsx('menu', {
-            'menu-horizontal': !isSmall,
-            'absolute right-0 top-0 w-52 translate-x-2 translate-y-20 rounded-box bg-neutral shadow-xl':
-              isSmall,
-            hidden: isSmall && !menuVisible
-          })}
-        >
-          {menuData.map((item, index) => (
-            <li key={item[0] as string}>
-              {typeof item[1] === 'string' ? (
-                <SuperLink
-                  href={item[1]}
-                  onClick={(event: MouseEvent<HTMLAnchorElement>) =>
-                    handleNavigation(event, item[1] as string)
-                  }
-                >
-                  {item[0]}
-                </SuperLink>
-              ) : (
-                <details
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (openSubmenu === index) {
-                      setOpenSubmenu(-1);
-                    } else {
-                      setOpenSubmenu(index);
-                    }
-                  }}
-                  open={openSubmenu === index}
-                >
-                  <summary className="pr-5">{item[0]}</summary>
-                  <ul
-                    className={clsx({
-                      '!mt-6 bg-neutral': !isSmall
-                    })}
-                  >
-                    {item[1]!.map((link) => (
-                      <li key={link[0]}>
-                        <SuperLink
-                          href={link[1]}
-                          onClick={(event) =>
-                            handleNavigation(event, item[1] as string)
-                          }
-                        >
-                          {link[0]}
-                        </SuperLink>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              )}
-            </li>
-          ))}
-          {isSmall && (
-            <li>
-              <SuperLink
-                href="/Resume.pdf"
-                external
-                className="flex items-center justify-between text-primary hover:bg-primary hover:text-primary-content focus:!text-primary active:!text-primary"
-              >
-                Resume
-                <HiArrowTopRightOnSquare className="-mr-0.5 mb-px h-4 w-4" />
+        {menuData.map((item, index) => (
+          <li key={item[0] as string}>
+            {typeof item[1] === 'string' ? (
+              <SuperLink href={item[1]} onClick={handleNavigation}>
+                {item[0]}
               </SuperLink>
-            </li>
-          )}
-        </ul>
-        {!isSmall && (
-          <SuperLink
-            href="/Resume.pdf"
-            external
-            className="btn btn-outline btn-primary mx-1"
-          >
-            Resume
-            <HiArrowTopRightOnSquare className="mb-px h-4 w-4" />
-          </SuperLink>
-        )}
+            ) : (
+              <details
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (openSubmenu === index) {
+                    setOpenSubmenu(-1);
+                  } else {
+                    setOpenSubmenu(index);
+                  }
+                }}
+                open={openSubmenu === index}
+              >
+                <summary className="pr-5">{item[0]}</summary>
+                <ul className="nav:!mt-6 nav:bg-neutral">
+                  {item[1]!.map((link) => (
+                    <li key={link[0]}>
+                      <SuperLink href={link[1]} onClick={handleNavigation}>
+                        {link[0]}
+                      </SuperLink>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
+          </li>
+        ))}
       </>
     );
   }
 );
 
 export default function Header() {
-  const navMenuLarge = useRef<NavMenuHandle | null>(null);
-  const navMenuSmall = useRef<NavMenuHandle | null>(null);
-  function handleCloseAndHide() {
-    if (navMenuLarge.current) {
-      navMenuLarge.current.closeAndHide();
-    }
-    if (navMenuSmall.current) {
-      navMenuSmall.current.closeAndHide();
-    }
-  }
-  const container = useRef<HTMLDivElement | null>(null);
-  useOutsideClick(container, handleCloseAndHide);
   const showNavbar = useToggleOnScroll();
   useEffect(() => {
     if (!showNavbar) {
-      handleCloseAndHide();
+      toggler.current?.forceClose();
     }
   }, [showNavbar]);
   const firstModalLink = useRef<HTMLAnchorElement | null>(null);
+  const toggler = useRef<VisibilityTogglerHandle | null>(null);
+  const itemsHandler = useRef<ItemsHandler | null>(null);
+  const navMenuItems = (
+    <NavMenuItems
+      ref={itemsHandler}
+      onNavigation={() => toggler.current?.forceClose()}
+    />
+  );
   return (
     <div
-      ref={container}
       className={clsx(
         'fixed left-0 top-0 z-10 flex w-full justify-center transition-transform duration-300',
         showNavbar ? 'translate-y-0' : '-translate-y-[100%]'
@@ -221,11 +145,38 @@ export default function Header() {
             </p>
           </ActionlessModal>
         </div>
-        <div className="hidden flex-none sm:flex">
-          <NavMenu ref={navMenuLarge} />
+        <div className="nav:hidden relative flex flex-none">
+          <VisibilityToggler
+            ref={toggler}
+            IconWhenHidden={HiBars3}
+            onClose={() => itemsHandler.current?.resetSubmenus()}
+            className="btn-ghost"
+          >
+            <ul className="menu absolute right-0 top-0 w-52 translate-x-2 translate-y-20 rounded-box bg-neutral shadow-xl">
+              {navMenuItems}
+              <li>
+                <SuperLink
+                  href="/Resume.pdf"
+                  external
+                  className="flex items-center justify-between text-primary hover:bg-primary hover:text-primary-content focus:!text-primary active:!text-primary"
+                >
+                  Resume
+                  <HiArrowTopRightOnSquare className="-mr-0.5 mb-px h-4 w-4" />
+                </SuperLink>
+              </li>
+            </ul>
+          </VisibilityToggler>
         </div>
-        <div className="relative flex flex-none sm:hidden">
-          <NavMenu ref={navMenuSmall} isSmall />
+        <div className="nav:flex hidden flex-none">
+          <ul className="menu menu-horizontal">{navMenuItems}</ul>
+          <SuperLink
+            href="/Resume.pdf"
+            external
+            className="btn btn-outline btn-primary mx-1"
+          >
+            Resume
+            <HiArrowTopRightOnSquare className="mb-px h-4 w-4" />
+          </SuperLink>
         </div>
       </header>
     </div>

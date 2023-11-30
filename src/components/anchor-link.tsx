@@ -23,11 +23,6 @@ export default function AnchorLink({
   useEffect(() => {
     const now = document.getElementById(to);
     if (now) {
-      const distance =
-        now.getBoundingClientRect().top - UNDERSCROLL_WITHOUT_HEADER;
-      if (now.id === 'daily-schedule') {
-        console.log(distance);
-      }
       if (now.getBoundingClientRect().top > UNDERSCROLL_WITH_HEADER + EPSILON) {
         // scrolling down
         setOffset(-UNDERSCROLL_WITHOUT_HEADER);

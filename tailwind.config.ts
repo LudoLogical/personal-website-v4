@@ -22,7 +22,8 @@ export default {
         sans: ['var(--font-sans)', ...fontFamily.sans]
       },
       screens: {
-        xs: '475px'
+        xs: '475px',
+        nav: '700px'
       }
     }
   },
