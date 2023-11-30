@@ -5,6 +5,10 @@ import { useRef, type ReactNode, useEffect, useState } from 'react';
 import { Link as ScrollableLink } from 'react-scroll';
 import { useScrollDirection } from 'react-use-scroll-direction';
 
+const EPSILON = 1;
+const UNDERSCROLL_WITHOUT_HEADER = 24;
+const UNDERSCROLL_WITH_HEADER = 112;
+
 export default function AnchorLink({
   to,
   children
@@ -17,12 +21,25 @@ export default function AnchorLink({
   const [offset, setOffset] = useState<number>(-48);
   const { isScrollingY } = useScrollDirection();
   useEffect(() => {
-    target.current = document.getElementById(to);
-    setOffset(
-      target.current && target.current.getBoundingClientRect().top >= 24
-        ? -24
-        : -112
-    );
+    const now = document.getElementById(to);
+    if (now) {
+      const distance =
+        now.getBoundingClientRect().top - UNDERSCROLL_WITHOUT_HEADER;
+      if (now.id === 'daily-schedule') {
+        console.log(distance);
+      }
+      if (now.getBoundingClientRect().top > UNDERSCROLL_WITH_HEADER + EPSILON) {
+        // scrolling down
+        setOffset(-UNDERSCROLL_WITHOUT_HEADER);
+      } else if (
+        now.getBoundingClientRect().top <
+        UNDERSCROLL_WITHOUT_HEADER - EPSILON
+      ) {
+        // scrolling up
+        setOffset(-UNDERSCROLL_WITH_HEADER);
+      }
+      target.current = now;
+    }
   }, [to, isScrollingY]);
   return (
     <ScrollableLink
