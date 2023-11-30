@@ -13,20 +13,24 @@ export default function Sidebar({
 }) {
   const yieldToHeader = useToggleOnScroll();
   return (
-    <nav
-      className={clsx(
-        'fixed bottom-6 right-6 flex h-[calc(100%-6.75rem-1.5rem)] flex-col justify-end transition-all duration-300 lg:sticky lg:bottom-auto lg:right-auto lg:block lg:h-auto',
-        yieldToHeader ? 'lg:top-28' : 'lg:top-6'
-      )}
-    >
-      <div className="hidden w-64 lg:block">{tableOfContents}</div>
-      <VisibilityToggler
-        IconWhenHidden={HiListBullet}
-        buttonClass="btn-neutral"
-        containerClass="flex lg:hidden flex-col-reverse items-end gap-y-4 w-64 h-full"
+    <>
+      <nav
+        className={clsx(
+          'sticky h-fit w-64 transition-all duration-300 lg:block',
+          yieldToHeader ? 'top-28' : 'top-6'
+        )}
       >
-        {tableOfContents}
-      </VisibilityToggler>
-    </nav>
+        <div>{tableOfContents}</div>
+      </nav>
+      <nav className="fixed bottom-6 right-6 flex h-[calc(100%-6.75rem-1.5rem)] flex-col justify-end lg:hidden">
+        <VisibilityToggler
+          IconWhenHidden={HiListBullet}
+          buttonClass="btn-neutral"
+          className="flex h-full w-64 flex-col-reverse items-end gap-y-4"
+        >
+          {tableOfContents}
+        </VisibilityToggler>
+      </nav>
+    </>
   );
 }
