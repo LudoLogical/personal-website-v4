@@ -65,9 +65,13 @@ export default function TableOfContents({ source }: { source: ReactNode }) {
     }
   }
   return (
-    <ul className="menu w-full rounded-box bg-base-200">
-      <li className="menu-title">On This Page</li>
-      {toc}
-    </ul>
+    <div className="overflow-y-auto rounded-box bg-neutral lg:bg-base-200">
+      <div className="h-full overflow-y-auto">
+        <ul className="menu">
+          <li className="menu-title">On This Page</li>
+          {toc}
+        </ul>
+      </div>
+    </div>
   );
 }

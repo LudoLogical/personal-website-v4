@@ -50,6 +50,7 @@ export default function Crossword() {
                 <td className="p-1 text-center">
                   <SuperLink
                     href={'/crossword/' + entry.file + '.pdf'}
+                    toFile
                     external
                     styledIcon
                     className="btn-sm"
@@ -60,6 +61,7 @@ export default function Crossword() {
                 <td className="p-1 text-center">
                   <SuperLink
                     href={'/crossword/' + entry.file + '-sol.pdf'}
+                    toFile
                     external
                     styledIcon
                     className="btn-sm"

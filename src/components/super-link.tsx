@@ -6,6 +6,7 @@ const SuperLink = forwardRef<
   HTMLAnchorElement,
   {
     href?: string;
+    toFile?: boolean;
     external?: boolean;
     styledText?: boolean;
     styledIcon?: boolean;
@@ -14,13 +15,23 @@ const SuperLink = forwardRef<
     children?: ReactNode;
   }
 >(function SuperLink(
-  { href, external, styledText, styledIcon, className, onClick, children },
+  {
+    href,
+    toFile,
+    external,
+    styledText,
+    styledIcon,
+    className,
+    onClick,
+    children
+  },
   ref
 ) {
   return (
     <Link
       ref={ref}
       href={href ?? ''}
+      prefetch={!toFile}
       rel={external ? 'noopener noreferrer' : undefined}
       target={external ? '_blank' : undefined}
       className={clsx(

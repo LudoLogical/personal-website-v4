@@ -28,11 +28,11 @@ interface ItemsHandler {
   resetSubmenus: () => void;
 }
 
-const NavMenuItems = forwardRef<ItemsHandler, { onNavigation: () => void }>(
+const NavMenuItems = forwardRef<ItemsHandler, { onNavigation?: () => void }>(
   function NavMenuItems({ onNavigation }, ref) {
     const [openSubmenu, setOpenSubmenu] = useState<number>(-1);
     const handleNavigation = (e: MouseEvent<HTMLAnchorElement>) => {
-      onNavigation();
+      onNavigation?.();
       (e.target as HTMLAnchorElement).blur();
     };
     useImperativeHandle(ref, () => ({
@@ -87,12 +87,6 @@ export default function Header() {
   const firstModalLink = useRef<HTMLAnchorElement | null>(null);
   const toggler = useRef<VisibilityTogglerHandle | null>(null);
   const itemsHandler = useRef<ItemsHandler | null>(null);
-  const navMenuItems = (
-    <NavMenuItems
-      ref={itemsHandler}
-      onNavigation={() => toggler.current?.forceClose()}
-    />
-  );
   return (
     <div
       className={clsx(
@@ -145,18 +139,36 @@ export default function Header() {
             </p>
           </ActionlessModal>
         </div>
+        <div className="nav:flex hidden flex-none">
+          <ul className="menu menu-horizontal">
+            <NavMenuItems />
+          </ul>
+          <SuperLink
+            href="/Resume.pdf"
+            toFile
+            external
+            className="btn btn-outline btn-primary mx-1"
+          >
+            Resume
+            <HiArrowTopRightOnSquare className="mb-px h-4 w-4" />
+          </SuperLink>
+        </div>
         <div className="nav:hidden relative flex flex-none">
           <VisibilityToggler
             ref={toggler}
             IconWhenHidden={HiBars3}
             onClose={() => itemsHandler.current?.resetSubmenus()}
-            className="btn-ghost"
+            buttonClass="btn-ghost"
           >
             <ul className="menu absolute right-0 top-0 w-52 translate-x-2 translate-y-20 rounded-box bg-neutral shadow-xl">
-              {navMenuItems}
+              <NavMenuItems
+                ref={itemsHandler}
+                onNavigation={() => toggler.current?.forceClose()}
+              />
               <li>
                 <SuperLink
                   href="/Resume.pdf"
+                  toFile
                   external
                   className="flex items-center justify-between text-primary hover:bg-primary hover:text-primary-content focus:!text-primary active:!text-primary"
                 >
@@ -166,17 +178,6 @@ export default function Header() {
               </li>
             </ul>
           </VisibilityToggler>
-        </div>
-        <div className="nav:flex hidden flex-none">
-          <ul className="menu menu-horizontal">{navMenuItems}</ul>
-          <SuperLink
-            href="/Resume.pdf"
-            external
-            className="btn btn-outline btn-primary mx-1"
-          >
-            Resume
-            <HiArrowTopRightOnSquare className="mb-px h-4 w-4" />
-          </SuperLink>
         </div>
       </header>
     </div>

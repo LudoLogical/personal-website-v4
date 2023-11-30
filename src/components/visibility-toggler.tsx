@@ -21,7 +21,8 @@ interface VisibilityTogglerProps {
   IconWhenHidden: IconType;
   IconWhenShown?: IconType;
   onClose?: () => void;
-  className?: string;
+  buttonClass?: string;
+  containerClass?: string;
   children: ReactNode;
 }
 
@@ -29,7 +30,14 @@ const VisibilityToggler = forwardRef<
   VisibilityTogglerHandle,
   VisibilityTogglerProps
 >(function VisibilityToggler(
-  { IconWhenHidden, IconWhenShown, onClose, className, children },
+  {
+    IconWhenHidden,
+    IconWhenShown,
+    onClose,
+    buttonClass,
+    containerClass,
+    children
+  },
   ref
 ) {
   const [visible, setVisible] = useState<boolean>(false);
@@ -48,8 +56,8 @@ const VisibilityToggler = forwardRef<
     forceClose: forceClose
   }));
   return (
-    <div ref={container}>
-      <label className={clsx('btn btn-circle swap swap-rotate', className)}>
+    <div ref={container} className={containerClass}>
+      <label className={clsx('btn btn-circle swap swap-rotate', buttonClass)}>
         <input
           ref={checkbox}
           type="checkbox"
