@@ -13,7 +13,6 @@ import { HiXMark } from 'react-icons/hi2';
 import { useOutsideClick } from '~/utils/hooks';
 
 export interface VisibilityTogglerHandle {
-  isVisible: () => boolean;
   forceClose: () => void;
 }
 
@@ -30,7 +29,7 @@ const VisibilityToggler = forwardRef<
   VisibilityTogglerHandle,
   VisibilityTogglerProps
 >(function VisibilityToggler(
-  { IconWhenHidden, IconWhenShown, onClose, buttonClass, className, children },
+  { IconWhenHidden, IconWhenShown, buttonClass, className, children },
   ref
 ) {
   const [visible, setVisible] = useState<boolean>(false);
@@ -40,27 +39,24 @@ const VisibilityToggler = forwardRef<
       checkbox.current.checked = false;
     }
     setVisible(false);
-    onClose?.();
   };
-  const container = useRef<HTMLDivElement | null>(null);
-  useOutsideClick(container, forceClose);
+  const toggle = useRef<HTMLLabelElement | null>(null);
+  const content = useRef<HTMLDivElement | null>(null);
+  useOutsideClick([toggle, content], forceClose);
   useImperativeHandle(ref, () => ({
-    isVisible: () => visible,
     forceClose: forceClose
   }));
   return (
-    <div ref={container} className={className}>
-      <label className={clsx('btn btn-circle swap swap-rotate', buttonClass)}>
+    <div className={className}>
+      <label
+        ref={toggle}
+        className={clsx('btn btn-circle swap swap-rotate', buttonClass)}
+      >
         <input
           ref={checkbox}
           type="checkbox"
           name="visibility-toggle"
-          onChange={(event) => {
-            setVisible(event.target.checked);
-            if (!event.target.checked && onClose) {
-              onClose();
-            }
-          }}
+          onChange={(event) => setVisible(event.target.checked)}
         />
         <IconWhenHidden className="swap-off h-6 w-6 fill-current" />
         {IconWhenShown ? (
@@ -69,7 +65,7 @@ const VisibilityToggler = forwardRef<
           <HiXMark className="swap-on h-6 w-6 fill-current" />
         )}
       </label>
-      {visible ? children : null}
+      <div ref={content}>{visible ? children : null}</div>
     </div>
   );
 });

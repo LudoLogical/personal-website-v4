@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  forwardRef,
-  useState,
-  useEffect,
-  useRef,
-  useImperativeHandle,
-  type MouseEvent
-} from 'react';
+import { useState, useEffect, useRef, type MouseEvent } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import {
@@ -20,62 +13,80 @@ import SuperLink from '~/components/super-link';
 import VisibilityToggler, {
   type VisibilityTogglerHandle
 } from '~/components/visibility-toggler';
-import { useToggleOnScroll } from '~/utils/hooks';
+import { useOutsideClick, useToggleOnScroll } from '~/utils/hooks';
 import menuData from 'data/menu';
 import emblem from 'public/emblem-yellow.png';
 
-interface ItemsHandler {
-  resetSubmenus: () => void;
-}
-
-const NavMenuItems = forwardRef<ItemsHandler, { onNavigation?: () => void }>(
-  function NavMenuItems({ onNavigation }, ref) {
-    const [openSubmenu, setOpenSubmenu] = useState<number>(-1);
-    const handleNavigation = (e: MouseEvent<HTMLAnchorElement>) => {
-      onNavigation?.();
-      (e.target as HTMLAnchorElement).blur();
-    };
-    useImperativeHandle(ref, () => ({
-      resetSubmenus: () => setOpenSubmenu(-1)
-    }));
-    return (
-      <>
-        {menuData.map((item, index) => (
-          <li key={item[0] as string}>
-            {typeof item[1] === 'string' ? (
-              <SuperLink href={item[1]} onClick={handleNavigation}>
-                {item[0]}
-              </SuperLink>
-            ) : (
-              <details
-                onClick={(e) => {
-                  e.preventDefault();
+const NavMenu = ({
+  onNavigation,
+  showResumeItem,
+  className
+}: {
+  onNavigation?: () => void;
+  showResumeItem?: boolean;
+  className?: string;
+}) => {
+  const [openSubmenu, setOpenSubmenu] = useState<number>(-1);
+  const navMenu = useRef<HTMLUListElement | null>(null);
+  useOutsideClick([navMenu], () => {
+    setOpenSubmenu(-1);
+  });
+  const handleNavigation = (e: MouseEvent<HTMLAnchorElement>) => {
+    onNavigation?.();
+    (e.target as HTMLAnchorElement).blur();
+  };
+  return (
+    <ul className={className}>
+      {menuData.map((item, index) => (
+        <li key={item[0] as string}>
+          {typeof item[1] === 'string' ? (
+            <SuperLink href={item[1]} onClick={handleNavigation}>
+              {item[0]}
+            </SuperLink>
+          ) : (
+            <details
+              onClick={(e) => {
+                e.preventDefault();
+                if ((e.target as HTMLElement).tagName === 'SUMMARY') {
                   if (openSubmenu === index) {
                     setOpenSubmenu(-1);
                   } else {
                     setOpenSubmenu(index);
                   }
-                }}
-                open={openSubmenu === index}
-              >
-                <summary className="pr-5">{item[0]}</summary>
-                <ul className="nav:!mt-6 nav:bg-neutral">
-                  {item[1]!.map((link) => (
-                    <li key={link[0]}>
-                      <SuperLink href={link[1]} onClick={handleNavigation}>
-                        {link[0]}
-                      </SuperLink>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            )}
-          </li>
-        ))}
-      </>
-    );
-  }
-);
+                }
+              }}
+              open={openSubmenu === index}
+            >
+              <summary className="pr-5">{item[0]}</summary>
+              <ul className="nav:!mt-6 nav:bg-neutral">
+                {item[1]!.map((link) => (
+                  <li key={link[0]}>
+                    <SuperLink href={link[1]} onClick={handleNavigation}>
+                      {link[0]}
+                    </SuperLink>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+        </li>
+      ))}
+      {showResumeItem && (
+        <li>
+          <SuperLink
+            href="/Resume.pdf"
+            toFile
+            external
+            className="flex items-center justify-between text-primary hover:bg-primary hover:text-primary-content focus:!text-primary active:!text-primary"
+          >
+            Resume
+            <HiArrowTopRightOnSquare className="-mr-0.5 mb-px h-4 w-4" />
+          </SuperLink>
+        </li>
+      )}
+    </ul>
+  );
+};
 
 export default function Header() {
   const showNavbar = useToggleOnScroll();
@@ -86,7 +97,6 @@ export default function Header() {
   }, [showNavbar]);
   const firstModalLink = useRef<HTMLAnchorElement | null>(null);
   const toggler = useRef<VisibilityTogglerHandle | null>(null);
-  const itemsHandler = useRef<ItemsHandler | null>(null);
   return (
     <div
       className={clsx(
@@ -139,10 +149,8 @@ export default function Header() {
             </p>
           </ActionlessModal>
         </div>
-        <div className="nav:flex hidden flex-none">
-          <ul className="menu menu-horizontal">
-            <NavMenuItems />
-          </ul>
+        <div className="hidden flex-none nav:flex">
+          <NavMenu className="menu menu-horizontal" />
           <SuperLink
             href="/Resume.pdf"
             toFile
@@ -153,30 +161,17 @@ export default function Header() {
             <HiArrowTopRightOnSquare className="mb-px h-4 w-4" />
           </SuperLink>
         </div>
-        <div className="nav:hidden relative flex flex-none">
+        <div className="relative flex flex-none nav:hidden">
           <VisibilityToggler
             ref={toggler}
             IconWhenHidden={HiBars3}
-            onClose={() => itemsHandler.current?.resetSubmenus()}
             buttonClass="btn-ghost"
           >
-            <ul className="menu absolute right-0 top-0 w-52 translate-x-2 translate-y-20 rounded-box bg-neutral shadow-xl">
-              <NavMenuItems
-                ref={itemsHandler}
-                onNavigation={() => toggler.current?.forceClose()}
-              />
-              <li>
-                <SuperLink
-                  href="/Resume.pdf"
-                  toFile
-                  external
-                  className="flex items-center justify-between text-primary hover:bg-primary hover:text-primary-content focus:!text-primary active:!text-primary"
-                >
-                  Resume
-                  <HiArrowTopRightOnSquare className="-mr-0.5 mb-px h-4 w-4" />
-                </SuperLink>
-              </li>
-            </ul>
+            <NavMenu
+              onNavigation={() => toggler.current?.forceClose()}
+              showResumeItem
+              className="menu absolute right-0 top-0 w-52 translate-x-2 translate-y-20 rounded-box bg-neutral shadow-xl"
+            />
           </VisibilityToggler>
         </div>
       </header>

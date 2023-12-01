@@ -11,9 +11,11 @@ const UNDERSCROLL_WITH_HEADER = 112;
 
 export default function AnchorLink({
   to,
+  onClick,
   children
 }: {
   to: string;
+  onClick?: () => void;
   children?: ReactNode;
 }) {
   const router = useRouter();
@@ -42,7 +44,10 @@ export default function AnchorLink({
       smooth="easeInOutCubic"
       duration={500}
       offset={offset}
-      onClick={() => router.replace('#' + to, { scroll: false })}
+      onClick={() => {
+        onClick?.();
+        router.replace('#' + to, { scroll: false });
+      }}
     >
       {children}
     </ScrollableLink>

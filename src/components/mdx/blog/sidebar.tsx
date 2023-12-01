@@ -1,17 +1,17 @@
 'use client';
 
 import clsx from 'clsx';
-import { type ReactNode } from 'react';
 import { HiListBullet } from 'react-icons/hi2';
 import VisibilityToggler from '~/components/visibility-toggler';
 import { useToggleOnScroll } from '~/utils/hooks';
+import { type SubheadingGroupData } from '~/utils/table-of-contents';
+import TableOfContents from './table-of-contents';
 
-export default function Sidebar({
-  tableOfContents
-}: {
-  tableOfContents: ReactNode;
-}) {
+export default function Sidebar({ tocData }: { tocData: string }) {
   const yieldToHeader = useToggleOnScroll();
+  const tableOfContents = (
+    <TableOfContents data={JSON.parse(tocData) as SubheadingGroupData[]} />
+  );
   return (
     <>
       <nav

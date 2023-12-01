@@ -3,16 +3,23 @@
 import { useEffect, type RefObject, useState } from 'react';
 import { useScrollDirection } from 'react-use-scroll-direction';
 
-export function useOutsideClick(ref: RefObject<Element>, callback: () => void) {
+export function useOutsideClick(
+  refs: RefObject<Element>[],
+  callback: () => void
+) {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+      if (
+        refs.every(
+          (ref) => !ref.current || !ref.current.contains(event.target as Node)
+        )
+      ) {
         callback();
       }
     };
     document.addEventListener('mouseup', handleClickOutside);
     return () => document.removeEventListener('mouseup', handleClickOutside);
-  }, [ref, callback]);
+  }, [refs, callback]);
 }
 
 export function useToggleOnScroll(initialValue = true) {
