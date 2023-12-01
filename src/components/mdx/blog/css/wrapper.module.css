@@ -5,7 +5,7 @@
 .article > h4,
 .article > h5,
 .article > h6 {
-  scroll-margin-top: 7rem;
+  scroll-margin-top: 6.75rem;
 }
 
 /* Direct from Tailwind: custom overrides for p code */

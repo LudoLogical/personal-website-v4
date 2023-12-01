@@ -1,13 +1,13 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useRef, type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState, useCallback } from 'react';
 import { Link as ScrollableLink } from 'react-scroll';
 import { useScrollDirection } from 'react-use-scroll-direction';
 
 const EPSILON = 1;
-const UNDERSCROLL_WITHOUT_HEADER = 24;
-const UNDERSCROLL_WITH_HEADER = 112;
+const UNDERSCROLL_WITHOUT_HEADER = 20;
+const UNDERSCROLL_WITH_HEADER = 108;
 
 export default function AnchorLink({
   to,
@@ -18,26 +18,28 @@ export default function AnchorLink({
   onClick?: () => void;
   children?: ReactNode;
 }) {
-  const router = useRouter();
-  const target = useRef<HTMLElement | null>(null);
-  const [offset, setOffset] = useState<number>(-48);
-  const { isScrollingY } = useScrollDirection();
-  useEffect(() => {
+  const determineOffset = useCallback(() => {
+    if (typeof window === 'undefined') {
+      return -UNDERSCROLL_WITHOUT_HEADER;
+    }
     const now = document.getElementById(to);
     if (now) {
-      if (now.getBoundingClientRect().top > UNDERSCROLL_WITH_HEADER + EPSILON) {
-        // scrolling down
-        setOffset(-UNDERSCROLL_WITHOUT_HEADER);
-      } else if (
-        now.getBoundingClientRect().top <
-        UNDERSCROLL_WITHOUT_HEADER - EPSILON
+      const position = now.getBoundingClientRect().top;
+      if (
+        position < UNDERSCROLL_WITHOUT_HEADER - EPSILON ||
+        Math.abs(position - UNDERSCROLL_WITH_HEADER) < EPSILON
       ) {
-        // scrolling up
-        setOffset(-UNDERSCROLL_WITH_HEADER);
+        return -UNDERSCROLL_WITH_HEADER;
       }
-      target.current = now;
     }
-  }, [to, isScrollingY]);
+    return -UNDERSCROLL_WITHOUT_HEADER;
+  }, [to]);
+  const [offset, setOffset] = useState<number>(determineOffset());
+  const { isScrollingY } = useScrollDirection();
+  useEffect(() => {
+    setOffset(determineOffset);
+  }, [determineOffset, isScrollingY, to]);
+  const router = useRouter();
   return (
     <ScrollableLink
       to={to}

@@ -1,4 +1,4 @@
-const menuData = [
+const navMenuData = [
   [
     'Blog',
     [
@@ -23,4 +23,4 @@ const menuData = [
   ['Contact', '/contact']
 ];
 
-export default menuData;
+export default navMenuData;

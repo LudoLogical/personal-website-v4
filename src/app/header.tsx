@@ -14,7 +14,7 @@ import VisibilityToggler, {
   type VisibilityTogglerHandle
 } from '~/components/visibility-toggler';
 import { useOutsideClick, useToggleOnScroll } from '~/utils/hooks';
-import menuData from 'data/menu';
+import navMenuData from 'data/nav-menu';
 import emblem from 'public/emblem-yellow.png';
 
 const NavMenu = ({
@@ -37,7 +37,7 @@ const NavMenu = ({
   };
   return (
     <ul className={className}>
-      {menuData.map((item, index) => (
+      {navMenuData.map((item, index) => (
         <li key={item[0] as string}>
           {typeof item[1] === 'string' ? (
             <SuperLink href={item[1]} onClick={handleNavigation}>

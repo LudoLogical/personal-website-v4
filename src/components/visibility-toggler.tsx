@@ -47,7 +47,7 @@ const VisibilityToggler = forwardRef<
     forceClose: forceClose
   }));
   return (
-    <div className={className}>
+    <>
       <label
         ref={toggle}
         className={clsx('btn btn-circle swap swap-rotate', buttonClass)}
@@ -65,8 +65,10 @@ const VisibilityToggler = forwardRef<
           <HiXMark className="swap-on h-6 w-6 fill-current" />
         )}
       </label>
-      <div ref={content}>{visible ? children : null}</div>
-    </div>
+      <div ref={content} className={className}>
+        {visible ? children : null}
+      </div>
+    </>
   );
 });
 

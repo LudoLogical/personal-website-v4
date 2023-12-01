@@ -2,33 +2,47 @@
 
 import clsx from 'clsx';
 import { HiListBullet } from 'react-icons/hi2';
-import VisibilityToggler from '~/components/visibility-toggler';
+import VisibilityToggler, {
+  type VisibilityTogglerHandle
+} from '~/components/visibility-toggler';
 import { useToggleOnScroll } from '~/utils/hooks';
-import { type SubheadingGroupData } from '~/utils/table-of-contents';
+import { type SubheadingGroupData } from 'data/subheadings';
 import TableOfContents from './table-of-contents';
+import { useRef } from 'react';
 
 export default function Sidebar({ tocData }: { tocData: string }) {
-  const yieldToHeader = useToggleOnScroll();
+  const toggler = useRef<VisibilityTogglerHandle | null>(null);
   const tableOfContents = (
-    <TableOfContents data={JSON.parse(tocData) as SubheadingGroupData[]} />
+    <TableOfContents
+      data={JSON.parse(tocData) as SubheadingGroupData[]}
+      onNavigation={() => toggler.current?.forceClose()}
+    />
   );
+  const yieldToHeader = useToggleOnScroll();
   return (
     <>
       <nav
         className={clsx(
-          'sticky h-fit w-64 transition-all duration-300 lg:block',
-          yieldToHeader ? 'top-28' : 'top-6'
+          'sticky mt-[4.5rem] hidden w-64 overflow-hidden rounded-box transition-all duration-300 lg:block',
+          yieldToHeader
+            ? 'top-[6.75rem] max-h-[calc(100vh-8rem)]'
+            : 'top-5 max-h-[calc(100vh-2.5rem)]'
         )}
       >
-        <div>{tableOfContents}</div>
+        <div className="max-h-full overflow-y-auto rounded-box bg-base-200">
+          {tableOfContents}
+        </div>
       </nav>
-      <nav className="fixed bottom-6 right-6 flex h-[calc(100%-6.75rem-1.5rem)] flex-col justify-end lg:hidden">
+      <nav className="fixed bottom-6 right-6 z-10 flex h-[calc(100%-6.75rem-1.5rem)] w-64 flex-col-reverse items-end gap-y-4 lg:hidden">
         <VisibilityToggler
+          ref={toggler}
           IconWhenHidden={HiListBullet}
           buttonClass="btn-neutral"
-          className="flex h-full w-64 flex-col-reverse items-end gap-y-4"
+          className="relative w-full flex-1 overflow-hidden rounded-box"
         >
-          {tableOfContents}
+          <div className="absolute bottom-0 max-h-full overflow-y-auto rounded-box bg-neutral">
+            {tableOfContents}
+          </div>
         </VisibilityToggler>
       </nav>
     </>
