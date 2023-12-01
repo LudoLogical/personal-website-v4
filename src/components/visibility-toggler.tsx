@@ -50,7 +50,10 @@ const VisibilityToggler = forwardRef<
     <>
       <label
         ref={toggle}
-        className={clsx('btn btn-circle swap swap-rotate', buttonClass)}
+        className={clsx(
+          'btn btn-circle swap swap-rotate pointer-events-auto',
+          buttonClass
+        )}
       >
         <input
           ref={checkbox}

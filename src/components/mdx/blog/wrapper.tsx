@@ -6,10 +6,10 @@ import Sidebar from './sidebar';
 export default function BlogWrapper({ children }: { children: ReactNode }) {
   return (
     <div className="mx-auto mb-16 mt-12 gap-12 px-8 lg:flex">
-      <article className={`prose relative -z-10 ${styles.article}`}>
-        {children}
-      </article>
-      <Sidebar tocData={JSON.stringify(extractSubheadingData(children))} />
+      <article className={`prose ${styles.article}`}>{children}</article>
+      <div className="relative z-10">
+        <Sidebar tocData={JSON.stringify(extractSubheadingData(children))} />
+      </div>
     </div>
   );
 }
