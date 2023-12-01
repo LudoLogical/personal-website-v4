@@ -65,8 +65,17 @@ const VisibilityToggler = forwardRef<
           <HiXMark className="swap-on h-6 w-6 fill-current" />
         )}
       </label>
-      <div ref={content} className={className}>
-        {visible ? children : null}
+      <div
+        ref={content}
+        className={clsx(
+          'transition-opacity duration-300',
+          className,
+          visible
+            ? 'pointer-events-auto opacity-100'
+            : 'pointer-events-none opacity-0'
+        )}
+      >
+        {children}
       </div>
     </>
   );

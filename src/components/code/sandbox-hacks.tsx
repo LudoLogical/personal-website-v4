@@ -90,7 +90,7 @@ export function SandpackPreviewConsoleStacked({}) {
         <div ref={consoleRef} className={styles.console}>
           <SandpackConsole
             resetOnPreviewRestart
-            className="!absolute left-0 top-0 z-10 h-[14rem]"
+            className="!absolute left-0 top-0 h-[14rem]"
           />
         </div>
       </div>

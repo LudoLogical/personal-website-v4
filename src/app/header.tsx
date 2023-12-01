@@ -1,6 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef, type MouseEvent } from 'react';
+import {
+  useState,
+  useEffect,
+  useRef,
+  type MouseEvent,
+  useImperativeHandle,
+  forwardRef
+} from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import {
@@ -13,30 +20,32 @@ import SuperLink from '~/components/super-link';
 import VisibilityToggler, {
   type VisibilityTogglerHandle
 } from '~/components/visibility-toggler';
-import { useOutsideClick, useToggleOnScroll } from '~/utils/hooks';
+import { useToggleOnScroll } from '~/utils/hooks';
 import navMenuData from 'data/nav-menu';
 import emblem from 'public/emblem-yellow.png';
 
-const NavMenu = ({
-  onNavigation,
-  showResumeItem,
-  className
-}: {
-  onNavigation?: () => void;
-  showResumeItem?: boolean;
-  className?: string;
-}) => {
+interface NavMenuHandle {
+  forceCloseSubmenus: () => void;
+}
+
+const NavMenu = forwardRef<
+  NavMenuHandle,
+  {
+    onNavigation?: () => void;
+    showResumeItem?: boolean;
+    className?: string;
+  }
+>(function NavMenu({ onNavigation, showResumeItem, className }, ref) {
   const [openSubmenu, setOpenSubmenu] = useState<number>(-1);
-  const navMenu = useRef<HTMLUListElement | null>(null);
-  useOutsideClick([navMenu], () => {
-    setOpenSubmenu(-1);
-  });
   const handleNavigation = (e: MouseEvent<HTMLAnchorElement>) => {
     onNavigation?.();
     (e.target as HTMLAnchorElement).blur();
   };
+  useImperativeHandle(ref, () => ({
+    forceCloseSubmenus: () => setOpenSubmenu(-1)
+  }));
   return (
-    <ul className={className}>
+    <ul className={clsx('menu', className)}>
       {navMenuData.map((item, index) => (
         <li key={item[0] as string}>
           {typeof item[1] === 'string' ? (
@@ -86,13 +95,17 @@ const NavMenu = ({
       )}
     </ul>
   );
-};
+});
 
 export default function Header() {
   const showNavbar = useToggleOnScroll();
+  const navMenuWide = useRef<NavMenuHandle | null>(null);
+  const navMenuNarrow = useRef<NavMenuHandle | null>(null);
   useEffect(() => {
     if (!showNavbar) {
       toggler.current?.forceClose();
+      navMenuWide.current?.forceCloseSubmenus();
+      navMenuNarrow.current?.forceCloseSubmenus();
     }
   }, [showNavbar]);
   const firstModalLink = useRef<HTMLAnchorElement | null>(null);
@@ -150,7 +163,7 @@ export default function Header() {
           </ActionlessModal>
         </div>
         <div className="hidden flex-none nav:flex">
-          <NavMenu className="menu menu-horizontal" />
+          <NavMenu ref={navMenuWide} className="menu-horizontal" />
           <SuperLink
             href="/Resume.pdf"
             toFile
@@ -166,11 +179,12 @@ export default function Header() {
             ref={toggler}
             IconWhenHidden={HiBars3}
             buttonClass="btn-ghost"
+            className="absolute right-0 top-0 w-52 translate-x-2 translate-y-20 rounded-box bg-neutral shadow-xl"
           >
             <NavMenu
+              ref={navMenuNarrow}
               onNavigation={() => toggler.current?.forceClose()}
               showResumeItem
-              className="menu absolute right-0 top-0 w-52 translate-x-2 translate-y-20 rounded-box bg-neutral shadow-xl"
             />
           </VisibilityToggler>
         </div>

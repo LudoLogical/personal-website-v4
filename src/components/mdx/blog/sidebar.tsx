@@ -33,7 +33,7 @@ export default function Sidebar({ tocData }: { tocData: string }) {
           {tableOfContents}
         </div>
       </nav>
-      <nav className="fixed bottom-6 right-6 z-10 flex h-[calc(100%-6.75rem-1.5rem)] w-64 flex-col-reverse items-end gap-y-4 lg:hidden">
+      <nav className="fixed bottom-5 right-5 flex h-[calc(100%-6.75rem-1.5rem)] w-64 flex-col-reverse items-end gap-y-4 lg:hidden">
         <VisibilityToggler
           ref={toggler}
           IconWhenHidden={HiListBullet}
