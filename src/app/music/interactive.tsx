@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { HiFolder, HiMusicalNote, HiSpeakerWave } from 'react-icons/hi2';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/links/standard';
 import { originalsData, arrangementsData, beepboxData } from 'data/music';
 import Submenu from './helpers';
 

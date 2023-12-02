@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { HiLightBulb, HiPuzzlePiece } from 'react-icons/hi2';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/links/standard';
 import crosswordData from 'data/crossword';
 
 export const metadata = {

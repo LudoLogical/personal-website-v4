@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import clsx from 'clsx';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/links/standard';
 import { Explain404 } from './interactive';
 import TransparentAvatar from 'public/avatar-transparent.png';
 

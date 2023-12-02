@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { FiCodepen, FiGithub, FiLinkedin } from 'react-icons/fi';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/links/standard';
 import { Pronouns } from './interactive';
 import Avatar from 'public/avatar.png';
 

@@ -1,7 +1,7 @@
 import { BiLogoDiscordAlt } from 'react-icons/bi';
 import { FiAtSign, FiLinkedin } from 'react-icons/fi';
 import { HiEnvelope } from 'react-icons/hi2';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/links/standard';
 import { NotTwitter } from './interactive';
 
 export const metadata = {

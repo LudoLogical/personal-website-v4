@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import ActionlessModal from '~/components/actionless-modal';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/links/standard';
 
 export function Pronouns() {
   const link = useRef<HTMLAnchorElement | null>(null);

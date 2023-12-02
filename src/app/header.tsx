@@ -16,7 +16,7 @@ import {
   HiOutlineInformationCircle
 } from 'react-icons/hi2';
 import ActionlessModal from '~/components/actionless-modal';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/links/standard';
 import VisibilityToggler, {
   type VisibilityTogglerHandle
 } from '~/components/visibility-toggler';

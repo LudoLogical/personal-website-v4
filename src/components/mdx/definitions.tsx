@@ -10,7 +10,7 @@ import {
   HiOutlineXCircle
 } from 'react-icons/hi2';
 import ArrowList from '~/components/arrow-list';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/links/standard';
 import Sandbox from '~/components/code/sandbox';
 import { Terminal, TerminalLine } from '~/components/code/terminal';
 import createCallout from '~/components/containers/callout';

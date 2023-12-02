@@ -1,6 +1,6 @@
 'use client';
 
-import AnchorLink from '~/components/anchor-link';
+import AnchorLink from '~/components/links/anchor';
 import { type SubheadingGroupData } from 'data/subheadings';
 
 export default function TableOfContents({

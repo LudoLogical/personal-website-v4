@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import SuperLink from '~/components/super-link';
+import SuperLink from '~/components/links/standard';
 import skillsData from 'data/skills';
 
 export const metadata = {
