@@ -36,7 +36,13 @@ const getHighlightClass = (color?: string) => {
 };
 
 export function Terminal({ children }: { children?: ReactNode }) {
-  return <div className="not-prose mockup-code my-4">{children}</div>;
+  return (
+    <div className="my-4 flex overflow-x-hidden rounded-box">
+      <div className="not-prose mockup-code w-0 min-w-0 flex-1 overflow-x-auto">
+        <div className="min-w-fit">{children}</div>
+      </div>
+    </div>
+  );
 }
 
 export function TerminalLine({
