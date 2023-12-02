@@ -15,11 +15,11 @@ import {
   HiBars3,
   HiOutlineInformationCircle
 } from 'react-icons/hi2';
-import ActionlessModal from '~/components/actionless-modal';
+import ActionlessModal from '~/components/revealers/actionless-modal';
 import SuperLink from '~/components/links/standard';
 import VisibilityToggler, {
   type VisibilityTogglerHandle
-} from '~/components/visibility-toggler';
+} from '~/components/revealers/visibility-toggler';
 import { useToggleOnScroll } from '~/utils/hooks';
 import navMenuData from 'data/nav-menu';
 import emblem from 'public/emblem-yellow.png';

@@ -12,7 +12,7 @@ const config = {
 };
 const withMDX = mdx({
   options: {
-    providerImportSource: '~/components/mdx/definitions.tsx',
+    providerImportSource: '~/app/mdx.tsx',
     rehypePlugins: [rehypeSlug]
   }
 });

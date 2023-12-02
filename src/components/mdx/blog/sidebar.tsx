@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { HiListBullet } from 'react-icons/hi2';
 import VisibilityToggler, {
   type VisibilityTogglerHandle
-} from '~/components/visibility-toggler';
+} from '~/components/revealers/visibility-toggler';
 import { useToggleOnScroll } from '~/utils/hooks';
 import { type SubheadingGroupData } from 'data/subheadings';
 import TableOfContents from './table-of-contents';

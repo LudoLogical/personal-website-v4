@@ -10,19 +10,19 @@ import {
   HiOutlineXCircle
 } from 'react-icons/hi2';
 import ArrowList from '~/components/arrow-list';
-import SuperLink from '~/components/links/standard';
+import createCallout from '~/components/callout';
+import Quote from '~/components/quote';
 import Sandbox from '~/components/code/sandbox';
 import { Terminal, TerminalLine } from '~/components/code/terminal';
-import createCallout from '~/components/containers/callout';
-import Collapse from '~/components/containers/collapse';
-import Hint from '~/components/containers/hint';
-import Quote from '~/components/containers/quote';
+import LinkedHeading from '~/components/links/heading';
+import SuperLink from '~/components/links/standard';
+import Collapse from '~/components/revealers/collapse';
+import Hint from '~/components/revealers/hint';
 import CorruptedText from '~/components/text/corrupted';
 import GlitchText from '~/components/text/glitch';
 import ShakyText from '~/components/text/shaky';
 import WaveText from '~/components/text/wave';
-import BlogWrapper from './blog/wrapper';
-import LinkedHeading from '../links/heading';
+import BlogWrapper from '~/components/mdx/blog/wrapper';
 
 Code.lineNumbers = true;
 Code.theme = 'dracula';
@@ -62,12 +62,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Sandbox: Sandbox,
     Terminal: Terminal,
     Line: TerminalLine,
-    Content: (props: PropsWithChildren) => (
-      <article
-        className="prose [&>h2]:scroll-mt-12 [&>p>code]:rounded [&>p>code]:bg-neutral [&>p>code]:px-1.5"
-        {...props}
-      />
-    ),
     BlogWrapper: BlogWrapper,
     ...components
   };
