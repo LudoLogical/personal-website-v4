@@ -22,6 +22,7 @@ import GlitchText from '~/components/text/glitch';
 import ShakyText from '~/components/text/shaky';
 import WaveText from '~/components/text/wave';
 import BlogWrapper from './blog/wrapper';
+import LinkedHeading from '../links/heading';
 
 Code.lineNumbers = true;
 Code.theme = 'dracula';
@@ -32,6 +33,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <SuperLink external styledText {...props} />
     ),
     em: (props: PropsWithChildren) => <em className="font-bold" {...props} />,
+    h2: (props: PropsWithChildren) => <LinkedHeading As="h2" {...props} />,
+    h3: (props: PropsWithChildren) => <LinkedHeading As="h3" {...props} />,
+    h4: (props: PropsWithChildren) => <LinkedHeading As="h4" {...props} />,
+    h5: (props: PropsWithChildren) => <LinkedHeading As="h5" {...props} />,
+    h6: (props: PropsWithChildren) => <LinkedHeading As="h6" {...props} />,
     ul: ArrowList,
     pre: (props: PropsWithChildren) => (
       <Code

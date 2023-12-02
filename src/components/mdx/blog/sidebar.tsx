@@ -40,7 +40,7 @@ export default function Sidebar({ tocData }: { tocData: string }) {
           buttonClass="btn-neutral"
           className="relative w-full flex-1 overflow-hidden rounded-box"
         >
-          <div className="absolute bottom-0 max-h-full overflow-y-auto rounded-box bg-neutral">
+          <div className="absolute bottom-0 right-0 max-h-full overflow-y-auto rounded-box bg-neutral">
             {tableOfContents}
           </div>
         </VisibilityToggler>

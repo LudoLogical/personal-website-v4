@@ -1,4 +1,3 @@
-import { slug } from 'github-slugger';
 import {
   Children,
   type ReactElement,
@@ -25,27 +24,31 @@ export class SubheadingGroupData {
 }
 
 type ConvertibleSubeadingElement =
-  | ReactElement<{ children: string }>
+  | ReactElement<{ id: string; children: string }>
   | SubheadingGroupData;
 
 const subheadingType = new RegExp(/^h[23456]$/);
 const getSubheadingNumber = (element: ReactElement) =>
-  parseInt(element.type.toString().charAt(1));
+  typeof element.type === 'function'
+    ? parseInt(element.type.name.charAt(1))
+    : parseInt(element.type.charAt(1));
 
 export function extractSubheadingData(
   source: ReactNode
 ): SubheadingGroupData[] {
-  const headings = Children.toArray(source).filter(
+  const subheadings = Children.toArray(source).filter(
     (child) =>
-      isValidElement(child) && subheadingType.test(child.type.toString())
+      isValidElement(child) &&
+      typeof child.type === 'function' &&
+      subheadingType.test(child.type.name)
   ) as ConvertibleSubeadingElement[];
   for (let i = 6; i >= 2; i--) {
-    for (let j = 0; j < headings.length; j++) {
-      const candidate = headings.at(j)!;
+    for (let j = 0; j < subheadings.length; j++) {
+      const candidate = subheadings.at(j)!;
       if (isValidElement(candidate) && getSubheadingNumber(candidate) === i) {
-        let end = headings.length;
-        for (let k = j + 1; k < headings.length; k++) {
-          if (isValidElement(headings.at(k))) {
+        let end = subheadings.length;
+        for (let k = j + 1; k < subheadings.length; k++) {
+          if (isValidElement(subheadings.at(k))) {
             // Non-ReactElements are necessarily SubheadingGroupData
             // Therefore, we can infer that getSubheadingNumber(candidate) <= i
             // and that headings.slice(j + 1, end).every((element) => element instanceof SubheadingGroupData)
@@ -53,19 +56,16 @@ export function extractSubheadingData(
             break;
           }
         }
-        headings.splice(
+        subheadings.splice(
           j,
           end - j,
           new SubheadingGroupData(
-            new SubheadingData(
-              candidate.props.children,
-              slug(candidate.props.children)
-            ),
-            headings.slice(j + 1, end) as unknown as SubheadingGroupData[]
+            new SubheadingData(candidate.props.children, candidate.props.id),
+            subheadings.slice(j + 1, end) as unknown as SubheadingGroupData[]
           )
         );
       }
     }
   }
-  return headings as SubheadingGroupData[];
+  return subheadings as SubheadingGroupData[];
 }

@@ -12,10 +12,12 @@ const UNDERSCROLL_WITH_HEADER = 108;
 export default function AnchorLink({
   to,
   onClick,
+  className,
   children
 }: {
   to: string;
   onClick?: () => void;
+  className?: string;
   children?: ReactNode;
 }) {
   const determineOffset = useCallback(() => {
@@ -50,6 +52,7 @@ export default function AnchorLink({
         onClick?.();
         router.replace('#' + to, { scroll: false });
       }}
+      className={className}
     >
       {children}
     </ScrollableLink>
