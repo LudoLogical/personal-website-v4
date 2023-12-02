@@ -15,7 +15,8 @@ import {
   HiMiniSparkles,
   HiMiniXMark
 } from 'react-icons/hi2';
-import { prettierResponsee } from '~/app/api/prettier/types';
+import { prettierResponse } from '~/app/api/prettier/types';
+import clsx from 'clsx';
 
 export const ResetButton = ({ sandboxName }: { sandboxName: string }) => {
   const modal = useRef<HTMLDialogElement | null>(null);
@@ -55,8 +56,8 @@ export const ResetButton = ({ sandboxName }: { sandboxName: string }) => {
 };
 
 export const FormatButton = () => {
-  const [showFormatSuccess, setShowFormatSuccess] = useState<boolean>(false);
-  const [showFormatError, setShowFormatError] = useState<boolean>(false);
+  const [isFormatting, setIsFormatting] = useState<boolean | null>(null);
+  const [formatSucceeded, setFormatSucceeded] = useState<boolean | null>(null);
   const { code, updateCode } = useActiveCode();
   const { trigger } = useSWRMutation(
     '/api/prettier',
@@ -64,46 +65,61 @@ export const FormatButton = () => {
       axios
         .post(url, { code: arg })
         .then((response) => {
-          updateCode(prettierResponsee.parse(response.data).formattedCode);
-          setShowFormatSuccess(true);
-          setTimeout(() => setShowFormatSuccess(false), 1000);
+          updateCode(prettierResponse.parse(response.data).formattedCode);
+          setFormatSucceeded(true);
+          setTimeout(() => setFormatSucceeded(null), 1000);
         })
         .catch(() => {
-          setShowFormatError(true);
-          setTimeout(() => setShowFormatError(false), 1000);
-        });
+          setFormatSucceeded(false);
+          setTimeout(() => setFormatSucceeded(null), 1000);
+        })
+        .finally(() => setIsFormatting(false));
     }
   );
 
   return (
     <button
-      onClick={() => void trigger(code)}
-      className="btn btn-circle btn-ghost h-8 min-h-0 w-8"
+      onClick={() => {
+        void trigger(code);
+        setIsFormatting(true);
+      }}
+      className="btn btn-circle btn-ghost relative h-8 min-h-0 w-8"
     >
-      <label className="swap">
-        <input
-          type="checkbox"
-          name="prettier-format-status"
-          readOnly
-          checked={showFormatSuccess || showFormatError}
-        />
+      <div className="swap">
         <HiMiniSparkles
           title="Format with Prettier"
-          className="swap-off h-4 w-4"
+          className={clsx(
+            'h-4 w-4',
+            !isFormatting && formatSucceeded === null
+              ? 'opacity-100'
+              : 'opacity-0'
+          )}
         />
-        {showFormatSuccess && (
-          <HiMiniCheck
-            title="Format with Prettier"
-            className="swap-on h-4 w-4 text-success"
-          />
-        )}
-        {showFormatError && (
-          <HiMiniXMark
-            title="Format with Prettier"
-            className="swap-on h-4 w-4 text-error"
-          />
-        )}
-      </label>
+        <HiMiniCheck
+          title="Format with Prettier"
+          className={clsx(
+            'h-4 w-4 text-success',
+            !isFormatting && formatSucceeded === true
+              ? 'opacity-100'
+              : 'opacity-0'
+          )}
+        />
+        <HiMiniXMark
+          title="Format with Prettier"
+          className={clsx(
+            'h-4 w-4 text-error',
+            !isFormatting && formatSucceeded === false
+              ? 'opacity-100'
+              : 'opacity-0'
+          )}
+        />
+        <span
+          className={clsx(
+            'loading loading-spinner h-4 w-4 text-info',
+            isFormatting ? 'opacity-100' : 'opacity-0'
+          )}
+        />
+      </div>
     </button>
   );
 };
