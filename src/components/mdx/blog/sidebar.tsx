@@ -37,8 +37,8 @@ export default function Sidebar({ tocData }: { tocData: string }) {
         <VisibilityToggler
           ref={toggler}
           IconWhenHidden={HiListBullet}
-          buttonClass="btn-neutral"
-          className="relative w-full flex-1 overflow-hidden rounded-box"
+          buttonClass="btn-neutral shadow-md"
+          className="relative w-full flex-1 overflow-hidden rounded-box shadow-md"
         >
           <div className="absolute bottom-0 right-0 max-h-full overflow-y-auto rounded-box bg-neutral">
             {tableOfContents}

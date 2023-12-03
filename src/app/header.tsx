@@ -45,7 +45,7 @@ const NavMenu = forwardRef<
     forceCloseSubmenus: () => setOpenSubmenu(-1)
   }));
   return (
-    <ul className={clsx('menu', className)}>
+    <ul className={clsx('menu flex-nowrap', className)}>
       {navMenuData.map((item, index) => (
         <li key={item[0] as string}>
           {typeof item[1] === 'string' ? (
@@ -113,11 +113,11 @@ export default function Header() {
   return (
     <div
       className={clsx(
-        'fixed left-0 top-0 z-10 flex w-full justify-center transition-transform duration-300',
+        'fixed left-0 top-0 z-20 flex w-full justify-center transition-transform duration-300',
         showNavbar ? 'translate-y-0' : '-translate-y-[100%]'
       )}
     >
-      <header className="navbar m-5 max-w-6xl rounded-box bg-neutral shadow-xl">
+      <header className="navbar m-5 max-w-6xl rounded-box bg-neutral shadow-md">
         <div className="mx-1 my-0.5 flex flex-1 flex-row items-center gap-2">
           <SuperLink href="/" className="btn btn-ghost px-2">
             <Image
@@ -179,12 +179,13 @@ export default function Header() {
             ref={toggler}
             IconWhenHidden={HiBars3}
             buttonClass="btn-ghost"
-            className="absolute right-0 top-0 w-52 translate-x-2 translate-y-20 rounded-box bg-neutral shadow-xl"
+            className="absolute right-0 top-0 w-52 translate-x-2 translate-y-20 overflow-hidden rounded-box bg-neutral shadow-md"
           >
             <NavMenu
               ref={navMenuNarrow}
               onNavigation={() => toggler.current?.forceClose()}
               showResumeItem
+              className="max-h-[calc(100vh-8rem)] overflow-y-auto"
             />
           </VisibilityToggler>
         </div>
