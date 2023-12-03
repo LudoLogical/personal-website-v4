@@ -19,3 +19,14 @@
   padding-left: 0.375rem;
   padding-right: 0.375rem;
 }
+
+/* Ordered sublists use different numbering systems */
+.article > ol {
+  list-style-type: decimal;
+}
+.article > ol ol {
+  list-style-type: lower-alpha;
+}
+.article > ol ol ol {
+  list-style-type: lower-roman;
+}
