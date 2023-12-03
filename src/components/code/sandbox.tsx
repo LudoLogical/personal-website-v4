@@ -60,10 +60,10 @@ export default function Sandbox({
       <SandpackLayout className="my-4 !rounded-2xl">
         {/* SandpackLayout is not optional, so the hack `w-0 flex-1` forces the column layout */}
         <div className="not-prose w-0 flex-1 text-base-content">
-          <div className="mx-3 my-2 flex items-center">
-            <div className="ml-1 flex flex-1 items-center gap-3">
-              <HiMiniCodeBracket className="h-4 w-4" />
-              <h3 className="m-0 pb-px text-sm font-semibold">
+          <div className="my-2 ml-4 mr-3 flex flex-1 items-center gap-2">
+            <div className="flex flex-1 items-center gap-3">
+              <HiMiniCodeBracket className="h-4 w-4 flex-shrink-0" />
+              <h3 className="m-0 w-0 flex-1 overflow-hidden overflow-ellipsis whitespace-nowrap pb-px text-sm font-semibold">
                 {title ?? 'Live Demo'}
               </h3>
             </div>
