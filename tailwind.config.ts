@@ -33,11 +33,11 @@ export default {
         nav: '700px'
       },
       spacing: {
-        18: '4.5rem',
         header: '6.75rem',
         'header-buffer': '5.5rem',
         'screen-content': 'calc(100vh - 2.5rem)',
-        'screen-content-minus-header': 'calc(100vh - 8rem)'
+        'screen-content-minus-header': 'calc(100vh - 8rem)',
+        'blog-preamble': 'calc(4.5rem + 3rem)'
       }
     }
   },

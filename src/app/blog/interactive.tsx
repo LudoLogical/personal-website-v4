@@ -49,7 +49,7 @@ export default function Sidebar({ tocData }: { tocData: string }) {
     <>
       <nav
         className={clsx(
-          'sticky mt-18 hidden w-64 overflow-hidden rounded-box transition-all duration-300 lg:block',
+          'mt-blog-preamble sticky hidden w-64 overflow-hidden rounded-box transition-all duration-300 lg:block',
           yieldToHeader
             ? 'top-header max-h-screen-content-minus-header'
             : 'top-5 max-h-screen-content'
