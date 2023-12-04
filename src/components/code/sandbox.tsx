@@ -27,7 +27,7 @@ const defaultCSS = {
 const defaultApp = {
   '/App.js': `export default function App() {
   return (
-    <div className="flex h-screen items-center justify-center bg-[#282a36]">
+    <div className="flex h-screen items-center justify-center bg-dracula-base">
       <h1 className="text-xl font-bold text-slate-300">Hello, world!</h1>
     </div>
   );
@@ -77,7 +77,7 @@ export default function Sandbox({
           </div>
           <SandpackCodeEditor
             showLineNumbers={showLineNumbers}
-            className="h-[14rem]"
+            className="h-56"
           />
           <SandpackPreviewConsoleStacked />
         </div>

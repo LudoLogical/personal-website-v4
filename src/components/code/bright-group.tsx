@@ -20,7 +20,7 @@ export default function BrightGroup({
   const [open, setOpen] = useState<number>(0);
   incrementor++;
   return (
-    <div className="overflow-hidden rounded-box bg-[#282a36]">
+    <div className="bg-dracula-base overflow-hidden rounded-box">
       <div className="not-prose bg-base-200">
         <div
           role="tablist"

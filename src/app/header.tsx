@@ -114,7 +114,7 @@ export default function Header() {
     <div
       className={clsx(
         'fixed left-0 top-0 z-20 flex w-full justify-center transition-transform duration-300',
-        showNavbar ? 'translate-y-0' : '-translate-y-[100%]'
+        showNavbar ? 'translate-y-0' : '-translate-y-full'
       )}
     >
       <header className="navbar m-5 max-w-6xl rounded-box bg-neutral shadow-md">

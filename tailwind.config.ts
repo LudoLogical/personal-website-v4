@@ -18,12 +18,25 @@ export default {
         'halo-error-sm': '0 0 20px 0 rgba(255, 71, 20, 1)',
         'halo-error': '0 0 25px 0 rgba(255, 71, 20, 1)'
       },
+      colors: {
+        'dracula-base': '#282A36'
+      },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans]
+      },
+      maxWidth: {
+        '3xs': '12rem',
+        '2xs': '16rem'
       },
       screens: {
         xs: '475px',
         nav: '700px'
+      },
+      spacing: {
+        18: '4.5rem',
+        header: '6.75rem',
+        'screen-content': 'calc(100vh - 2.5rem)',
+        'screen-content-minus-header': 'calc(100vh - 8rem)'
       }
     }
   },
