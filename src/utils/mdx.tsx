@@ -9,6 +9,7 @@ import {
   HiOutlineExclamationTriangle,
   HiOutlineXCircle
 } from 'react-icons/hi2';
+import BlogWrapper from '~/app/blog/helpers';
 import ArrowList from '~/components/arrow-list';
 import createCallout from '~/components/callout';
 import Bright from '~/components/code/bright/bright';
@@ -17,7 +18,6 @@ import Sandbox from '~/components/code/sandbox/sandbox';
 import { Terminal, TerminalLine } from '~/components/code/terminal';
 import LinkedHeading from '~/components/links/heading';
 import SuperLink from '~/components/links/standard';
-import BlogWrapper from '~/components/mdx/blog/wrapper';
 import Quote from '~/components/quote';
 import Collapse from '~/components/revealers/collapse';
 import Hint from '~/components/revealers/hint';

@@ -28,16 +28,17 @@ export default function Skills() {
                   key={skill.skill}
                   href={skill.certification}
                   external
-                  className={clsx('badge badge-success p-4')}
+                  className={'badge badge-success p-4'}
                 >
                   {skill.skill}
                 </SuperLink>
               ) : (
                 <span
                   key={skill.skill}
-                  className={clsx('badge p-4', {
-                    'badge-primary': skill.highlight
-                  })}
+                  className={clsx(
+                    'badge p-4',
+                    skill.highlight ? 'badge-primary' : 'badge-ghost'
+                  )}
                 >
                   {skill.skill}
                 </span>
