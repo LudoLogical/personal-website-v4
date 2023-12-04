@@ -12,9 +12,9 @@ import {
 import ArrowList from '~/components/arrow-list';
 import createCallout from '~/components/callout';
 import Quote from '~/components/quote';
-import Bright from '~/components/code/bright';
-import BrightGroup from '~/components/code/bright-group';
-import Sandbox from '~/components/code/sandbox';
+import Bright from '~/components/code/bright/bright';
+import BrightGroup from '~/components/code/bright/group';
+import Sandbox from '~/components/code/sandbox/sandbox';
 import { Terminal, TerminalLine } from '~/components/code/terminal';
 import LinkedHeading from '~/components/links/heading';
 import SuperLink from '~/components/links/standard';

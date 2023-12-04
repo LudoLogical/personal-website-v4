@@ -10,8 +10,8 @@ import {
 import { dracula } from '@codesandbox/sandpack-themes';
 import { FiCodesandbox } from 'react-icons/fi';
 import { HiMiniCodeBracket } from 'react-icons/hi2';
-import { FormatButton, ResetButton } from './sandbox-buttons';
-import { SandpackPreviewConsoleStacked } from './sandbox-hacks';
+import { FormatButton, ResetButton } from './buttons';
+import { SandpackPreviewConsoleStacked } from './hacks';
 import { useEffect, useState } from 'react';
 
 const defaultCSS = {
