@@ -19,7 +19,6 @@ import { Terminal, TerminalLine } from '~/components/code/terminal';
 import LinkedHeading from '~/components/links/heading';
 import SuperLink from '~/components/links/standard';
 import Quote from '~/components/quote';
-import ReadingTime from '~/components/reading-time';
 import Collapse from '~/components/revealers/collapse';
 import Hint from '~/components/revealers/hint';
 import CorruptedText from '~/components/text/corrupted';
@@ -61,7 +60,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Sandbox: Sandbox,
     Terminal: Terminal,
     Line: TerminalLine,
-    ReadingTime: ReadingTime,
     BlogWrapper: BlogWrapper,
     ...components
   };

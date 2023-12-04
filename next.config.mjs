@@ -5,6 +5,8 @@
 await import('./src/utils/env.mjs');
 import mdx from '@next/mdx';
 import rehypeSlug from 'rehype-slug';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import remarkReadingTime from 'remark-reading-time';
 import readingMdxTime from 'remark-reading-time/mdx.js';
 
@@ -15,7 +17,12 @@ const config = {
 const withMDX = mdx({
   options: {
     providerImportSource: '~/utils/mdx.tsx',
-    remarkPlugins: [remarkReadingTime, readingMdxTime],
+    remarkPlugins: [
+      remarkFrontmatter,
+      remarkMdxFrontmatter,
+      remarkReadingTime,
+      readingMdxTime
+    ],
     rehypePlugins: [rehypeSlug]
   }
 });
