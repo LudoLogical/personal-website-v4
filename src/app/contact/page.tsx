@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function Contact() {
   return (
-    <div className="mx-auto mb-12 mt-6 flex max-w-xl flex-col gap-4 p-4 text-center">
+    <div className="mx-auto mb-8 mt-6 flex max-w-xl flex-col gap-4 p-4 text-center">
       <h1 className="text-4xl font-bold text-primary">Contact</h1>
       <p>
         Whether you want to discuss an opportunity, ask a question, or just say
