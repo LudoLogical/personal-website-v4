@@ -12,6 +12,8 @@ import {
 import ArrowList from '~/components/arrow-list';
 import createCallout from '~/components/callout';
 import Quote from '~/components/quote';
+import Bright from '~/components/code/bright';
+import BrightGroup from '~/components/code/bright-group';
 import Sandbox from '~/components/code/sandbox';
 import { Terminal, TerminalLine } from '~/components/code/terminal';
 import LinkedHeading from '~/components/links/heading';
@@ -39,12 +41,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h5: (props: PropsWithChildren) => <LinkedHeading As="h5" {...props} />,
     h6: (props: PropsWithChildren) => <LinkedHeading As="h6" {...props} />,
     ul: ArrowList,
-    pre: (props: PropsWithChildren) => (
-      <Code
-        className="my-4 flex !rounded-2xl [&>pre]:w-0 [&>pre]:flex-auto"
-        {...props}
-      />
-    ),
+    pre: Bright,
     strong: (props: PropsWithChildren) => (
       <strong className="font-bold text-primary" {...props} />
     ),
@@ -59,6 +56,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Warning: createCallout(HiOutlineExclamationTriangle, 'alert-warning'),
     Problem: createCallout(HiOutlineXCircle, 'alert-error'),
     Collapse: Collapse,
+    CodeGroup: BrightGroup,
     Sandbox: Sandbox,
     Terminal: Terminal,
     Line: TerminalLine,
