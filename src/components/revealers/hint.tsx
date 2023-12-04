@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef, type ReactNode } from 'react';
-import { useWindowSize } from 'usehooks-ts';
 import clsx from 'clsx';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { HiMiniQuestionMarkCircle } from 'react-icons/hi2';
+import { useWindowSize } from 'usehooks-ts';
 
 export default function Hint({ children }: { children: ReactNode }) {
   const [side, setSide] = useState<string>('unknown');

@@ -1,5 +1,5 @@
-import { type ReactNode } from 'react';
 import { extractSubheadingData } from 'data/subheadings';
+import { type ReactNode } from 'react';
 import styles from './css/wrapper.module.css';
 import Sidebar from './sidebar';
 

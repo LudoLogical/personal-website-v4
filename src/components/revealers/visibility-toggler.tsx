@@ -1,14 +1,14 @@
 'use client';
 
+import clsx from 'clsx';
 import {
   forwardRef,
-  useState,
-  useRef,
   useImperativeHandle,
+  useRef,
+  useState,
   type ReactNode
 } from 'react';
 import { type IconType } from 'react-icons';
-import clsx from 'clsx';
 import { HiXMark } from 'react-icons/hi2';
 import { useOutsideClick } from '~/utils/hooks';
 

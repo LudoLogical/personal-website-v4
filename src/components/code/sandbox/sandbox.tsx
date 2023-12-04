@@ -8,11 +8,11 @@ import {
   type SandpackProviderProps
 } from '@codesandbox/sandpack-react';
 import { dracula } from '@codesandbox/sandpack-themes';
+import { useEffect, useState } from 'react';
 import { FiCodesandbox } from 'react-icons/fi';
 import { HiMiniCodeBracket } from 'react-icons/hi2';
 import { FormatButton, ResetButton } from './buttons';
 import { SandpackPreviewConsoleStacked } from './hacks';
-import { useEffect, useState } from 'react';
 
 const defaultCSS = {
   '/styles.css': {

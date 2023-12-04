@@ -2,7 +2,7 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-await import('./src/env.mjs');
+await import('./src/utils/env.mjs');
 import mdx from '@next/mdx';
 import rehypeSlug from 'rehype-slug';
 
@@ -12,7 +12,7 @@ const config = {
 };
 const withMDX = mdx({
   options: {
-    providerImportSource: '~/app/mdx.tsx',
+    providerImportSource: '~/utils/mdx.tsx',
     rehypePlugins: [rehypeSlug]
   }
 });

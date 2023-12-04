@@ -1,8 +1,8 @@
 import 'server-only';
 
-import { type PropsWithChildren } from 'react';
-import type { MDXComponents } from 'mdx/types';
 import { Code } from 'bright';
+import type { MDXComponents } from 'mdx/types';
+import { type PropsWithChildren } from 'react';
 import {
   HiLightBulb,
   HiOutlineCheckCircle,
@@ -11,20 +11,20 @@ import {
 } from 'react-icons/hi2';
 import ArrowList from '~/components/arrow-list';
 import createCallout from '~/components/callout';
-import Quote from '~/components/quote';
 import Bright from '~/components/code/bright/bright';
 import BrightGroup from '~/components/code/bright/group';
 import Sandbox from '~/components/code/sandbox/sandbox';
 import { Terminal, TerminalLine } from '~/components/code/terminal';
 import LinkedHeading from '~/components/links/heading';
 import SuperLink from '~/components/links/standard';
+import BlogWrapper from '~/components/mdx/blog/wrapper';
+import Quote from '~/components/quote';
 import Collapse from '~/components/revealers/collapse';
 import Hint from '~/components/revealers/hint';
 import CorruptedText from '~/components/text/corrupted';
 import GlitchText from '~/components/text/glitch';
 import ShakyText from '~/components/text/shaky';
 import WaveText from '~/components/text/wave';
-import BlogWrapper from '~/components/mdx/blog/wrapper';
 
 Code.lineNumbers = true;
 Code.theme = 'dracula';

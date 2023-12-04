@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import clsx from 'clsx';
+import Image from 'next/image';
+import TransparentAvatar from 'public/avatar-transparent.png';
 import SuperLink from '~/components/links/standard';
 import { Explain404 } from './interactive';
-import TransparentAvatar from 'public/avatar-transparent.png';
 
 function BadvatarComponent({ className }: { className?: string }) {
   return (

@@ -1,7 +1,7 @@
 'use client';
 
-import { type ReactNode, useState } from 'react';
 import clsx from 'clsx';
+import { useState, type ReactNode } from 'react';
 
 let incrementor = 0;
 

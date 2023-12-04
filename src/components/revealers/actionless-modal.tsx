@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef, type ReactNode, type MutableRefObject } from 'react';
 import clsx from 'clsx';
+import { useRef, type MutableRefObject, type ReactNode } from 'react';
 
 export default function ActionlessModal({
   clickable,

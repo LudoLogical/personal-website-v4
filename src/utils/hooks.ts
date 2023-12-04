@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, type RefObject, useState } from 'react';
+import { useEffect, useState, type RefObject } from 'react';
 import { useScrollDirection } from 'react-use-scroll-direction';
 
 export function useOutsideClick(

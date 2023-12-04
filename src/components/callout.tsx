@@ -1,5 +1,5 @@
-import { type FC, type ReactNode } from 'react';
 import clsx from 'clsx';
+import { type FC, type ReactNode } from 'react';
 import { type IconType } from 'react-icons';
 
 export default function createCallout(

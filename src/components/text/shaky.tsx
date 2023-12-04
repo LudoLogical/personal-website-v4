@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const randomOffset = () => Math.floor(Math.random() * 2) - 0.5; // -0.5 or 0.5px
 

@@ -1,13 +1,13 @@
 'use client';
 
-import { useRef, useState } from 'react';
 import {
   useActiveCode,
   useSandpack,
   useSandpackNavigation
 } from '@codesandbox/sandpack-react';
-import useSWRMutation from 'swr/mutation';
 import axios from 'axios';
+import clsx from 'clsx';
+import { useRef, useState } from 'react';
 import {
   HiMiniArrowPath,
   HiMiniArrowUturnLeft,
@@ -15,8 +15,8 @@ import {
   HiMiniSparkles,
   HiMiniXMark
 } from 'react-icons/hi2';
+import useSWRMutation from 'swr/mutation';
 import { prettierResponse } from '~/app/api/prettier/types';
-import clsx from 'clsx';
 
 export const ResetButton = ({ sandboxName }: { sandboxName: string }) => {
   const modal = useRef<HTMLDialogElement | null>(null);

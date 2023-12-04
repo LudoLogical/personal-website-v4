@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import { SandpackConsole, SandpackPreview } from '@codesandbox/sandpack-react';
 import clsx from 'clsx';
-import styles from './sandbox.module.css';
+import { useEffect, useRef, useState } from 'react';
+import styles from './css/sandbox.module.css';
 
 const useSandpackConsoleFilterHack = () => {
   const consoleRef = useRef<HTMLDivElement | null>(null);

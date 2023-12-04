@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import clsx from 'clsx';
+import experienceData from 'data/experience';
+import { useState } from 'react';
 import { FiGithub } from 'react-icons/fi';
 import {
   HiArrowTopRightOnSquare,
@@ -12,7 +13,6 @@ import {
   HiXMark
 } from 'react-icons/hi2';
 import SuperLink from '~/components/links/standard';
-import experienceData from 'data/experience';
 
 export default function ExperienceInteractive() {
   const [expanded, setExpanded] = useState<boolean>(false);

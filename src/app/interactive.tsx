@@ -1,8 +1,8 @@
 'use client';
 
 import { useRef } from 'react';
-import ActionlessModal from '~/components/revealers/actionless-modal';
 import SuperLink from '~/components/links/standard';
+import ActionlessModal from '~/components/revealers/actionless-modal';
 
 export function Pronouns() {
   const link = useRef<HTMLAnchorElement | null>(null);

@@ -1,28 +1,28 @@
 'use client';
 
-import {
-  useState,
-  useEffect,
-  useRef,
-  type MouseEvent,
-  useImperativeHandle,
-  forwardRef
-} from 'react';
-import Image from 'next/image';
 import clsx from 'clsx';
+import navMenuData from 'data/nav-menu';
+import Image from 'next/image';
+import emblem from 'public/emblem-yellow.png';
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+  type MouseEvent
+} from 'react';
 import {
   HiArrowTopRightOnSquare,
   HiBars3,
   HiOutlineInformationCircle
 } from 'react-icons/hi2';
-import ActionlessModal from '~/components/revealers/actionless-modal';
 import SuperLink from '~/components/links/standard';
+import ActionlessModal from '~/components/revealers/actionless-modal';
 import VisibilityToggler, {
   type VisibilityTogglerHandle
 } from '~/components/revealers/visibility-toggler';
 import { useToggleOnScroll } from '~/utils/hooks';
-import navMenuData from 'data/nav-menu';
-import emblem from 'public/emblem-yellow.png';
 
 interface NavMenuHandle {
   forceCloseSubmenus: () => void;

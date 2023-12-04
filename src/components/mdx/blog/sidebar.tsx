@@ -1,14 +1,14 @@
 'use client';
 
 import clsx from 'clsx';
+import { type SubheadingGroupData } from 'data/subheadings';
+import { useRef } from 'react';
 import { HiListBullet } from 'react-icons/hi2';
 import VisibilityToggler, {
   type VisibilityTogglerHandle
 } from '~/components/revealers/visibility-toggler';
 import { useToggleOnScroll } from '~/utils/hooks';
-import { type SubheadingGroupData } from 'data/subheadings';
 import TableOfContents from './table-of-contents';
-import { useRef } from 'react';
 
 export default function Sidebar({ tocData }: { tocData: string }) {
   const toggler = useRef<VisibilityTogglerHandle | null>(null);

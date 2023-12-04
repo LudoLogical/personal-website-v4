@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
 import clsx from 'clsx';
+import { useState, type ReactNode } from 'react';
 import { HiEye, HiEyeSlash } from 'react-icons/hi2';
 
 export default function Collapse({

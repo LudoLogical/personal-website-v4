@@ -1,6 +1,6 @@
-import { forwardRef, type MouseEvent, type ReactNode } from 'react';
-import Link from 'next/link';
 import clsx from 'clsx';
+import Link from 'next/link';
+import { forwardRef, type MouseEvent, type ReactNode } from 'react';
 
 const SuperLink = forwardRef<
   HTMLAnchorElement,

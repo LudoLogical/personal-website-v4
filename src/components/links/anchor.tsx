@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { type ReactNode, useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { Link as ScrollableLink } from 'react-scroll';
 import { useScrollDirection } from 'react-use-scroll-direction';
 

@@ -1,8 +1,8 @@
 import {
   Children,
+  isValidElement,
   type ReactElement,
-  type ReactNode,
-  isValidElement
+  type ReactNode
 } from 'react';
 import { HiMiniArrowRight } from 'react-icons/hi2';
 

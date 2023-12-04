@@ -1,7 +1,7 @@
 import 'server-only';
 
-import { type PropsWithChildren } from 'react';
 import { Code } from 'bright';
+import { type PropsWithChildren } from 'react';
 
 export default function Bright(props: PropsWithChildren) {
   return (

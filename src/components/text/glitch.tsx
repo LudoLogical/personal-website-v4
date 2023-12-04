@@ -1,5 +1,5 @@
-import { type ReactNode } from 'react';
 import clsx from 'clsx';
+import { type ReactNode } from 'react';
 import styles from './css/glitch.module.css';
 
 export default function GlitchText({ children }: { children: ReactNode }) {

@@ -1,8 +1,8 @@
 import Image from 'next/image';
+import Avatar from 'public/avatar.png';
 import { FiCodepen, FiGithub, FiLinkedin } from 'react-icons/fi';
 import SuperLink from '~/components/links/standard';
 import { Pronouns } from './interactive';
-import Avatar from 'public/avatar.png';
 
 function AvatarComponent({ className }: { className?: string }) {
   return (
