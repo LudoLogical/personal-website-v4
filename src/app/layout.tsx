@@ -1,6 +1,6 @@
 import { Mulish } from 'next/font/google';
 import Header from '~/components/header';
-import './tailwind.css';
+import '~/utils/tailwind.css';
 
 const mulish = Mulish({
   subsets: ['latin'],
