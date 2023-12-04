@@ -41,7 +41,7 @@ const SandboxTabs = ({
 }) => {
   const [consoleActive, setConsoleActive] = useState<boolean>(false);
   return (
-    <div role="tablist" className="tabs tabs-bordered h-fit w-fit">
+    <div role="tablist" className="tabs tabs-bordered h-fit w-full">
       <a
         role="tab"
         onClick={() => {
@@ -66,6 +66,8 @@ const SandboxTabs = ({
       >
         Console
       </a>
+      {/* Extend the bottom border to the full width */}
+      <div className="tab h-fit flex-1 py-1" />
     </div>
   );
 };
@@ -90,7 +92,7 @@ export function SandpackPreviewConsoleStacked({}) {
         <div ref={consoleRef} className={styles.console}>
           <SandpackConsole
             resetOnPreviewRestart
-            className="!absolute left-0 top-0 h-56"
+            className="!absolute left-0 top-0 z-10 h-56"
           />
         </div>
       </div>
