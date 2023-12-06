@@ -12,18 +12,13 @@ export const Frontmatter = z
       'persuade',
       'question',
       'demonstrate',
+      'showcase',
       'highlight'
     ]),
-    disclosure: z.enum([
-      'supporter',
-      'opponent',
-      'neutral',
-      'affiliate',
-      'backer',
-      'compensated',
-      'gifted',
-      'unaffiliated'
-    ]),
+    stance: z.nullable(z.enum(['supporter', 'opponent', 'neutral'])),
+    affiliation: z.nullable(
+      z.enum(['affiliate', 'backer', 'compensated', 'gifted', 'unaffiliated'])
+    ),
     audience: z.enum([
       'everyone',
       'new-developers',
@@ -35,36 +30,39 @@ export const Frontmatter = z
     created: z.number(), // created, updated, and reviewed are UNIX timestamps
     updated: z.nullable(z.number()),
     reviewed: z.nullable(z.number()),
-    draft: z.nullable(z.boolean()) // publicly visible iff not true
+    draft: z.boolean() // publicly visible iff not true
   })
   .strict();
 
 export const frontmatterData = {
   intent: {
     preamble: 'This blog post was written with the intent to ',
-    explain: ' something.',
+    explain: ' something to readers.',
     persuade: ' readers of something.',
     question: ' an established idea, practice, or convention.',
+    showcase: ' something to readers.',
     highlight: '$call attention to something.'
   },
-  disclosure: {
+  stance: {
     preamble: 'The author ',
-    supporter:
-      'supports the idea(s) and/or action(s) discussed in this blog post. $stance',
-    opponent:
-      'disagrees with the idea(s) and/or action(s) discussed in this blog post. $stance',
-    neutral:
-      'neither strongly agrees nor strongly disagrees with the idea(s) and/or action(s) discussed in this blog post. $stance',
-    stance:
-      'You should consider reviewing alternative perspectives before coming to your own conclusions on the subject.',
-    affiliate: 'is personally afiliated with $connection',
-    backer: 'is financially supporting $connection',
-    compensated: 'is being financially compensated by $connection',
-    gifted:
-      'has received one or more products and/or services for free from $connection',
-    connection:
-      'one or more entities discussed in this blog post. You should consider reviewing any relevant citations before trusting or discounting any claims that are made.',
+    supporter: 'agrees with',
+    opponent: 'disagrees with',
+    neutral: 'neither strongly agrees nor strongly disagrees with',
+    conclusion:
+      ' the divisive idea(s) and/or action(s) discussed in this blog post. You should consider reviewing alternative perspectives before coming to your own conclusions on the subject.',
+    notApplicable:
+      'This blog post does not contain discussion of any idea(s) or action(s) that the author believes are divisive.'
+  },
+  affiliation: {
+    preamble: 'The author ',
+    affiliate: 'is personally afiliated with',
+    backer: 'is financially supporting',
+    compensated: 'is being financially compensated by',
+    gifted: 'has received one or more products and/or services for free from',
+    conclusion:
+      ' one or more entities discussed in this blog post. You should consider reviewing any relevant citations before fully trusting or discounting any claims that are made.',
     unaffiliated:
-      'has no affiliation with any of the entities discussed in this blog post.'
+      'The author has no affiliation with any of the entities discussed in this blog post.',
+    notApplicable: 'The author has no relevant affiliations to report.'
   }
 };
