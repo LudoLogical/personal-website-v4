@@ -1,17 +1,23 @@
+import {
+  HiOutlineChatBubbleOvalLeftEllipsis,
+  HiOutlineCheckBadge,
+  HiOutlineCurrencyDollar,
+  HiOutlineRocketLaunch,
+  HiOutlineWrench
+} from 'react-icons/hi2';
+import { PiTarget } from 'react-icons/pi';
 import { z } from 'zod';
-
-const slugString = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
 export const Frontmatter = z
   .object({
     title: z.string(),
-    slug: slugString,
-    tags: slugString,
+    subtitle: z.string(),
+    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+    tags: z.string(), // comma-separated list
     intent: z.enum([
       'explain',
       'persuade',
       'question',
-      'demonstrate',
       'showcase',
       'highlight'
     ]),
@@ -27,21 +33,24 @@ export const Frontmatter = z
       'gamers'
     ]),
     keywords: z.string(), // comma-separated list
-    created: z.number(), // created, updated, and reviewed are UNIX timestamps
+    published: z.nullable(z.number()), // published, updated, and reviewed are UNIX timestamps
     updated: z.nullable(z.number()),
     reviewed: z.nullable(z.number()),
     draft: z.boolean() // publicly visible iff not true
   })
   .strict();
 
-export const frontmatterData = {
+export const frontmatterText = {
   intent: {
     preamble: 'This blog post was written with the intent to ',
-    explain: ' something to readers.',
-    persuade: ' readers of something.',
-    question: ' an established idea, practice, or convention.',
-    showcase: ' something to readers.',
-    highlight: '$call attention to something.'
+    explain: ' explain something to readers.',
+    persuade: ' persuade readers of something.',
+    question: ' question an established idea, practice, or convention.',
+    showcase: ' showcase something to readers.',
+    highlight: ' call attention to something.',
+    conclusion: '',
+    notApplicable:
+      'You should never see this text. If you do, please let me know!'
   },
   stance: {
     preamble: 'The author ',
@@ -66,3 +75,20 @@ export const frontmatterData = {
     notApplicable: 'The author has no relevant affiliations to report.'
   }
 };
+
+export const frontmatterDateIcons = {
+  published: HiOutlineRocketLaunch,
+  updated: HiOutlineWrench,
+  reviewed: HiOutlineCheckBadge
+};
+
+export const frontmatterDisclosureIcons = {
+  intent: PiTarget,
+  stance: HiOutlineChatBubbleOvalLeftEllipsis,
+  affiliation: HiOutlineCurrencyDollar
+};
+
+export interface FrontmatterDate {
+  type: keyof typeof frontmatterDateIcons;
+  timestamp: number;
+}

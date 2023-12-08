@@ -1,12 +1,20 @@
 ---
 title: Blog Elements
+subtitle: What I Use to Create My Posts
+slug: blog-elements
+tags: incredible-machine, version-control
+intent: showcase
+stance: neutral
+affiliation: affiliate
+audience: everyone
+keywords: These, Are Some, Keywords
+published: 1701421200000
+updated: 1701507600000
+reviewed: 1701594000000
+draft: true
 ---
 
-<BlogWrapper>
-
-{Math.ceil(readingTime.minutes)}-minute read
-
-# {frontmatter.title}
+<BlogWrapper frontmatter={frontmatter} readingTime={readingTime}>
 
 Hi! I'd like to show you the building blocks I use when writing posts for this blog.
 

@@ -9,7 +9,7 @@ import {
   HiOutlineExclamationTriangle,
   HiOutlineXCircle
 } from 'react-icons/hi2';
-import BlogWrapper from '~/app/blog/helpers';
+import BlogWrapper from '~/app/blog/components/wrapper';
 import ArrowList from '~/components/arrow-list';
 import createCallout from '~/components/callout';
 import Bright from '~/components/code/bright/bright';
