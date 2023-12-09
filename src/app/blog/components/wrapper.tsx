@@ -2,6 +2,7 @@ import { Frontmatter } from 'data/frontmatter';
 import { ReadingTime } from 'data/reading-time';
 import { extractSubheadingData } from 'data/subheadings';
 import { type ReactNode } from 'react';
+import styles from './css/wrapper.module.css';
 import Details from './details';
 import Sidebar from './sidebar';
 
@@ -36,7 +37,7 @@ export default function BlogWrapper({
       </div>
       <div className="divider" />
       <div className="gap-12 lg:flex">
-        <article className="prose">{children}</article>
+        <article className={`prose ${styles.article}`}>{children}</article>
         <Sidebar tocData={JSON.stringify(extractSubheadingData(children))} />
       </div>
     </div>

@@ -1,3 +1,20 @@
+/* Prevents initial subheadings from adding margin */
+.article > a:first-child > h2 {
+  margin-top: 0.5rem;
+}
+.article > a:first-child > h3 {
+  margin-top: 0.25rem;
+}
+.article > a:first-child > h4 {
+  margin-top: 0.25rem;
+}
+.article > a:first-child > h5 {
+  margin-top: 0.25rem;
+}
+.article > a:first-child > h6 {
+  margin-top: 0.25rem;
+}
+
 /* Pads the top of the screen on scroll */
 
 .article > a,
