@@ -22,7 +22,7 @@ import ActionlessModal from '~/components/revealers/actionless-modal';
 import VisibilityToggler, {
   type VisibilityTogglerHandle
 } from '~/components/revealers/visibility-toggler';
-import { useToggleOnScroll } from '~/utils/hooks';
+import { useOutsideClick, useToggleOnScroll } from '~/utils/hooks';
 
 interface NavMenuHandle {
   forceCloseSubmenus: () => void;
@@ -32,11 +32,13 @@ const NavMenu = forwardRef<
   NavMenuHandle,
   {
     onNavigation?: () => void;
-    showResumeItem?: boolean;
+    compact?: boolean;
     className?: string;
   }
->(function NavMenu({ onNavigation, showResumeItem, className }, ref) {
+>(function NavMenu({ onNavigation, compact, className }, ref) {
   const [openSubmenu, setOpenSubmenu] = useState<number>(-1);
+  const navMenu = useRef<HTMLUListElement | null>(null);
+  useOutsideClick([navMenu], () => (compact ? null : setOpenSubmenu(-1)));
   const handleNavigation = (e: MouseEvent<HTMLAnchorElement>) => {
     onNavigation?.();
     (e.target as HTMLAnchorElement).blur();
@@ -45,7 +47,7 @@ const NavMenu = forwardRef<
     forceCloseSubmenus: () => setOpenSubmenu(-1)
   }));
   return (
-    <ul className={clsx('menu flex-nowrap', className)}>
+    <ul ref={navMenu} className={clsx('menu flex-nowrap', className)}>
       {navMenuData.map((item, index) => (
         <li key={item[0] as string}>
           {typeof item[1] === 'string' ? (
@@ -80,7 +82,7 @@ const NavMenu = forwardRef<
           )}
         </li>
       ))}
-      {showResumeItem && (
+      {compact && (
         <li>
           <SuperLink
             href="/Resume.pdf"
@@ -184,7 +186,7 @@ export default function Header() {
             <NavMenu
               ref={navMenuNarrow}
               onNavigation={() => toggler.current?.forceClose()}
-              showResumeItem
+              compact
               className="max-h-[calc(100vh-8rem)] overflow-y-auto"
             />
           </VisibilityToggler>
