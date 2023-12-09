@@ -1,6 +1,8 @@
+'use client';
+
 import {
   disclosuresText,
-  type DisclosureType,
+  DisclosureType,
   type Frontmatter
 } from 'data/frontmatter';
 import {
@@ -15,7 +17,7 @@ const disclosureIcons = {
   affiliation: HiOutlineCurrencyDollar
 };
 
-export default function DisclosureDisplay({
+function Disclosure({
   frontmatter,
   disclosureType
 }: {
@@ -38,6 +40,24 @@ export default function DisclosureDisplay({
             phrases.conclusion
           : phrases.notApplicable}
       </span>
+    </div>
+  );
+}
+
+export default function Disclosures({
+  frontmatter
+}: {
+  frontmatter: Frontmatter;
+}) {
+  return (
+    <div className="flex flex-col gap-2 text-base-content/50">
+      {DisclosureType.options.map((disclosureType) => (
+        <Disclosure
+          key={disclosureType}
+          frontmatter={frontmatter}
+          disclosureType={disclosureType}
+        />
+      ))}
     </div>
   );
 }

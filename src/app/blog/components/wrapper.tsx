@@ -2,8 +2,10 @@ import { Frontmatter } from 'data/frontmatter';
 import { ReadingTime } from 'data/reading-time';
 import { extractSubheadingData } from 'data/subheadings';
 import { type ReactNode } from 'react';
+import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi2';
+import Buttons from './buttons';
 import styles from './css/wrapper.module.css';
-import Details from './details';
+import DatesElement from './date';
 import Sidebar from './sidebar';
 
 export default function BlogWrapper({
@@ -33,7 +35,22 @@ export default function BlogWrapper({
             {frontmatter.subtitle}
           </h2>
         </div>
-        <Details frontmatter={frontmatter} readingTime={readingTime} />
+        <div className="flex flex-wrap items-center gap-y-2">
+          <div className="flex h-8 flex-nowrap items-center gap-2">
+            <HiOutlineClock className="h-5 w-5 shrink-0" />
+            <span className="whitespace-nowrap">
+              {Math.ceil(readingTime.minutes)}-minute read
+            </span>
+          </div>
+          <div className="basis-full nav:divider nav:divider-horizontal nav:basis-auto" />
+          <div className="flex h-8 flex-nowrap items-center gap-2">
+            <HiOutlineEye className="h-5 w-5 shrink-0" />
+            <span>100,000 views</span>
+          </div>
+          <div className="basis-full nav:divider nav:divider-horizontal nav:basis-auto" />
+          <DatesElement frontmatter={frontmatter} />
+        </div>
+        <Buttons frontmatter={frontmatter} />
       </div>
       <div className="divider" />
       <div className="gap-12 lg:flex">

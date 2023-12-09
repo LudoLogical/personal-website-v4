@@ -24,7 +24,7 @@ export default function Hint({ children }: { children: ReactNode }) {
     <span
       ref={hint}
       className={clsx(
-        'before:max-w-3xs md:before:max-w-2xs tooltip tooltip-info align-top before:rounded-lg before:px-3 before:py-2 before:leading-normal before:transition-opacity after:transition-opacity lg:before:max-w-xs',
+        'tooltip tooltip-info align-top before:max-w-3xs before:rounded-lg before:px-3 before:py-2 before:leading-normal md:before:max-w-2xs lg:before:max-w-xs',
         {
           'tooltip-right': side === 'right',
           'tooltip-left': side === 'left',

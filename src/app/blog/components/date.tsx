@@ -1,8 +1,11 @@
+'use client';
+
 import clsx from 'clsx';
-import { type DateType } from 'data/frontmatter';
+import { DateType, type Frontmatter } from 'data/frontmatter';
+import { useState } from 'react';
 import {
-  HiMiniChevronDown,
   HiOutlineCheckBadge,
+  HiOutlineChevronDown,
   HiOutlineEllipsisHorizontalCircle,
   HiOutlineRocketLaunch,
   HiOutlineWrench
@@ -14,56 +17,92 @@ const dateIcons = {
   reviewed: HiOutlineCheckBadge
 };
 
-export default function DateDisplay({
-  date,
-  expanded,
-  onToggleClick
+function DateElement({
+  type,
+  timestamp,
+  hidden
 }: {
-  date?: {
-    type: DateType;
-    timestamp: number;
-  };
-  expanded?: boolean;
-  onToggleClick?: () => void;
+  type?: DateType;
+  timestamp?: number;
+  hidden?: boolean;
 }) {
-  const Icon = date ? dateIcons[date.type] : HiOutlineEllipsisHorizontalCircle;
+  const Icon = type ? dateIcons[type] : HiOutlineEllipsisHorizontalCircle;
   return (
     <div
       className={clsx(
-        'flex h-7 flex-nowrap items-center gap-2',
-        !onToggleClick && !expanded ? 'hidden' : null
+        'flex flex-nowrap items-center gap-2 py-0.5',
+        hidden ? 'hidden' : null
       )}
     >
       <Icon
-        title={
-          date
-            ? date.type.charAt(0).toUpperCase() + date.type.slice(1)
-            : undefined
-        }
+        title={type ? type.charAt(0).toUpperCase() + type.slice(1) : undefined}
         className="h-5 w-5 shrink-0"
       />
       <span className="whitespace-nowrap">
-        {date
-          ? new Date(date.timestamp).toLocaleDateString('en-US', {
+        {timestamp
+          ? new Date(timestamp).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
               day: 'numeric'
             })
           : 'Not published yet'}
       </span>
-      {onToggleClick && (
-        <button
-          title={expanded ? 'Show less' : 'Show more'}
-          onClick={onToggleClick}
-          className="btn btn-circle h-8 min-h-0 w-8"
-        >
-          <HiMiniChevronDown
+    </div>
+  );
+}
+
+export default function DatesElement({
+  frontmatter
+}: {
+  frontmatter: Frontmatter;
+}) {
+  const [expanded, setExpanded] = useState<boolean>(false);
+  const dates = DateType.options
+    .filter((member) => frontmatter[member] !== null)
+    .sort((a, b) => frontmatter[b]! - frontmatter[a]!)
+    .map((member) => ({
+      type: member,
+      timestamp: frontmatter[member]!
+    }));
+  return (
+    <div className="relative">
+      {dates.length > 0 ? (
+        <div className="flex flex-nowrap items-center gap-2">
+          <DateElement type={dates[0]!.type} timestamp={dates[0]!.timestamp} />
+          <div
             className={clsx(
-              'transition-transform',
-              expanded ? 'rotate-180' : null
+              'absolute -left-3 -top-2 transition-opacity',
+              expanded
+                ? 'pointer-events-auto opacity-100'
+                : 'pointer-events-none opacity-0'
             )}
-          />
-        </button>
+          >
+            <div className="flex flex-col flex-nowrap items-start rounded-box bg-neutral py-2 pl-3 pr-12">
+              {dates.map((date) => (
+                <DateElement
+                  key={date.type}
+                  type={date.type}
+                  timestamp={date.timestamp}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="absolute left-full ml-2">
+            <button
+              onMouseDown={() => setExpanded(!expanded)}
+              className="btn btn-circle h-8 min-h-0 w-8"
+            >
+              <HiOutlineChevronDown
+                className={clsx(
+                  'transition-transform',
+                  expanded ? 'rotate-180' : null
+                )}
+              />
+            </button>
+          </div>
+        </div>
+      ) : (
+        <DateElement />
       )}
     </div>
   );
