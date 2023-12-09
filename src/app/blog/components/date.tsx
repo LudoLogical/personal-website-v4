@@ -53,6 +53,7 @@ export default function DateDisplay({
       </span>
       {onToggleClick && (
         <button
+          title={expanded ? 'Show less' : 'Show more'}
           onClick={onToggleClick}
           className="btn btn-circle h-8 min-h-0 w-8"
         >

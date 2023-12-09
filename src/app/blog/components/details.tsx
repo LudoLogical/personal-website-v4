@@ -71,6 +71,7 @@ export default function InteractiveMetadata({
                 : 'Impartial'}
           </span>
           <button
+            title={disclosuresExpanded ? 'Hide details' : 'Show details'}
             onClick={() => setDisclosuresExpanded(!disclosuresExpanded)}
             className={clsx(
               'btn btn-circle swap h-8 min-h-0 w-8',
