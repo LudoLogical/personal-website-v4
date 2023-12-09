@@ -6,3 +6,4 @@ export const ReadingTime = z.object({
   time: z.number().int().positive(),
   words: z.number().int().positive()
 });
+export type ReadingTime = z.infer<typeof ReadingTime>;

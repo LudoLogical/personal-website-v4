@@ -1,12 +1,74 @@
-import {
-  HiOutlineChatBubbleOvalLeftEllipsis,
-  HiOutlineCheckBadge,
-  HiOutlineCurrencyDollar,
-  HiOutlineRocketLaunch,
-  HiOutlineWrench
-} from 'react-icons/hi2';
-import { PiTarget } from 'react-icons/pi';
 import { z } from 'zod';
+
+// All dates are UNIX timestamps
+export const Dates = z.object({
+  published: z.nullable(z.number()),
+  updated: z.nullable(z.number()),
+  reviewed: z.nullable(z.number())
+});
+export type Dates = z.infer<typeof Dates>;
+export const DateType = Dates.keyof();
+export type DateType = z.infer<typeof DateType>;
+
+export const IntentText = z.object({
+  explain: z.string(),
+  persuade: z.string(),
+  question: z.string(),
+  showcase: z.string(),
+  highlight: z.string()
+});
+export const Intent = IntentText.keyof();
+export type Intent = z.infer<typeof Intent>;
+
+export const StanceText = z.object({
+  supporter: z.string(),
+  opponent: z.string(),
+  neutral: z.string()
+});
+export const Stance = StanceText.keyof();
+export type Stance = z.infer<typeof Stance>;
+
+export const AffiliationText = z.object({
+  affiliate: z.string(),
+  backer: z.string(),
+  compensated: z.string(),
+  gifted: z.string(),
+  unaffiliated: z.string()
+});
+export const Affiliation = AffiliationText.keyof();
+export type Affiliation = z.infer<typeof Affiliation>;
+
+export const ExtraDisclosuresText = z.object({
+  preamble: z.string(),
+  conclusion: z.string(),
+  notApplicable: z.string()
+});
+export type ExtraDisclosuresText = z.infer<typeof ExtraDisclosuresText>;
+
+export const Disclosures = z.object({
+  intent: Intent,
+  stance: z.nullable(Stance),
+  affiliation: z.nullable(Affiliation)
+});
+export type Disclosures = z.infer<typeof Disclosures>;
+export const DisclosureType = Disclosures.keyof();
+export type DisclosureType = z.infer<typeof DisclosureType>;
+
+export const DisclosuresText = z.object({
+  intent: IntentText.merge(ExtraDisclosuresText),
+  stance: StanceText.merge(ExtraDisclosuresText),
+  affiliation: AffiliationText.merge(ExtraDisclosuresText)
+});
+export type DisclosuresText = z.infer<typeof DisclosuresText>;
+
+export const Audience = z.enum([
+  'everyone',
+  'new-developers',
+  'web-developers',
+  'developers',
+  'gamers'
+]);
+export type Audience = z.infer<typeof Audience>;
 
 export const Frontmatter = z
   .object({
@@ -14,33 +76,16 @@ export const Frontmatter = z
     subtitle: z.string(),
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
     tags: z.string(), // comma-separated list
-    intent: z.enum([
-      'explain',
-      'persuade',
-      'question',
-      'showcase',
-      'highlight'
-    ]),
-    stance: z.nullable(z.enum(['supporter', 'opponent', 'neutral'])),
-    affiliation: z.nullable(
-      z.enum(['affiliate', 'backer', 'compensated', 'gifted', 'unaffiliated'])
-    ),
-    audience: z.enum([
-      'everyone',
-      'new-developers',
-      'web-developers',
-      'developers',
-      'gamers'
-    ]),
     keywords: z.string(), // comma-separated list
-    published: z.nullable(z.number()), // published, updated, and reviewed are UNIX timestamps
-    updated: z.nullable(z.number()),
-    reviewed: z.nullable(z.number()),
     draft: z.boolean() // publicly visible iff not true
   })
+  .merge(Dates)
+  .merge(Disclosures)
+  .extend({ audience: Audience })
   .strict();
+export type Frontmatter = z.infer<typeof Frontmatter>;
 
-export const frontmatterText = {
+export const disclosuresText: DisclosuresText = {
   intent: {
     preamble: 'This blog post was written with the intent to ',
     explain: ' explain something to readers.',
@@ -75,20 +120,3 @@ export const frontmatterText = {
     notApplicable: 'The author has no relevant affiliations to report.'
   }
 };
-
-export const frontmatterDateIcons = {
-  published: HiOutlineRocketLaunch,
-  updated: HiOutlineWrench,
-  reviewed: HiOutlineCheckBadge
-};
-
-export const frontmatterDisclosureIcons = {
-  intent: PiTarget,
-  stance: HiOutlineChatBubbleOvalLeftEllipsis,
-  affiliation: HiOutlineCurrencyDollar
-};
-
-export interface FrontmatterDate {
-  type: keyof typeof frontmatterDateIcons;
-  timestamp: number;
-}
