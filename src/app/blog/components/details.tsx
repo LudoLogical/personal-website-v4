@@ -7,13 +7,14 @@ import { useState } from 'react';
 import {
   HiOutlineClock,
   HiOutlineEllipsisHorizontal,
+  HiOutlineExclamationTriangle,
   HiOutlineInformationCircle,
   HiOutlineXMark
 } from 'react-icons/hi2';
 import DateDisplay from './date';
 import DisclosureDisplay from './disclosure';
 
-export default function InteractiveMetadata({
+export default function Details({
   frontmatter,
   readingTime
 }: {
@@ -60,7 +61,11 @@ export default function InteractiveMetadata({
         </div>
         <div className="basis-full nav:divider nav:divider-horizontal nav:basis-auto" />
         <div className="flex flex-nowrap items-center gap-2">
-          <HiOutlineInformationCircle className="h-5 w-5 shrink-0" />
+          {frontmatter.stance ?? frontmatter.affiliation ? (
+            <HiOutlineExclamationTriangle className="mt-0.5 h-5 w-5 shrink-0" />
+          ) : (
+            <HiOutlineInformationCircle className="h-5 w-5 shrink-0" />
+          )}
           <span className="whitespace-nowrap">
             {frontmatter.stance
               ? frontmatter.affiliation

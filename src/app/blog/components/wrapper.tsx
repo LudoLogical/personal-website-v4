@@ -2,7 +2,7 @@ import { Frontmatter } from 'data/frontmatter';
 import { ReadingTime } from 'data/reading-time';
 import { extractSubheadingData } from 'data/subheadings';
 import { type ReactNode } from 'react';
-import InteractiveMetadata from './details';
+import Details from './details';
 import Sidebar from './sidebar';
 
 export default function BlogWrapper({
@@ -32,10 +32,7 @@ export default function BlogWrapper({
             {frontmatter.subtitle}
           </h2>
         </div>
-        <InteractiveMetadata
-          frontmatter={frontmatter}
-          readingTime={readingTime}
-        />
+        <Details frontmatter={frontmatter} readingTime={readingTime} />
       </div>
       <div className="divider" />
       <div className="gap-12 lg:flex">
