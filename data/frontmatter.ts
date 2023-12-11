@@ -10,6 +10,16 @@ export type Dates = z.infer<typeof Dates>;
 export const DateType = Dates.keyof();
 export type DateType = z.infer<typeof DateType>;
 
+export const getSortedDates = (frontmatter: Frontmatter) => {
+  return DateType.options
+    .filter((member) => frontmatter[member] !== null)
+    .sort((a, b) => frontmatter[b]! - frontmatter[a]!)
+    .map((member) => ({
+      type: member,
+      timestamp: frontmatter[member]!
+    }));
+};
+
 export const IntentText = z.object({
   explain: z.string(),
   persuade: z.string(),

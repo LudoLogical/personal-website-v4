@@ -6,16 +6,22 @@ import { useState } from 'react';
 import {
   HiOutlineChatBubbleOvalLeft,
   HiOutlineChevronDown,
-  HiOutlineDocumentPlus,
   HiSparkles
 } from 'react-icons/hi2';
+import Citations from './citations';
 import Disclosures from './disclosures';
 
 export default function Buttons({ frontmatter }: { frontmatter: Frontmatter }) {
+  const [showCitations, setShowCitaitons] = useState<boolean>(false);
   const [showDisclosures, setShowDisclosures] = useState<boolean>(false);
   return (
     <>
-      {showDisclosures && <Disclosures frontmatter={frontmatter} />}
+      {(showCitations || showDisclosures) && (
+        <div className="flex flex-col gap-2 text-base-content/50">
+          {showDisclosures && <Disclosures frontmatter={frontmatter} />}
+          {showCitations && <Citations frontmatter={frontmatter} />}
+        </div>
+      )}
       <div className="flex flex-wrap gap-2">
         <div className="flex flex-nowrap gap-2">
           <button className="btn">
@@ -28,10 +34,6 @@ export default function Buttons({ frontmatter }: { frontmatter: Frontmatter }) {
           </button>
         </div>
         <div className="flex flex-nowrap gap-2">
-          <button className="btn">
-            <HiOutlineDocumentPlus className="h-5 w-5" />
-            <span className="text-base">Cite</span>
-          </button>
           <button
             onClick={() => setShowDisclosures(!showDisclosures)}
             className="btn w-fit"
@@ -39,6 +41,15 @@ export default function Buttons({ frontmatter }: { frontmatter: Frontmatter }) {
             <span className="text-base">Disclosures</span>
             <HiOutlineChevronDown
               className={clsx('h-4 w-4', showDisclosures ? 'rotate-180' : null)}
+            />
+          </button>
+          <button
+            onClick={() => setShowCitaitons(!showCitations)}
+            className="btn w-fit"
+          >
+            <span className="text-base">Cite</span>
+            <HiOutlineChevronDown
+              className={clsx('h-4 w-4', showCitations ? 'rotate-180' : null)}
             />
           </button>
         </div>

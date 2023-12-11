@@ -49,15 +49,11 @@ export default function Disclosures({
 }: {
   frontmatter: Frontmatter;
 }) {
-  return (
-    <div className="flex flex-col gap-2 text-base-content/50">
-      {DisclosureType.options.map((disclosureType) => (
-        <Disclosure
-          key={disclosureType}
-          frontmatter={frontmatter}
-          disclosureType={disclosureType}
-        />
-      ))}
-    </div>
-  );
+  return DisclosureType.options.map((disclosureType) => (
+    <Disclosure
+      key={disclosureType}
+      frontmatter={frontmatter}
+      disclosureType={disclosureType}
+    />
+  ));
 }

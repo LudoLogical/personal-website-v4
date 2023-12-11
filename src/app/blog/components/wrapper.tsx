@@ -5,7 +5,7 @@ import { type ReactNode } from 'react';
 import { HiOutlineClock, HiOutlineEye } from 'react-icons/hi2';
 import Buttons from './buttons';
 import styles from './css/wrapper.module.css';
-import DatesElement from './date';
+import DatesElement from './dates';
 import Sidebar from './sidebar';
 
 export default function BlogWrapper({

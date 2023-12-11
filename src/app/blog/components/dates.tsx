@@ -1,7 +1,11 @@
 'use client';
 
 import clsx from 'clsx';
-import { DateType, type Frontmatter } from 'data/frontmatter';
+import {
+  getSortedDates,
+  type DateType,
+  type Frontmatter
+} from 'data/frontmatter';
 import { useRef, useState } from 'react';
 import {
   HiOutlineCheckBadge,
@@ -10,6 +14,7 @@ import {
   HiOutlineRocketLaunch,
   HiOutlineWrench
 } from 'react-icons/hi2';
+import { dateFromTimestamp } from '~/utils/dates';
 import { useOutsideClick } from '~/utils/hooks';
 
 const dateIcons = {
@@ -40,13 +45,7 @@ function DateElement({
         className="h-5 w-5 shrink-0"
       />
       <span className="whitespace-nowrap">
-        {timestamp
-          ? new Date(timestamp).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })
-          : 'Not published yet'}
+        {timestamp ? dateFromTimestamp(timestamp) : 'Not published yet'}
       </span>
     </div>
   );
@@ -57,13 +56,7 @@ export default function DatesElement({
 }: {
   frontmatter: Frontmatter;
 }) {
-  const dates = DateType.options
-    .filter((member) => frontmatter[member] !== null)
-    .sort((a, b) => frontmatter[b]! - frontmatter[a]!)
-    .map((member) => ({
-      type: member,
-      timestamp: frontmatter[member]!
-    }));
+  const dates = getSortedDates(frontmatter);
   const [expanded, setExpanded] = useState<boolean>(false);
   const datesElement = useRef<HTMLDivElement | null>(null);
   useOutsideClick([datesElement], () => setExpanded(false));
