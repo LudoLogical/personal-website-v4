@@ -52,7 +52,7 @@ export default function BlogWrapper({
         </div>
         <Buttons frontmatter={frontmatter} />
       </div>
-      <div className="divider" />
+      <div className="divider my-0 h-12 py-4" />
       <div className="gap-12 lg:flex">
         <article className={`prose ${styles.article}`}>{children}</article>
         <Sidebar tocData={JSON.stringify(extractSubheadingData(children))} />
