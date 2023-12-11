@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { DateType, type Frontmatter } from 'data/frontmatter';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   HiOutlineCheckBadge,
   HiOutlineChevronDown,
@@ -10,6 +10,7 @@ import {
   HiOutlineRocketLaunch,
   HiOutlineWrench
 } from 'react-icons/hi2';
+import { useOutsideClick } from '~/utils/hooks';
 
 const dateIcons = {
   published: HiOutlineRocketLaunch,
@@ -56,7 +57,6 @@ export default function DatesElement({
 }: {
   frontmatter: Frontmatter;
 }) {
-  const [expanded, setExpanded] = useState<boolean>(false);
   const dates = DateType.options
     .filter((member) => frontmatter[member] !== null)
     .sort((a, b) => frontmatter[b]! - frontmatter[a]!)
@@ -64,8 +64,11 @@ export default function DatesElement({
       type: member,
       timestamp: frontmatter[member]!
     }));
+  const [expanded, setExpanded] = useState<boolean>(false);
+  const datesElement = useRef<HTMLDivElement | null>(null);
+  useOutsideClick([datesElement], () => setExpanded(false));
   return (
-    <div className="relative">
+    <div ref={datesElement} className="relative">
       {dates.length > 0 ? (
         <div className="flex flex-nowrap items-center gap-2">
           <DateElement type={dates[0]!.type} timestamp={dates[0]!.timestamp} />
