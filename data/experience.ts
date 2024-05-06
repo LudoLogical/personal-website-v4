@@ -37,10 +37,10 @@ const experienceData = [
   ),
   new ExperienceEntry(
     2023,
-    'Integrated Development Advisor',
-    'CodeDay Labs',
+    'Consulting Software Engineer',
+    'CodeDay',
     ['Mentorship', 'Debugging', 'Terminal', 'Git', 'GitHub', 'NPM'],
-    'https://labs.codeday.org/',
+    'https://codeday.org/',
     null,
     true
   ),

@@ -40,9 +40,9 @@ export default function Index() {
               UT Dallas
             </SuperLink>{' '}
             with major, university, and highest Latin honors. Currently,
-            I&apos;m working as an Integrated Development Advisor at{' '}
-            <SuperLink href="https://labs.codeday.org/" external styledText>
-              CodeDay Labs
+            I&apos;m working as a Consulting Software Engineer at{' '}
+            <SuperLink href="https://codeday.org/" external styledText>
+              CodeDay
             </SuperLink>{' '}
             and pursuing a new place in the software-as-a-service space.
           </p>
