@@ -7,10 +7,12 @@ const navMenuData = [
     ]
   ],
   [
-    'Software',
+    'Work',
     [
-      ['Skills', '/skills'],
-      ['Experience', '/experience']
+      ['Portfolio', '/portfolio'],
+      ['Experience', '/experience'],
+      ['Skills', '/skills']
+      
     ]
   ],
   [

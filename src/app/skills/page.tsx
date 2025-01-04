@@ -12,10 +12,10 @@ export default function Skills() {
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl font-bold text-primary">Skills</h1>
         <p>
-          It feels weird to say, but I&apos;ve been making things with computers
-          for almost a decade now! In that time, I&apos;ve tried out quite a lot
-          of languages, tools, tasks, and techniques. I&apos;d consider myself
-          at least conversant in all of the following:
+          In the deacde I&apos;ve spent making things with computers, I&apos;ve
+          tried out a vast array of languages, tools, tasks, and techniques.
+          This is a non-exhaustive list of things I&apos;ve learned how to use
+          or do.
         </p>
       </div>
       {skillsData.map((category) => (
