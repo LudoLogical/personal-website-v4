@@ -90,7 +90,7 @@ export default function Portfolio() {
         <h2 className="text-2xl font-bold">Sundries</h2>
         <div className="flex flex-row justify-center gap-4">
           <SuperLink href="https://docs.google.com/spreadsheets/d/1ge_1xiG_Dnwh_sw68jK_xDT-uEh1qzDFhOELZkXB_5o/edit" external className="btn">
-            Personal Standard for Keyboard Shortcuts (Yes, Really!)
+            Keyboard Shortcuts (Yes, Really!)
           </SuperLink>
         </div>
       </div>
