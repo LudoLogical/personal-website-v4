@@ -29,7 +29,7 @@ export default function Portfolio() {
           at the demo page!
         </p>
         <div className="flex flex-row justify-center gap-4">
-          <SuperLink href="" toFile external className="btn">
+          <SuperLink href="/blog/elements" external className="btn">
             Elements
           </SuperLink>
         </div>
@@ -37,7 +37,7 @@ export default function Portfolio() {
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl font-bold">Nebula Platform</h2>
         <div className="flex flex-row justify-center gap-4">
-          <SuperLink href="" toFile external className="btn">
+          <SuperLink href="https://www.figma.com/design/cNyxUwkztabajPhTxlYLcx?node-id=3-4" external className="btn">
             Figma File
           </SuperLink>
         </div>
@@ -47,13 +47,13 @@ export default function Portfolio() {
           aspects of the project.
         </p>
         <div className="flex flex-row justify-center gap-4">
-          <SuperLink href="" toFile external className="btn">
+          <SuperLink href="/nebula-platform-architecture.pdf" toFile external className="btn">
             Architecture
           </SuperLink>
-          <SuperLink href="" toFile external className="btn">
+          <SuperLink href="/nebula-platform-terminology.pdf" toFile external className="btn">
             Terminology
           </SuperLink>
-          <SuperLink href="" toFile external className="btn">
+          <SuperLink href="/nebula-platform-sso-workflow.pdf" toFile external className="btn">
             SSO Approaches
           </SuperLink>
         </div>
@@ -69,19 +69,19 @@ export default function Portfolio() {
         </p>
         <h3 className="font-bold">Without Using External APIs</h3>
         <div className="flex flex-row justify-center gap-4">
-          <SuperLink href="" toFile external className="btn">
+          <SuperLink href="/project-owl-uml-classes-no-apis.png" toFile external className="btn">
             UML Class Diagram
           </SuperLink>
-          <SuperLink href="" toFile external className="btn">
+          <SuperLink href="/project-owl-erd-no-apis.png" toFile external className="btn">
             Entity Relationship Diagram
           </SuperLink>
         </div>
         <h3 className="font-bold">Using External APIs</h3>
         <div className="flex flex-row justify-center gap-4">
-          <SuperLink href="" toFile external className="btn">
+          <SuperLink href="/project-owl-uml-classes-with-apis.png" toFile external className="btn">
             UML Class Diagram
           </SuperLink>
-          <SuperLink href="" toFile external className="btn">
+          <SuperLink href="/project-owl-erd-with-apis.png" toFile external className="btn">
             Entity Relationship Diagram
           </SuperLink>
         </div>
@@ -89,7 +89,7 @@ export default function Portfolio() {
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl font-bold">Sundries</h2>
         <div className="flex flex-row justify-center gap-4">
-          <SuperLink href="" toFile external className="btn">
+          <SuperLink href="https://docs.google.com/spreadsheets/d/1ge_1xiG_Dnwh_sw68jK_xDT-uEh1qzDFhOELZkXB_5o/edit" external className="btn">
             Personal Standard for Keyboard Shortcuts (Yes, Really!)
           </SuperLink>
         </div>
