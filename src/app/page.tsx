@@ -41,7 +41,7 @@ export default function Index() {
               href="/contact"
               className="btn btn-primary shadow-halo-primary-sm"
             >
-              Let's chat!
+              Let&apos;s chat!
             </SuperLink>
             <div className="flex-row gap-2">
               <div className="flex gap-1">
