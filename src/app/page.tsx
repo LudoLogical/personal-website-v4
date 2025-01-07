@@ -33,26 +33,15 @@ export default function Index() {
             <br />I enable interaction.
           </h1>
           <p className="max-w-xl text-sm leading-relaxed xs:text-base">
-            I&apos;m a problem solver on a never-ending quest to connect users
-            with software, students with concepts, humans with emotions, and
-            people with play. I recently graduated from{' '}
-            <SuperLink href="https://www.utdallas.edu/" external styledText>
-              UT Dallas
-            </SuperLink>{' '}
-            with major, university, and highest Latin honors. Currently,
-            I&apos;m working as a Consulting Software Engineer at{' '}
-            <SuperLink href="https://codeday.org/" external styledText>
-              CodeDay
-            </SuperLink>{' '}
-            and pursuing a new place in the software-as-a-service space.
+            I&apos;m a software engineer, UI/UX designer, and educator with a decade of experience in computer wizardry. Currently, I&apos;m applying my deep understanding of programming, technology, and pedagogy to help train the next generation of magicians as the Head of Software Engineering Education at <SuperLink href="https://codeday.org/" external styledText>CodeDay</SuperLink>.
           </p>
           <div className="mt-6 flex flex-row items-center justify-start gap-4">
             <AvatarComponent className="mr-4 hidden h-16 w-16 rounded-full shadow-halo-secondary-sm xs:avatar sm:h-20 sm:w-20 lg:hidden" />
             <SuperLink
-              href="/blog"
+              href="/contact"
               className="btn btn-primary shadow-halo-primary-sm"
             >
-              Check out my blog!
+              Let's chat!
             </SuperLink>
             <div className="flex-row gap-2">
               <div className="flex gap-1">
