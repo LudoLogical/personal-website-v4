@@ -28,7 +28,7 @@ export default function Portfolio() {
           mind. Try toggling <code>prefers-reduced-motion</code> while looking
           at the demo page!
         </p>
-        <div className="flex flex-row justify-center gap-4">
+        <div className="flex flex-row flex-wrap justify-center gap-4">
           <SuperLink href="/blog/elements" external className="btn">
             Elements
           </SuperLink>
@@ -36,7 +36,7 @@ export default function Portfolio() {
       </div>
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl font-bold">Nebula Platform</h2>
-        <div className="flex flex-row justify-center gap-4">
+        <div className="flex flex-row flex-wrap justify-center gap-4">
           <SuperLink href="https://www.figma.com/design/cNyxUwkztabajPhTxlYLcx?node-id=3-4" external className="btn">
             Figma File
           </SuperLink>
@@ -46,7 +46,7 @@ export default function Portfolio() {
           Platform team achieve and maintain a common understanding of different
           aspects of the project.
         </p>
-        <div className="flex flex-row justify-center gap-4">
+        <div className="flex flex-row flex-wrap justify-center gap-4">
           <SuperLink href="/nebula-platform-architecture.pdf" toFile external className="btn">
             Architecture
           </SuperLink>
@@ -68,7 +68,7 @@ export default function Portfolio() {
           continue working on it soon!
         </p>
         <h3 className="font-bold">Without Using External APIs</h3>
-        <div className="flex flex-row justify-center gap-4">
+        <div className="flex flex-row flex-wrap justify-center gap-4">
           <SuperLink href="/project-owl-uml-classes-no-apis.png" toFile external className="btn">
             UML Class Diagram
           </SuperLink>
@@ -77,7 +77,7 @@ export default function Portfolio() {
           </SuperLink>
         </div>
         <h3 className="font-bold">Using External APIs</h3>
-        <div className="flex flex-row justify-center gap-4">
+        <div className="flex flex-row flex-wrap justify-center gap-4">
           <SuperLink href="/project-owl-uml-classes-with-apis.png" toFile external className="btn">
             UML Class Diagram
           </SuperLink>
@@ -88,7 +88,7 @@ export default function Portfolio() {
       </div>
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl font-bold">Sundries</h2>
-        <div className="flex flex-row justify-center gap-4">
+        <div className="flex flex-row flex-wrap justify-center gap-4">
           <SuperLink href="https://docs.google.com/spreadsheets/d/1ge_1xiG_Dnwh_sw68jK_xDT-uEh1qzDFhOELZkXB_5o/edit" external className="btn">
             Keyboard Shortcuts (Yes, Really!)
           </SuperLink>
